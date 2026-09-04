@@ -1,0 +1,2763 @@
+```html
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Checkout | Spandan 3D</title>
+
+  <meta
+    name="description"
+    content="Complete your Spandan 3D order."
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: #ffffff;
+      color: #111111;
+      line-height: 1.5;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    :root {
+      --accent: #f45d3d;
+      --accent-dark: #db4b30;
+      --black: #111111;
+      --muted: #737373;
+      --line: #e9e9e9;
+      --soft: #f7f6f3;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+      overflow: hidden;
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .topbar-track {
+      min-height: 38px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 50px;
+
+      padding: 0 20px;
+
+      white-space: nowrap;
+
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+
+    /* HEADER */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(255,255,255,.96);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-wrap {
+      min-height: 80px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 28px;
+    }
+
+    .brand {
+      flex-shrink: 0;
+
+      display: inline-flex;
+      align-items: center;
+
+      gap: 10px;
+
+      text-decoration: none;
+
+      font-family: "Manrope", sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+
+      letter-spacing: -1px;
+    }
+
+    .brand-mark {
+      width: 45px;
+      height: 45px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      background: #111111;
+      color: #ffffff;
+
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .brand-accent {
+      color: var(--accent);
+    }
+
+    .main-nav {
+      flex: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 27px;
+    }
+
+    .main-nav a {
+      color: #4b4b4b;
+
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover {
+      color: #111111;
+    }
+
+    .nav-actions {
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+
+      gap: 6px;
+    }
+
+    .icon-link,
+    .mobile-menu-btn {
+      position: relative;
+
+      width: 40px;
+      height: 40px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+
+      background: transparent;
+
+      color: #111111;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
+      font-size: 19px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    .cart-badge {
+      position: absolute;
+
+      top: -1px;
+      right: -2px;
+
+      min-width: 18px;
+      height: 18px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 4px;
+
+      border-radius: 20px;
+
+      background: var(--accent);
+      color: #ffffff;
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+
+    /* CHECKOUT HERO */
+
+    .checkout-head {
+      padding: 60px 0 38px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: 2.5px;
+    }
+
+    .checkout-head h1 {
+      margin: 8px 0 10px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: clamp(38px, 5vw, 54px);
+
+      line-height: 1.05;
+
+      letter-spacing: -2px;
+    }
+
+    .checkout-head > p:last-of-type {
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+
+    /* PROGRESS */
+
+    .checkout-progress {
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+
+      margin-top: 26px;
+    }
+
+    .progress-step {
+      display: flex;
+      align-items: center;
+
+      gap: 7px;
+
+      color: #999999;
+
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .progress-step.done,
+    .progress-step.active {
+      color: #111111;
+    }
+
+    .progress-number {
+      width: 25px;
+      height: 25px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #ededed;
+
+      font-size: 9px;
+    }
+
+    .progress-step.done .progress-number {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .progress-step.active .progress-number {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .progress-line {
+      width: 40px;
+      height: 1px;
+
+      background: #dddddd;
+    }
+
+
+    /* CHECKOUT */
+
+    .checkout-section {
+      padding: 5px 0 90px;
+    }
+
+    .checkout-layout {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1.3fr)
+        minmax(310px, .7fr);
+
+      gap: 30px;
+
+      align-items: start;
+    }
+
+
+    /* FORM */
+
+    .checkout-form {
+      padding: 32px;
+
+      border: 1px solid var(--line);
+      border-radius: 20px;
+
+      background: #ffffff;
+
+      box-shadow:
+        0 15px 45px
+        rgba(0,0,0,.035);
+    }
+
+    .form-section-header {
+      display: flex;
+      align-items: center;
+
+      gap: 13px;
+
+      margin-bottom: 26px;
+    }
+
+    .form-section-icon {
+      width: 42px;
+      height: 42px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 11px;
+
+      background: #fff0ed;
+
+      font-size: 17px;
+    }
+
+    .form-section-header h2 {
+      font-family: "Manrope", sans-serif;
+
+      font-size: 21px;
+
+      letter-spacing: -.6px;
+    }
+
+    .form-section-header p {
+      margin-top: 2px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+    }
+
+
+    /* INPUTS */
+
+    .form-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+      gap: 17px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+
+      gap: 7px;
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .span-2 {
+      grid-column: 1 / -1;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+
+      border: 1px solid #dddddd;
+      border-radius: 10px;
+
+      outline: none;
+
+      background: #ffffff;
+      color: #111111;
+
+      font-size: 13px;
+      font-weight: 400;
+
+      transition: .2s ease;
+    }
+
+    .field input {
+      min-height: 47px;
+
+      padding: 0 13px;
+    }
+
+    .field textarea {
+      min-height: 100px;
+
+      padding: 12px 13px;
+
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: #111111;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(0,0,0,.04);
+    }
+
+
+    /* PAYMENT */
+
+    .payment-section {
+      margin-top: 32px;
+      padding-top: 28px;
+
+      border-top: 1px solid var(--line);
+    }
+
+    .payment-title {
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+
+      margin-bottom: 17px;
+    }
+
+    .payment-title-icon {
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 10px;
+
+      background: #f1f1f1;
+
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .payment-title h3 {
+      font-family: "Manrope", sans-serif;
+
+      font-size: 18px;
+    }
+
+    .payment-title p {
+      margin-top: 2px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+    }
+
+
+    /* ONLINE PAYMENT CARD */
+
+    .online-payment-card {
+      display: flex;
+      align-items: center;
+
+      gap: 15px;
+
+      padding: 18px;
+
+      border: 1px solid var(--accent);
+      border-radius: 13px;
+
+      background: #fff8f6;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(244,93,61,.07);
+    }
+
+    .payment-icon {
+      width: 46px;
+      height: 46px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 11px;
+
+      background: #ffffff;
+
+      font-size: 20px;
+    }
+
+    .payment-content {
+      flex: 1;
+    }
+
+    .payment-content strong {
+      display: block;
+
+      margin-bottom: 4px;
+
+      font-size: 13px;
+    }
+
+    .payment-content p {
+      color: #777777;
+
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .payment-selected {
+      width: 23px;
+      height: 23px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: var(--accent);
+      color: #ffffff;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+
+    /* PAYMENT TYPES */
+
+    .payment-types {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 9px;
+
+      margin-top: 12px;
+    }
+
+    .payment-type {
+      padding: 12px 8px;
+
+      border: 1px solid var(--line);
+      border-radius: 10px;
+
+      background: #ffffff;
+
+      text-align: center;
+    }
+
+    .payment-type span {
+      display: block;
+
+      margin-bottom: 3px;
+
+      font-size: 16px;
+    }
+
+    .payment-type strong {
+      font-size: 9px;
+    }
+
+
+    /* PAYMENT NOTICE */
+
+    .payment-notice {
+      margin-top: 13px;
+
+      padding: 12px 14px;
+
+      border-radius: 10px;
+
+      background: #f6f6f6;
+
+      color: #777777;
+
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+
+    /* BUTTON */
+
+    .place-order {
+      margin-top: 24px;
+    }
+
+    .btn {
+      min-height: 52px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 25px;
+
+      border: 0;
+      border-radius: 11px;
+
+      cursor: pointer;
+
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .full {
+      width: 100%;
+    }
+
+    .order-security {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 5px;
+
+      margin-top: 11px;
+
+      color: #888888;
+
+      font-size: 9px;
+
+      text-align: center;
+    }
+
+    .order-status {
+      display: none;
+
+      margin-top: 13px;
+
+      padding: 12px 14px;
+
+      border-radius: 10px;
+
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .order-status.show {
+      display: block;
+    }
+
+    .order-status.error {
+      background: #fff0f0;
+      color: #b42318;
+    }
+
+    .order-status.success {
+      background: #eaf8ef;
+      color: #166534;
+    }
+
+
+    /* ORDER SUMMARY */
+
+    .order-summary {
+      position: sticky;
+      top: 110px;
+
+      overflow: hidden;
+
+      border: 1px solid var(--line);
+      border-radius: 20px;
+
+      background: #fafafa;
+    }
+
+    .summary-header {
+      padding: 23px 24px;
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summary-header h2 {
+      font-family: "Manrope", sans-serif;
+
+      font-size: 20px;
+
+      letter-spacing: -.6px;
+    }
+
+    .summary-header a {
+      display: inline-block;
+
+      margin-top: 4px;
+
+      color: var(--accent);
+
+      text-decoration: none;
+
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    #checkoutItems {
+      padding: 5px 24px;
+    }
+
+    .checkout-item {
+      display: flex;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 15px 0;
+
+      border-bottom: 1px solid var(--line);
+
+      font-size: 11px;
+    }
+
+    .checkout-item span {
+      color: #555555;
+    }
+
+    .checkout-item strong {
+      color: #111111;
+
+      white-space: nowrap;
+    }
+
+    .muted {
+      padding: 18px 0;
+
+      color: var(--muted);
+
+      font-size: 11px;
+    }
+
+
+    /* TOTAL */
+
+    .summary-calculation {
+      padding: 18px 24px 24px;
+    }
+
+    .summary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 7px 0;
+
+      color: #777777;
+
+      font-size: 10px;
+    }
+
+    .summary-row.total {
+      margin-top: 10px;
+      padding-top: 16px;
+
+      border-top: 1px solid #dddddd;
+
+      color: #111111;
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .summary-row.total strong {
+      font-family: "Manrope", sans-serif;
+
+      font-size: 21px;
+    }
+
+    .shipping-note {
+      margin-top: 12px;
+
+      color: #999999;
+
+      font-size: 9px;
+      line-height: 1.55;
+    }
+
+
+    /* TRUST */
+
+    .summary-trust {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      border-top: 1px solid var(--line);
+
+      background: #ffffff;
+    }
+
+    .summary-trust div {
+      padding: 15px 7px;
+
+      text-align: center;
+
+      border-right: 1px solid var(--line);
+    }
+
+    .summary-trust div:last-child {
+      border-right: 0;
+    }
+
+    .summary-trust span {
+      font-size: 15px;
+    }
+
+    .summary-trust strong {
+      display: block;
+
+      margin-top: 4px;
+
+      font-size: 8px;
+    }
+
+    .back-cart {
+      display: inline-block;
+
+      margin-top: 17px;
+
+      color: #666666;
+
+      text-decoration: none;
+
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .back-cart:hover {
+      color: var(--accent);
+    }
+
+
+    /* FOOTER */
+
+    footer {
+      padding-top: 62px;
+
+      background: #0e0e0e;
+      color: #ffffff;
+    }
+
+    .footer-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.7fr 1fr 1fr 1fr;
+
+      gap: 55px;
+
+      padding-bottom: 48px;
+    }
+
+    footer .brand {
+      color: #ffffff;
+    }
+
+    .footer-description {
+      max-width: 330px;
+
+      margin-top: 15px;
+
+      color: #888888;
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    footer h4 {
+      margin-bottom: 17px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 13px;
+    }
+
+    footer a:not(.brand) {
+      display: block;
+
+      width: fit-content;
+
+      margin-bottom: 10px;
+
+      color: #999999;
+
+      text-decoration: none;
+
+      font-size: 12px;
+    }
+
+    footer a:not(.brand):hover {
+      color: #ffffff;
+    }
+
+    .footer-location {
+      margin-top: 13px;
+
+      color: #777777;
+
+      font-size: 11px;
+    }
+
+    .footer-bottom {
+      min-height: 63px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+      color: #6f6f6f;
+
+      font-size: 10px;
+    }
+
+
+    /* TABLET */
+
+    @media (max-width: 950px) {
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      .nav-actions {
+        margin-left: auto;
+      }
+
+      .main-nav {
+        position: absolute;
+
+        top: calc(100% + 8px);
+
+        left: 15px;
+        right: 15px;
+
+        display: none;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 10px;
+
+        border: 1px solid var(--line);
+        border-radius: 14px;
+
+        background: #ffffff;
+
+        box-shadow:
+          0 22px 50px
+          rgba(0,0,0,.12);
+      }
+
+      .main-nav.open {
+        display: flex;
+      }
+
+      .main-nav a {
+        padding: 12px;
+      }
+
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .order-summary {
+        position: static;
+      }
+
+      .footer-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: calc(100% - 24px);
+      }
+
+      .topbar-track {
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        gap: 30px;
+      }
+
+      .nav-wrap {
+        min-height: 70px;
+      }
+
+      .brand {
+        font-size: 19px;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+
+        font-size: 18px;
+      }
+
+      .icon-link,
+      .mobile-menu-btn {
+        width: 35px;
+        height: 35px;
+      }
+
+      .checkout-head {
+        padding: 45px 0 30px;
+      }
+
+      .checkout-head h1 {
+        font-size: 39px;
+
+        letter-spacing: -1.7px;
+      }
+
+      .checkout-progress {
+        overflow-x: auto;
+      }
+
+      .progress-line {
+        width: 20px;
+      }
+
+      .checkout-section {
+        padding-bottom: 60px;
+      }
+
+      .checkout-form {
+        padding: 21px;
+
+        border-radius: 16px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .span-2 {
+        grid-column: auto;
+      }
+
+      .payment-types {
+        grid-template-columns: 1fr;
+      }
+
+      .order-summary {
+        border-radius: 16px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        min-height: auto;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 19px 0;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- TOP BAR -->
+
+  <div class="topbar">
+
+    <div class="topbar-track">
+
+      <span>✦ Custom 3D printing available</span>
+
+      <span>🇮🇳 Made in India</span>
+
+      <span>💳 Online payments only</span>
+
+      <span>💬 WhatsApp support</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+
+    <div class="container nav-wrap">
+
+
+      <a
+        class="brand"
+        href="index.html"
+      >
+
+        <span class="brand-mark">
+          S
+        </span>
+
+        <span>
+          Spandan<span class="brand-accent">3D</span>
+        </span>
+
+      </a>
+
+
+      <button
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        type="button"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+
+      <nav
+        class="main-nav"
+        id="mainNav"
+      >
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="shop.html">
+          Shop
+        </a>
+
+        <a href="custom-print.html">
+          Custom Prints
+        </a>
+
+        <a href="new-designs.html">
+          New Designs
+        </a>
+
+        <a href="best-sellers.html">
+          Best Sellers
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </nav>
+
+
+      <div class="nav-actions">
+
+        <a
+          class="icon-link"
+          href="shop.html"
+          aria-label="Search"
+        >
+          ⌕
+        </a>
+
+
+        <a
+          class="icon-link"
+          href="cart.html"
+          aria-label="Cart"
+        >
+
+          🛒
+
+          <span
+            class="cart-badge"
+            id="cartCount"
+          >
+            0
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main>
+
+
+    <!-- CHECKOUT HEADING -->
+
+    <section class="checkout-head container">
+
+      <p class="section-kicker">
+        CHECKOUT
+      </p>
+
+      <h1>
+        Complete your order.
+      </h1>
+
+      <p>
+        Enter your delivery details and place your order.
+      </p>
+
+
+      <div class="checkout-progress">
+
+
+        <div class="progress-step done">
+
+          <span class="progress-number">
+            ✓
+          </span>
+
+          Cart
+
+        </div>
+
+
+        <div class="progress-line"></div>
+
+
+        <div class="progress-step active">
+
+          <span class="progress-number">
+            2
+          </span>
+
+          Details
+
+        </div>
+
+
+        <div class="progress-line"></div>
+
+
+        <div class="progress-step">
+
+          <span class="progress-number">
+            3
+          </span>
+
+          Confirmation
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- CHECKOUT CONTENT -->
+
+    <section class="checkout-section">
+
+      <div class="container checkout-layout">
+
+
+        <!-- LEFT -->
+
+        <form
+          class="checkout-form"
+          id="checkoutForm"
+        >
+
+
+          <!-- DELIVERY -->
+
+          <div class="form-section-header">
+
+            <div class="form-section-icon">
+              📦
+            </div>
+
+            <div>
+
+              <h2>
+                Delivery Details
+              </h2>
+
+              <p>
+                Enter the address where your order should be delivered.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-grid">
+
+
+            <label class="field">
+
+              First Name *
+
+              <input
+                name="firstName"
+                type="text"
+                autocomplete="given-name"
+                required
+                placeholder="First name"
+              >
+
+            </label>
+
+
+            <label class="field">
+
+              Last Name *
+
+              <input
+                name="lastName"
+                type="text"
+                autocomplete="family-name"
+                required
+                placeholder="Last name"
+              >
+
+            </label>
+
+
+            <label class="field span-2">
+
+              Phone Number *
+
+              <input
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                required
+                placeholder="+91 98765 43210"
+              >
+
+            </label>
+
+
+            <label class="field span-2">
+
+              Email Address *
+
+              <input
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                placeholder="you@example.com"
+              >
+
+            </label>
+
+
+            <label class="field span-2">
+
+              Delivery Address *
+
+              <textarea
+                name="address"
+                autocomplete="street-address"
+                required
+                placeholder="House / Flat, Street, Area, Landmark"
+              ></textarea>
+
+            </label>
+
+
+            <label class="field">
+
+              City *
+
+              <input
+                name="city"
+                type="text"
+                autocomplete="address-level2"
+                required
+                placeholder="City"
+              >
+
+            </label>
+
+
+            <label class="field">
+
+              PIN Code *
+
+              <input
+                name="pinCode"
+                type="text"
+                inputmode="numeric"
+                autocomplete="postal-code"
+                maxlength="6"
+                pattern="[0-9]{6}"
+                required
+                placeholder="414302"
+              >
+
+            </label>
+
+
+            <label class="field">
+
+              State *
+
+              <input
+                name="state"
+                type="text"
+                autocomplete="address-level1"
+                required
+                placeholder="Maharashtra"
+              >
+
+            </label>
+
+
+            <label class="field">
+
+              Country *
+
+              <input
+                name="country"
+                type="text"
+                autocomplete="country-name"
+                value="India"
+                required
+              >
+
+            </label>
+
+
+          </div>
+
+
+          <!-- PAYMENT -->
+
+          <div class="payment-section">
+
+
+            <div class="payment-title">
+
+              <div class="payment-title-icon">
+                ₹
+              </div>
+
+              <div>
+
+                <h3>
+                  Payment Method
+                </h3>
+
+                <p>
+                  Online payment integration can be connected later.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="online-payment-card">
+
+              <div class="payment-icon">
+                📱
+              </div>
+
+
+              <div class="payment-content">
+
+                <strong>
+                  Online Payment
+                </strong>
+
+                <p>
+                  Your order will be saved first and the order details
+                  will also be prepared in WhatsApp.
+                </p>
+
+              </div>
+
+
+              <div class="payment-selected">
+                ✓
+              </div>
+
+            </div>
+
+
+            <input
+              type="hidden"
+              name="paymentMethod"
+              value="Online Payment"
+            >
+
+
+            <div class="payment-types">
+
+
+              <div class="payment-type">
+
+                <span>
+                  📱
+                </span>
+
+                <strong>
+                  UPI
+                </strong>
+
+              </div>
+
+
+              <div class="payment-type">
+
+                <span>
+                  💳
+                </span>
+
+                <strong>
+                  Cards
+                </strong>
+
+              </div>
+
+
+              <div class="payment-type">
+
+                <span>
+                  🏦
+                </span>
+
+                <strong>
+                  Other Online
+                </strong>
+
+              </div>
+
+
+            </div>
+
+
+            <div class="payment-notice">
+
+              For now, the order is saved to your Spandan 3D dashboard
+              and WhatsApp opens with the full order details.
+              Razorpay can be connected later for real payment collection.
+
+            </div>
+
+
+          </div>
+
+
+          <!-- ORDER BUTTON -->
+
+          <div class="place-order">
+
+            <button
+              class="btn btn-primary full"
+              id="payNowBtn"
+              type="submit"
+            >
+              Place Order & Continue to WhatsApp →
+            </button>
+
+
+            <div
+              class="order-status"
+              id="orderStatus"
+            ></div>
+
+
+            <div class="order-security">
+
+              🔒
+
+              <span>
+                Your order is saved before WhatsApp opens.
+              </span>
+
+            </div>
+
+          </div>
+
+
+        </form>
+
+
+        <!-- RIGHT -->
+
+        <div>
+
+
+          <aside class="order-summary">
+
+
+            <div class="summary-header">
+
+              <h2>
+                Your Order
+              </h2>
+
+              <a href="cart.html">
+                Edit Cart
+              </a>
+
+            </div>
+
+
+            <div id="checkoutItems"></div>
+
+
+            <div class="summary-calculation">
+
+
+              <div class="summary-row">
+
+                <span>
+                  Shipping
+                </span>
+
+                <span>
+                  Calculated separately
+                </span>
+
+              </div>
+
+
+              <div class="summary-row total">
+
+                <span>
+                  Total
+                </span>
+
+                <strong id="checkoutTotal">
+                  ₹0
+                </strong>
+
+              </div>
+
+
+              <p class="shipping-note">
+                Product total is shown above.
+                Shipping charges can be added when delivery is finalized.
+              </p>
+
+
+            </div>
+
+
+            <div class="summary-trust">
+
+
+              <div>
+
+                <span>✓</span>
+
+                <strong>
+                  Quality Checked
+                </strong>
+
+              </div>
+
+
+              <div>
+
+                <span>🇮🇳</span>
+
+                <strong>
+                  Made in India
+                </strong>
+
+              </div>
+
+
+              <div>
+
+                <span>💬</span>
+
+                <strong>
+                  Support
+                </strong>
+
+              </div>
+
+
+            </div>
+
+
+          </aside>
+
+
+          <a
+            class="back-cart"
+            href="cart.html"
+          >
+            ← Back to Cart
+          </a>
+
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-grid">
+
+
+      <div>
+
+        <a
+          class="brand"
+          href="index.html"
+        >
+
+          <span class="brand-mark">
+            S
+          </span>
+
+          <span>
+            Spandan<span class="brand-accent">3D</span>
+          </span>
+
+        </a>
+
+
+        <p class="footer-description">
+          3D printed idols and custom prints,
+          made carefully layer by layer.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Shop
+        </h4>
+
+        <a href="shop.html">
+          All Products
+        </a>
+
+        <a href="new-designs.html">
+          New Designs
+        </a>
+
+        <a href="best-sellers.html">
+          Best Sellers
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Information
+        </h4>
+
+        <a href="custom-print.html">
+          Custom Printing
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+        <a href="cart.html">
+          Cart
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Connect
+        </h4>
+
+        <a
+          href="https://www.instagram.com/3D_spandan/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram ↗
+        </a>
+
+        <a
+          href="https://wa.me/919766979232"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp ↗
+        </a>
+
+
+        <div class="footer-location">
+          Maharashtra, India
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+      <span>
+        © 2026 Spandan 3D. All rights reserved.
+      </span>
+
+      <span>
+        Made layer by layer.
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- EXISTING WEBSITE JS -->
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+
+
+  <script>
+
+    /* =====================================================
+       SETTINGS
+       ===================================================== */
+
+    const API_URL =
+      "http://localhost:5000";
+
+    const SPANDAN_WHATSAPP =
+      "919766979232";
+
+
+    /* =====================================================
+       MOBILE MENU
+       ===================================================== */
+
+    const checkoutMobileMenuBtn =
+      document.getElementById(
+        "mobileMenuBtn"
+      );
+
+    const checkoutMainNav =
+      document.getElementById(
+        "mainNav"
+      );
+
+
+    checkoutMobileMenuBtn
+      ?.addEventListener(
+        "click",
+        () => {
+
+          checkoutMainNav
+            ?.classList
+            .toggle("open");
+
+          document.body
+            .classList
+            .toggle(
+              "menu-open",
+              checkoutMainNav
+                ?.classList
+                .contains("open")
+            );
+
+        }
+      );
+
+
+    checkoutMainNav
+      ?.querySelectorAll("a")
+      .forEach(link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            checkoutMainNav
+              .classList
+              .remove("open");
+
+            document.body
+              .classList
+              .remove("menu-open");
+
+          }
+        );
+
+      });
+
+
+    /* =====================================================
+       CHECKOUT ELEMENTS
+       ===================================================== */
+
+    const checkoutForm =
+      document.getElementById(
+        "checkoutForm"
+      );
+
+    const checkoutItemsElement =
+      document.getElementById(
+        "checkoutItems"
+      );
+
+    const checkoutTotalElement =
+      document.getElementById(
+        "checkoutTotal"
+      );
+
+    const payNowBtn =
+      document.getElementById(
+        "payNowBtn"
+      );
+
+    const orderStatus =
+      document.getElementById(
+        "orderStatus"
+      );
+
+
+    /* =====================================================
+       STATUS
+       ===================================================== */
+
+    function showOrderStatus(
+      message,
+      type
+    ) {
+
+      orderStatus.textContent =
+        message;
+
+      orderStatus.className =
+        `order-status show ${type}`;
+
+    }
+
+
+    /* =====================================================
+       GET CART
+       ===================================================== */
+
+    function getCheckoutCart() {
+
+      /*
+        This checks a few common localStorage
+        keys so it can work with your existing site.
+
+        If your main.js already has a getCart()
+        function, that will be used first.
+      */
+
+      if (
+        typeof window.getCart === "function"
+      ) {
+
+        try {
+
+          const cart =
+            window.getCart();
+
+          if (Array.isArray(cart)) {
+            return cart;
+          }
+
+        }
+
+        catch (error) {
+
+          console.warn(
+            "Could not get cart from getCart():",
+            error
+          );
+
+        }
+
+      }
+
+
+      const possibleKeys = [
+        "cart",
+        "spandanCart",
+        "spandan3dCart"
+      ];
+
+
+      for (
+        const key of possibleKeys
+      ) {
+
+        try {
+
+          const stored =
+            localStorage.getItem(key);
+
+          if (!stored) {
+            continue;
+          }
+
+          const parsed =
+            JSON.parse(stored);
+
+          if (Array.isArray(parsed)) {
+            return parsed;
+          }
+
+        }
+
+        catch (error) {
+
+          console.warn(
+            `Could not read ${key}:`,
+            error
+          );
+
+        }
+
+      }
+
+
+      return [];
+
+    }
+
+
+    /* =====================================================
+       ITEM HELPERS
+       ===================================================== */
+
+    function getItemName(item) {
+
+      return (
+        item.name ||
+        item.title ||
+        item.productName ||
+        "3D Printed Product"
+      );
+
+    }
+
+
+    function getItemPrice(item) {
+
+      const price =
+        Number(
+          item.price ??
+          item.salePrice ??
+          item.productPrice ??
+          0
+        );
+
+      return Number.isFinite(price)
+        ? price
+        : 0;
+
+    }
+
+
+    function getItemQuantity(item) {
+
+      const quantity =
+        Number(
+          item.quantity ??
+          item.qty ??
+          1
+        );
+
+      return (
+        Number.isFinite(quantity) &&
+        quantity > 0
+      )
+        ? quantity
+        : 1;
+
+    }
+
+
+    function calculateCartTotal(cart) {
+
+      return cart.reduce(
+        (total, item) => {
+
+          return total +
+            (
+              getItemPrice(item) *
+              getItemQuantity(item)
+            );
+
+        },
+        0
+      );
+
+    }
+
+
+    /* =====================================================
+       RENDER ORDER SUMMARY
+       ===================================================== */
+
+    function renderCheckoutSummary() {
+
+      const cart =
+        getCheckoutCart();
+
+
+      if (!cart.length) {
+
+        checkoutItemsElement.innerHTML = `
+
+          <p class="muted">
+            Your cart is empty.
+          </p>
+
+        `;
+
+        checkoutTotalElement.textContent =
+          "₹0";
+
+        return;
+
+      }
+
+
+      checkoutItemsElement.innerHTML =
+        cart.map(item => {
+
+          const name =
+            getItemName(item);
+
+          const price =
+            getItemPrice(item);
+
+          const quantity =
+            getItemQuantity(item);
+
+          const lineTotal =
+            price * quantity;
+
+
+          return `
+
+            <div class="checkout-item">
+
+              <span>
+                ${name} × ${quantity}
+              </span>
+
+              <strong>
+                ₹${lineTotal.toFixed(0)}
+              </strong>
+
+            </div>
+
+          `;
+
+        }).join("");
+
+
+      const total =
+        calculateCartTotal(cart);
+
+
+      checkoutTotalElement.textContent =
+        `₹${total.toFixed(0)}`;
+
+    }
+
+
+    renderCheckoutSummary();
+
+
+    /* =====================================================
+       BUILD PRODUCT MESSAGE
+       ===================================================== */
+
+    function buildProductMessage(cart) {
+
+      return cart.map(
+        (item, index) => {
+
+          const name =
+            getItemName(item);
+
+          const price =
+            getItemPrice(item);
+
+          const quantity =
+            getItemQuantity(item);
+
+          const lineTotal =
+            price * quantity;
+
+
+          return `${index + 1}. ${name}
+Quantity: ${quantity}
+Price: ₹${price.toFixed(0)}
+Subtotal: ₹${lineTotal.toFixed(0)}`;
+
+        }
+      ).join("\n\n");
+
+    }
+
+
+    /* =====================================================
+       SUBMIT ORDER
+       ===================================================== */
+
+    checkoutForm
+      ?.addEventListener(
+        "submit",
+        async event => {
+
+          event.preventDefault();
+
+
+          const cart =
+            getCheckoutCart();
+
+
+          if (!cart.length) {
+
+            showOrderStatus(
+              "Your cart is empty. Please add a product before placing the order.",
+              "error"
+            );
+
+            return;
+
+          }
+
+
+          const originalButtonText =
+            payNowBtn.textContent;
+
+
+          try {
+
+            payNowBtn.disabled =
+              true;
+
+            payNowBtn.textContent =
+              "Saving Order...";
+
+            orderStatus.className =
+              "order-status";
+
+
+            const formData =
+              new FormData(
+                checkoutForm
+              );
+
+
+            const firstName =
+              String(
+                formData.get(
+                  "firstName"
+                ) || ""
+              ).trim();
+
+            const lastName =
+              String(
+                formData.get(
+                  "lastName"
+                ) || ""
+              ).trim();
+
+            const phone =
+              String(
+                formData.get(
+                  "phone"
+                ) || ""
+              ).trim();
+
+            const email =
+              String(
+                formData.get(
+                  "email"
+                ) || ""
+              ).trim();
+
+            const address =
+              String(
+                formData.get(
+                  "address"
+                ) || ""
+              ).trim();
+
+            const city =
+              String(
+                formData.get(
+                  "city"
+                ) || ""
+              ).trim();
+
+            const pinCode =
+              String(
+                formData.get(
+                  "pinCode"
+                ) || ""
+              ).trim();
+
+            const state =
+              String(
+                formData.get(
+                  "state"
+                ) || ""
+              ).trim();
+
+            const country =
+              String(
+                formData.get(
+                  "country"
+                ) || "India"
+              ).trim();
+
+            const paymentMethod =
+              String(
+                formData.get(
+                  "paymentMethod"
+                ) ||
+                "Online Payment"
+              );
+
+
+            const total =
+              calculateCartTotal(cart);
+
+
+            /*
+              SEND THIS DATA TO YOUR BACKEND.
+              Your backend can save this in MongoDB,
+              MySQL, PostgreSQL, etc.
+            */
+
+            const orderData = {
+
+              customer: {
+
+                firstName,
+                lastName,
+
+                fullName:
+                  `${firstName} ${lastName}`.trim(),
+
+                phone,
+                email
+
+              },
+
+              deliveryAddress: {
+
+                address,
+                city,
+                pinCode,
+                state,
+                country
+
+              },
+
+              items: cart.map(
+                item => ({
+
+                  id:
+                    item.id ||
+                    item.productId ||
+                    null,
+
+                  name:
+                    getItemName(item),
+
+                  price:
+                    getItemPrice(item),
+
+                  quantity:
+                    getItemQuantity(item),
+
+                  subtotal:
+                    getItemPrice(item) *
+                    getItemQuantity(item)
+
+                })
+              ),
+
+              productTotal:
+                total,
+
+              shipping:
+                0,
+
+              total:
+                total,
+
+              paymentMethod:
+                paymentMethod,
+
+              paymentStatus:
+                "Pending",
+
+              orderStatus:
+                "New"
+
+            };
+
+
+            /* =============================================
+               SAVE ORDER TO DASHBOARD / BACKEND
+               ============================================= */
+
+            const response =
+              await fetch(
+                `${API_URL}/api/orders`,
+                {
+
+                  method: "POST",
+
+                  headers: {
+                    "Content-Type":
+                      "application/json"
+                  },
+
+                  body:
+                    JSON.stringify(
+                      orderData
+                    )
+
+                }
+              );
+
+
+            let result = {};
+
+
+            try {
+
+              result =
+                await response.json();
+
+            }
+
+            catch {
+
+              result = {};
+
+            }
+
+
+            if (!response.ok) {
+
+              throw new Error(
+                result.message ||
+                "Could not save your order."
+              );
+
+            }
+
+
+            /*
+              Your backend should return something like:
+
+              {
+                "success": true,
+                "orderNumber": "SPD-1001"
+              }
+            */
+
+
+            const orderNumber =
+              result.orderNumber ||
+              result.orderId ||
+              result.id ||
+              "New Order";
+
+
+            /* =============================================
+               CREATE WHATSAPP MESSAGE
+               ============================================= */
+
+            const productMessage =
+              buildProductMessage(cart);
+
+
+            const whatsappMessage =
+`Hello Spandan 3D 👋
+
+I have placed an order through the website.
+
+*ORDER NUMBER*
+${orderNumber}
+
+*CUSTOMER DETAILS*
+
+Name: ${firstName} ${lastName}
+Phone: ${phone}
+Email: ${email}
+
+*DELIVERY ADDRESS*
+
+${address}
+${city}, ${state}
+PIN Code: ${pinCode}
+${country}
+
+*ORDER DETAILS*
+
+${productMessage}
+
+*PRODUCT TOTAL*
+₹${total.toFixed(0)}
+
+*SHIPPING*
+To be confirmed
+
+*PAYMENT METHOD*
+${paymentMethod}
+
+*PAYMENT STATUS*
+Pending
+
+Please confirm my order.
+
+Thank you.`;
+
+
+            const whatsappURL =
+              `https://wa.me/${SPANDAN_WHATSAPP}?text=${encodeURIComponent(whatsappMessage)}`;
+
+
+            showOrderStatus(
+              `Order ${orderNumber} saved successfully. Opening WhatsApp...`,
+              "success"
+            );
+
+
+            /*
+              IMPORTANT:
+              The order has already been saved
+              before WhatsApp is opened.
+            */
+
+            setTimeout(
+              () => {
+
+                window.location.href =
+                  whatsappURL;
+
+              },
+              500
+            );
+
+          }
+
+          catch (error) {
+
+            console.error(
+              "Checkout error:",
+              error
+            );
+
+
+            showOrderStatus(
+              error.message ||
+              "Could not place your order. Please try again.",
+              "error"
+            );
+
+          }
+
+          finally {
+
+            payNowBtn.disabled =
+              false;
+
+            payNowBtn.textContent =
+              originalButtonText;
+
+          }
+
+        }
+      );
+
+  </script>
+
+
+</body>
+
+</html>
+```

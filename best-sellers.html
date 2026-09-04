@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Best Sellers | Spandan 3D</title>
+
+  <meta
+    name="description"
+    content="Browse best selling 3D printed products from Spandan 3D."
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: #ffffff;
+      color: #111111;
+      line-height: 1.5;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    :root {
+      --accent: #f45d3d;
+      --black: #111111;
+      --muted: #707070;
+      --line: #eaeaea;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+      background: #111111;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .topbar-track {
+      min-height: 38px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 50px;
+
+      padding: 0 20px;
+
+      white-space: nowrap;
+
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+
+    /* HEADER */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(255,255,255,.96);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-wrap {
+      min-height: 80px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 28px;
+    }
+
+    .brand {
+      flex-shrink: 0;
+
+      display: inline-flex;
+      align-items: center;
+
+      gap: 10px;
+
+      text-decoration: none;
+
+      font-family: "Manrope", sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+
+      letter-spacing: -1px;
+    }
+
+    .brand-mark {
+      width: 45px;
+      height: 45px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      background: #111111;
+      color: #ffffff;
+
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .brand-accent {
+      color: var(--accent);
+    }
+
+    .main-nav {
+      flex: 1;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 27px;
+    }
+
+    .main-nav a {
+      position: relative;
+
+      color: #4b4b4b;
+
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #111111;
+    }
+
+    .main-nav a.active::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: -29px;
+
+      height: 2px;
+
+      background: var(--accent);
+
+      border-radius: 10px;
+    }
+
+    .nav-actions {
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+
+      gap: 6px;
+    }
+
+    .icon-link,
+    .mobile-menu-btn {
+      position: relative;
+
+      width: 40px;
+      height: 40px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+
+      background: transparent;
+
+      text-decoration: none;
+      color: #111111;
+
+      cursor: pointer;
+
+      font-size: 19px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    .cart-badge {
+      position: absolute;
+
+      top: -1px;
+      right: -2px;
+
+      min-width: 18px;
+      height: 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 4px;
+
+      border-radius: 20px;
+
+      background: var(--accent);
+      color: #ffffff;
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+
+    /* HERO */
+
+    .page-hero {
+      padding-top: 78px;
+      padding-bottom: 44px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: 2.5px;
+    }
+
+    .page-hero h1 {
+      margin: 10px 0 14px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: clamp(42px, 5vw, 64px);
+
+      line-height: 1.04;
+
+      letter-spacing: -2.8px;
+    }
+
+    .page-hero > p:last-child {
+      max-width: 620px;
+
+      color: var(--muted);
+
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+
+    /* SECTION */
+
+    .section {
+      padding: 30px 0 90px;
+    }
+
+    .products-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      gap: 30px;
+
+      margin-bottom: 30px;
+    }
+
+    .products-heading h2 {
+      margin: 7px 0 5px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 29px;
+
+      letter-spacing: -1px;
+    }
+
+    .products-heading p {
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .shop-link {
+      flex-shrink: 0;
+
+      text-decoration: none;
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .shop-link:hover {
+      color: var(--accent);
+    }
+
+
+    /* PRODUCT GRID */
+
+    .product-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      align-items: start;
+
+      gap: 20px;
+    }
+
+    .product-grid > * {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .product-grid > .product-card:only-child,
+    .product-grid > a:only-child {
+      max-width: 340px;
+    }
+
+    .product-card {
+      overflow: hidden;
+
+      border: 1px solid var(--line);
+      border-radius: 18px;
+
+      background: #ffffff;
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+
+      box-shadow:
+        0 18px 42px
+        rgba(0,0,0,.08);
+    }
+
+    .product-media {
+      position: relative;
+
+      display: block;
+
+      overflow: hidden;
+
+      background: #f4f4f4;
+    }
+
+    .product-image {
+      width: 100% !important;
+      height: 240px !important;
+
+      object-fit: cover !important;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-info h3 {
+      margin-bottom: 12px;
+
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .product-info h3 a {
+      text-decoration: none;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+    }
+
+    .price {
+      font-weight: 800;
+    }
+
+    .old-price {
+      margin-left: 7px;
+
+      color: #999999;
+
+      font-size: 11px;
+
+      text-decoration: line-through;
+    }
+
+    .add-btn {
+      width: 34px;
+      height: 34px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+      border-radius: 50%;
+
+      background: #111111;
+      color: #ffffff;
+
+      cursor: pointer;
+
+      font-size: 18px;
+    }
+
+    .add-btn:hover {
+      background: var(--accent);
+    }
+
+    .product-tag {
+      position: absolute;
+
+      top: 12px;
+      left: 12px;
+
+      z-index: 2;
+
+      padding: 6px 9px;
+
+      border-radius: 20px;
+
+      background: #111111;
+      color: #ffffff;
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .muted {
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+      padding-top: 62px;
+
+      background: #0e0e0e;
+      color: #ffffff;
+    }
+
+    .footer-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.7fr 1fr 1fr 1fr;
+
+      gap: 55px;
+
+      padding-bottom: 48px;
+    }
+
+    footer .brand {
+      color: #ffffff;
+    }
+
+    .footer-description {
+      max-width: 330px;
+
+      margin-top: 15px;
+
+      color: #888888;
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    footer h4 {
+      margin-bottom: 17px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 13px;
+    }
+
+    footer a:not(.brand) {
+      display: block;
+
+      width: fit-content;
+
+      margin-bottom: 10px;
+
+      color: #999999;
+
+      text-decoration: none;
+
+      font-size: 12px;
+    }
+
+    footer a:not(.brand):hover {
+      color: #ffffff;
+    }
+
+    .footer-location {
+      margin-top: 13px;
+
+      color: #777777;
+
+      font-size: 11px;
+    }
+
+    .footer-bottom {
+      min-height: 63px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+      color: #6f6f6f;
+
+      font-size: 10px;
+    }
+
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+
+      right: 25px;
+      bottom: 25px;
+
+      z-index: 2000;
+
+      padding: 13px 18px;
+
+      border-radius: 10px;
+
+      background: #111111;
+      color: #ffffff;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transform: translateY(15px);
+
+      transition: .25s ease;
+
+      font-size: 12px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* TABLET */
+
+    @media (max-width: 950px) {
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      .nav-actions {
+        margin-left: auto;
+      }
+
+      .main-nav {
+        position: absolute;
+
+        top: calc(100% + 8px);
+
+        left: 15px;
+        right: 15px;
+
+        display: none;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 10px;
+
+        border: 1px solid var(--line);
+        border-radius: 14px;
+
+        background: #ffffff;
+
+        box-shadow:
+          0 22px 50px
+          rgba(0,0,0,.12);
+      }
+
+      .main-nav.open {
+        display: flex;
+      }
+
+      .main-nav a {
+        padding: 12px;
+
+        border-radius: 8px;
+      }
+
+      .main-nav a.active::after {
+        display: none;
+      }
+
+      .product-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 560px) {
+
+      .container {
+        width: calc(100% - 24px);
+      }
+
+      .topbar-track {
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        gap: 30px;
+      }
+
+      .nav-wrap {
+        min-height: 70px;
+      }
+
+      .brand {
+        font-size: 19px;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+
+        font-size: 18px;
+      }
+
+      .icon-link,
+      .mobile-menu-btn {
+        width: 35px;
+        height: 35px;
+      }
+
+      .page-hero {
+        padding-top: 50px;
+        padding-bottom: 28px;
+      }
+
+      .page-hero h1 {
+        font-size: 40px;
+
+        letter-spacing: -2px;
+      }
+
+      .section {
+        padding-top: 20px;
+        padding-bottom: 60px;
+      }
+
+      .products-heading {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 8px;
+      }
+
+      .product-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+      }
+
+      .product-grid > .product-card:only-child,
+      .product-grid > a:only-child {
+        max-width: none;
+      }
+
+      .product-image {
+        height: 170px !important;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        min-height: auto;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 19px 0;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- TOPBAR -->
+
+  <div class="topbar">
+
+    <div class="topbar-track">
+
+      <span>
+        🚚 Free shipping above ₹999
+      </span>
+
+      <span>
+        ✦ Custom 3D printing available
+      </span>
+
+      <span>
+        🇮🇳 Made in India
+      </span>
+
+      <span>
+        🔒 Secure checkout
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+
+    <div class="container nav-wrap">
+
+
+      <a
+        class="brand"
+        href="index.html"
+      >
+
+        <span class="brand-mark">
+          S
+        </span>
+
+        <span>
+          Spandan<span class="brand-accent">3D</span>
+        </span>
+
+      </a>
+
+
+      <button
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        type="button"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+
+      <nav
+        class="main-nav"
+        id="mainNav"
+      >
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="shop.html">
+          Shop
+        </a>
+
+        <a href="custom-print.html">
+          Custom Prints
+        </a>
+
+        <a href="new-designs.html">
+          New Designs
+        </a>
+
+        <a
+          class="active"
+          href="best-sellers.html"
+        >
+          Best Sellers
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </nav>
+
+
+      <div class="nav-actions">
+
+        <a
+          class="icon-link"
+          href="shop.html"
+          aria-label="Search"
+        >
+          ⌕
+        </a>
+
+        <a
+          class="icon-link"
+          href="cart.html"
+          aria-label="Cart"
+        >
+
+          🛒
+
+          <span
+            class="cart-badge"
+            id="cartCount"
+          >
+            0
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main>
+
+
+    <section class="page-hero container">
+
+      <p class="section-kicker">
+        FEATURED PICKS
+      </p>
+
+      <h1>
+        Best Sellers
+      </h1>
+
+      <p>
+        Products marked as best sellers in your Spandan 3D collection.
+      </p>
+
+    </section>
+
+
+    <section class="section container">
+
+
+      <div class="products-heading">
+
+        <div>
+
+          <p class="section-kicker">
+            BEST SELLER COLLECTION
+          </p>
+
+          <h2>
+            Popular Picks
+          </h2>
+
+          <p>
+            Only products you mark as Best Seller in the dashboard appear here.
+          </p>
+
+        </div>
+
+
+        <a
+          class="shop-link"
+          href="shop.html"
+        >
+          View all products →
+        </a>
+
+      </div>
+
+
+      <!-- REAL BEST SELLER PRODUCTS -->
+
+      <div
+        class="product-grid"
+        data-product-list="best"
+      ></div>
+
+
+    </section>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-grid">
+
+
+      <div>
+
+        <a
+          class="brand"
+          href="index.html"
+        >
+
+          <span class="brand-mark">
+            S
+          </span>
+
+          <span>
+            Spandan<span class="brand-accent">3D</span>
+          </span>
+
+        </a>
+
+
+        <p class="footer-description">
+          3D printed idols and custom prints,
+          made carefully layer by layer.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Shop
+        </h4>
+
+        <a href="shop.html">
+          All Products
+        </a>
+
+        <a href="new-designs.html">
+          New Designs
+        </a>
+
+        <a href="best-sellers.html">
+          Best Sellers
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Information
+        </h4>
+
+        <a href="custom-print.html">
+          Custom Printing
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Connect
+        </h4>
+
+        <a
+          href="https://www.instagram.com/3D_spandan/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram ↗
+        </a>
+
+        <a
+          href="https://wa.me/919766979232"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp ↗
+        </a>
+
+        <div class="footer-location">
+          Maharashtra, India
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+      <span>
+        © 2026 Spandan 3D. All rights reserved.
+      </span>
+
+      <span>
+        Made layer by layer.
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- TOAST -->
+
+  <div
+    class="toast"
+    id="toast"
+  >
+    Added to cart
+  </div>
+
+
+  <!-- EXISTING PRODUCT / CART JS -->
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+
+
+  <!-- MOBILE MENU -->
+
+  <script>
+
+    const mobileMenuBtn =
+      document.getElementById("mobileMenuBtn");
+
+    const mainNav =
+      document.getElementById("mainNav");
+
+
+    mobileMenuBtn?.addEventListener(
+      "click",
+      () => {
+
+        mainNav.classList.toggle("open");
+
+        document.body.classList.toggle(
+          "menu-open",
+          mainNav.classList.contains("open")
+        );
+
+      }
+    );
+
+
+    mainNav
+      ?.querySelectorAll("a")
+      .forEach(link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            mainNav.classList.remove("open");
+
+            document.body.classList.remove("menu-open");
+
+          }
+        );
+
+      });
+
+  </script>
+
+
+</body>
+
+</html>

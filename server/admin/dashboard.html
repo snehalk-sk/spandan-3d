@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Spandan 3D Admin Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================================
+         MOBILE HEADER
+         ===================================================== -->
+
+    <div class="mobile-header">
+
+        <div class="logo">
+            Spandan <span>3D</span>
+        </div>
+
+        <button
+            id="menuButton"
+            class="menu-button"
+            type="button"
+        >
+            ☰
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+        <div class="sidebar-top">
+
+            <div class="logo">
+                Spandan <span>3D</span>
+            </div>
+
+            <button
+                id="closeSidebar"
+                class="close-sidebar"
+                type="button"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <nav>
+
+            <button
+                class="nav-link active"
+                data-page="dashboard"
+                type="button"
+            >
+                <span>⌂</span>
+                Dashboard
+            </button>
+
+
+            <button
+                class="nav-link"
+                data-page="orders"
+                type="button"
+            >
+                <span>▣</span>
+                Orders
+            </button>
+
+
+            <button
+                class="nav-link"
+                data-page="products"
+                type="button"
+            >
+                <span>◈</span>
+                Products
+            </button>
+
+
+            <button
+                class="nav-link"
+                data-page="customers"
+                type="button"
+            >
+                <span>♙</span>
+                Customers
+            </button>
+
+
+            <button
+                class="nav-link"
+                data-page="customPrints"
+                type="button"
+            >
+                <span>✦</span>
+                Custom Prints
+            </button>
+
+
+            <button
+                class="nav-link"
+                data-page="settings"
+                type="button"
+            >
+                <span>⚙</span>
+                Settings
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a
+                href="../../index.html"
+                class="website-link"
+            >
+                ← Back to Website
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="main">
+
+
+        <!-- =================================================
+             DASHBOARD
+             ================================================= -->
+
+        <section
+            class="admin-page active-page"
+            id="dashboardPage"
+        >
+
+            <header>
+
+                <div>
+
+                    <p class="page-label">
+                        OVERVIEW
+                    </p>
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Your Spandan 3D business at a glance
+                    </p>
+
+                </div>
+
+
+                <div class="admin-user">
+                    Admin
+                </div>
+
+            </header>
+
+
+            <!-- DASHBOARD STATS -->
+
+            <section class="stats dashboard-stats">
+
+
+                <!-- TOTAL ORDERS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ▣
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Orders
+                        </p>
+
+                        <h2 id="totalOrders">
+                            0
+                        </h2>
+
+                        <span class="stat-note">
+                            All customer orders
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REVENUE -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ₹
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Revenue
+                        </p>
+
+                        <h2 id="totalRevenue">
+                            ₹0
+                        </h2>
+
+                        <span class="stat-note">
+                            Order value
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PENDING -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ◷
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Pending Orders
+                        </p>
+
+                        <h2 id="pendingOrders">
+                            0
+                        </h2>
+
+                        <span class="stat-note">
+                            Need attention
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DELIVERED -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Delivered
+                        </p>
+
+                        <h2 id="deliveredOrders">
+                            0
+                        </h2>
+
+                        <span class="stat-note">
+                            Completed deliveries
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUCTS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ◈
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Products
+                        </p>
+
+                        <h2 id="dashboardProductsCount">
+                            0
+                        </h2>
+
+                        <span class="stat-note">
+                            Store catalog
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CUSTOMERS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ♙
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Customers
+                        </p>
+
+                        <h2 id="dashboardCustomersCount">
+                            0
+                        </h2>
+
+                        <span class="stat-note">
+                            Unique customers
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CUSTOM PRINTS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✦
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Custom Requests
+                        </p>
+
+                        <h2 id="dashboardCustomPrintCount">
+                            0
+                        </h2>
+
+                        <span class="stat-note">
+                            Custom print enquiries
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RECENT ORDERS -->
+
+            <section class="content-card">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Recent Orders
+                        </h2>
+
+                        <p>
+                            Latest customer orders
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="text-button"
+                        data-open-page="orders"
+                        type="button"
+                    >
+                        View All →
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Order</th>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <th>Amount</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="recentOrdersTable"
+                        ></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- DASHBOARD QUICK SECTIONS -->
+
+            <section class="dashboard-quick-grid">
+
+
+                <!-- CUSTOM PRINT REQUESTS -->
+
+                <div class="content-card dashboard-quick-card">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Recent Custom Prints
+                            </h2>
+
+                            <p>
+                                Latest custom requests
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="text-button"
+                            data-open-page="customPrints"
+                            type="button"
+                        >
+                            View All →
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="dashboard-custom-list"
+                        id="dashboardRecentCustomPrints"
+                    >
+
+                        <div class="custom-empty-state">
+                            No custom print requests yet.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUSINESS SUMMARY -->
+
+                <div class="content-card dashboard-quick-card">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Business Summary
+                            </h2>
+
+                            <p>
+                                Quick store overview
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-summary-list">
+
+
+                        <div class="dashboard-summary-row">
+
+                            <span>
+                                Total Customers
+                            </span>
+
+                            <strong id="dashboardSummaryCustomers">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="dashboard-summary-row">
+
+                            <span>
+                                Repeat Customers
+                            </span>
+
+                            <strong id="dashboardRepeatCustomers">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="dashboard-summary-row">
+
+                            <span>
+                                Products in Catalog
+                            </span>
+
+                            <strong id="dashboardSummaryProducts">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="dashboard-summary-row">
+
+                            <span>
+                                Active Custom Jobs
+                            </span>
+
+                            <strong id="dashboardActiveCustomJobs">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- =================================================
+             ORDERS
+             ================================================= -->
+
+        <section
+            class="admin-page"
+            id="ordersPage"
+        >
+
+            <header>
+
+                <div>
+
+                    <p class="page-label">
+                        STORE
+                    </p>
+
+                    <h1>
+                        Orders
+                    </h1>
+
+                    <p>
+                        Manage customer orders
+                    </p>
+
+                </div>
+
+            </header>
+
+
+            <section class="content-card">
+
+                <div class="toolbar">
+
+                    <input
+                        type="search"
+                        id="orderSearch"
+                        placeholder="Search order or customer..."
+                    >
+
+
+                    <select id="orderFilter">
+
+                        <option value="All">
+                            All Status
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Confirmed">
+                            Confirmed
+                        </option>
+
+                        <option value="Printing">
+                            Printing
+                        </option>
+
+                        <option value="Ready">
+                            Ready
+                        </option>
+
+                        <option value="Shipped">
+                            Shipped
+                        </option>
+
+                        <option value="Delivered">
+                            Delivered
+                        </option>
+
+                        <option value="Cancelled">
+                            Cancelled
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Order</th>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <th>Total</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="ordersTable"
+                        ></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- =================================================
+             PRODUCTS
+             ================================================= -->
+
+        <section
+            class="admin-page"
+            id="productsPage"
+        >
+
+            <header>
+
+                <div>
+
+                    <p class="page-label">
+                        CATALOG
+                    </p>
+
+                    <h1>
+                        Products
+                    </h1>
+
+                    <p>
+                        Manage your 3D printed products
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="showProductForm"
+                    type="button"
+                >
+                    + Add Product
+                </button>
+
+            </header>
+
+
+            <!-- PRODUCT EDITOR -->
+
+            <section
+                class="product-form-card hidden"
+                id="productFormCard"
+            >
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2 id="productFormTitle">
+                            Add Product
+                        </h2>
+
+                        <p>
+                            Create or update a shop product
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="icon-button"
+                        id="closeProductForm"
+                        type="button"
+                    >
+                        ✕
+                    </button>
+
+                </div>
+
+
+                <form id="productForm">
+
+                    <input
+                        type="hidden"
+                        name="id"
+                    >
+
+
+                    <!-- BASIC INFORMATION -->
+
+                    <div class="product-editor-section">
+
+                        <div class="editor-section-title">
+
+                            <h3>
+                                Basic Information
+                            </h3>
+
+                            <p>
+                                Product name, category and description
+                            </p>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <label>
+
+                                Product Name *
+
+                                <input
+                                    name="name"
+                                    required
+                                    placeholder="Example: Ganesha Idol"
+                                >
+
+                            </label>
+
+
+                            <label>
+
+                                Category *
+
+                                <select
+                                    name="category"
+                                    required
+                                >
+
+                                    <option value="Idols">
+                                        Idols
+                                    </option>
+
+                                    <option value="Gifts">
+                                        Gifts
+                                    </option>
+
+                                    <option value="Decor">
+                                        Decor
+                                    </option>
+
+                                    <option value="Useful">
+                                        Useful
+                                    </option>
+
+                                    <option value="Miniatures">
+                                        Miniatures
+                                    </option>
+
+                                    <option value="Desk">
+                                        Desk
+                                    </option>
+
+                                    <option value="Keychains">
+                                        Keychains
+                                    </option>
+
+                                    <option value="Custom">
+                                        Custom
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </label>
+
+
+                            <label class="full-width">
+
+                                Short Description
+
+                                <input
+                                    name="shortDescription"
+                                    placeholder="Short product summary"
+                                >
+
+                            </label>
+
+
+                            <label class="full-width">
+
+                                Full Description
+
+                                <textarea
+                                    name="description"
+                                    rows="6"
+                                    placeholder="Describe the product..."
+                                ></textarea>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MEDIA -->
+
+                    <div class="product-editor-section">
+
+                        <div class="editor-section-title">
+
+                            <h3>
+                                Product Media
+                            </h3>
+
+                            <p>
+                                Choose files and preview them before saving
+                            </p>
+
+                        </div>
+
+
+                        <div class="media-upload-grid">
+
+
+                            <div class="upload-box">
+
+                                <div class="upload-box-icon">
+                                    ▧
+                                </div>
+
+                                <strong>
+                                    Main Product Image
+                                </strong>
+
+                                <span>
+                                    JPG, PNG, WebP or GIF
+                                </span>
+
+                                <input
+                                    type="file"
+                                    id="mainImageInput"
+                                    class="media-file-input"
+                                    accept="image/jpeg,image/png,image/webp,image/gif"
+                                >
+
+                                <label
+                                    for="mainImageInput"
+                                    class="media-choose-button"
+                                >
+                                    Choose Image
+                                </label>
+
+                            </div>
+
+
+                            <div class="upload-box">
+
+                                <div class="upload-box-icon">
+                                    ▦
+                                </div>
+
+                                <strong>
+                                    Gallery Images
+                                </strong>
+
+                                <span>
+                                    Select up to 8 images
+                                </span>
+
+                                <input
+                                    type="file"
+                                    id="galleryImagesInput"
+                                    class="media-file-input"
+                                    accept="image/jpeg,image/png,image/webp,image/gif"
+                                    multiple
+                                >
+
+                                <label
+                                    for="galleryImagesInput"
+                                    class="media-choose-button"
+                                >
+                                    Choose Images
+                                </label>
+
+                            </div>
+
+
+                            <div class="upload-box">
+
+                                <div class="upload-box-icon">
+                                    ▶
+                                </div>
+
+                                <strong>
+                                    Product Video
+                                </strong>
+
+                                <span>
+                                    MP4 or WebM, max 50 MB
+                                </span>
+
+                                <input
+                                    type="file"
+                                    id="productVideoInput"
+                                    class="media-file-input"
+                                    accept="video/mp4,video/webm"
+                                >
+
+                                <label
+                                    for="productVideoInput"
+                                    class="media-choose-button"
+                                >
+                                    Choose Video
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="mediaPreview"
+                            class="media-preview-area"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- PRICING -->
+
+                    <div class="product-editor-section">
+
+                        <div class="editor-section-title">
+
+                            <h3>
+                                Pricing
+                            </h3>
+
+                            <p>
+                                Selling price and MRP
+                            </p>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <label>
+
+                                Selling Price ₹ *
+
+                                <input
+                                    type="number"
+                                    name="price"
+                                    min="0"
+                                    step="1"
+                                    required
+                                >
+
+                            </label>
+
+
+                            <label>
+
+                                Old Price / MRP ₹
+
+                                <input
+                                    type="number"
+                                    name="oldPrice"
+                                    min="0"
+                                    step="1"
+                                >
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- INVENTORY -->
+
+                    <div class="product-editor-section">
+
+                        <div class="editor-section-title">
+
+                            <h3>
+                                Inventory
+                            </h3>
+
+                            <p>
+                                Manage available stock
+                            </p>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <label>
+
+                                Stock Quantity
+
+                                <input
+                                    type="number"
+                                    name="stock"
+                                    min="0"
+                                    value="0"
+                                >
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRODUCT DETAILS -->
+
+                    <div class="product-editor-section">
+
+                        <div class="editor-section-title">
+
+                            <h3>
+                                Product Details
+                            </h3>
+
+                            <p>
+                                Printing and physical specifications
+                            </p>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <label>
+
+                                Material
+
+                                <select name="material">
+
+                                    <option value="">
+                                        Select material
+                                    </option>
+
+                                    <option value="PLA">
+                                        PLA
+                                    </option>
+
+                                    <option value="PLA+">
+                                        PLA+
+                                    </option>
+
+                                    <option value="PETG">
+                                        PETG
+                                    </option>
+
+                                    <option value="ABS">
+                                        ABS
+                                    </option>
+
+                                    <option value="TPU">
+                                        TPU
+                                    </option>
+
+                                    <option value="Resin">
+                                        Resin
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </label>
+
+
+                            <label>
+
+                                Available Colors
+
+                                <input
+                                    name="colors"
+                                    placeholder="Black, White, Orange"
+                                >
+
+                            </label>
+
+
+                            <label>
+
+                                Dimensions
+
+                                <input
+                                    name="dimensions"
+                                    placeholder="15 × 10 × 20 cm"
+                                >
+
+                            </label>
+
+
+                            <label>
+
+                                Weight
+
+                                <input
+                                    name="weight"
+                                    placeholder="250 g"
+                                >
+
+                            </label>
+
+
+                            <label>
+
+                                Estimated Print Time
+
+                                <input
+                                    name="printTime"
+                                    placeholder="8–10 hours"
+                                >
+
+                            </label>
+
+
+                            <label>
+
+                                Tags
+
+                                <input
+                                    name="tags"
+                                    placeholder="ganesha, gift, decor"
+                                >
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SHIPPING -->
+
+                    <div class="product-editor-section">
+
+                        <div class="editor-section-title">
+
+                            <h3>
+                                Shipping & Care
+                            </h3>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <label class="full-width">
+
+                                Shipping Information
+
+                                <textarea
+                                    name="shippingInfo"
+                                    rows="3"
+                                    placeholder="Usually dispatched in 2–3 days..."
+                                ></textarea>
+
+                            </label>
+
+
+                            <label class="full-width">
+
+                                Care Instructions
+
+                                <textarea
+                                    name="careInfo"
+                                    rows="3"
+                                    placeholder="Keep away from high heat..."
+                                ></textarea>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DISPLAY SETTINGS -->
+
+                    <div class="product-editor-section">
+
+                        <div class="editor-section-title">
+
+                            <h3>
+                                Store Display
+                            </h3>
+
+                            <p>
+                                Choose where this product appears
+                            </p>
+
+                        </div>
+
+
+                        <div class="product-switches">
+
+                            <label class="switch-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="customizable"
+                                >
+
+                                <span>
+
+                                    <strong>
+                                        Customizable
+                                    </strong>
+
+                                    <small>
+                                        Customer can request changes
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="switch-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="isNew"
+                                >
+
+                                <span>
+
+                                    <strong>
+                                        New Design
+                                    </strong>
+
+                                    <small>
+                                        Show in New Designs
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="switch-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="bestSeller"
+                                >
+
+                                <span>
+
+                                    <strong>
+                                        Best Seller
+                                    </strong>
+
+                                    <small>
+                                        Show in Best Sellers
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="switch-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="featured"
+                                >
+
+                                <span>
+
+                                    <strong>
+                                        Featured
+                                    </strong>
+
+                                    <small>
+                                        Highlight product
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="switch-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="published"
+                                    checked
+                                >
+
+                                <span>
+
+                                    <strong>
+                                        Published
+                                    </strong>
+
+                                    <small>
+                                        Visible to customers
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SAVE -->
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                            id="saveProductButton"
+                        >
+                            Save Product
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="cancelProduct"
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- PRODUCT TABLE -->
+
+            <section class="content-card">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Product Catalog
+                        </h2>
+
+                        <p>
+                            Products available in your store
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Image</th>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Visibility</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="productsTable"
+                        ></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- =================================================
+             CUSTOMERS
+             ================================================= -->
+
+        <section
+            class="admin-page"
+            id="customersPage"
+        >
+
+            <header>
+
+                <div>
+
+                    <p class="page-label">
+                        PEOPLE
+                    </p>
+
+                    <h1>
+                        Customers
+                    </h1>
+
+                    <p>
+                        Customer history automatically created from your orders
+                    </p>
+
+                </div>
+
+            </header>
+
+
+            <!-- CUSTOMER STATS -->
+
+            <section class="customer-stats">
+
+                <div class="customer-stat-card">
+
+                    <span>
+                        Total Customers
+                    </span>
+
+                    <strong id="totalCustomersCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="customer-stat-card">
+
+                    <span>
+                        Repeat Customers
+                    </span>
+
+                    <strong id="repeatCustomersCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="customer-stat-card">
+
+                    <span>
+                        Total Customer Orders
+                    </span>
+
+                    <strong id="customerOrdersCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- CUSTOMER TABLE -->
+
+            <section class="content-card">
+
+                <div class="customer-toolbar">
+
+                    <input
+                        type="search"
+                        id="customerSearch"
+                        placeholder="Search customer, phone or email..."
+                    >
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="customers-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Customer</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Total Orders</th>
+                                <th>Total Spent</th>
+                                <th>Last Order</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="customersTable">
+
+                            <tr>
+
+                                <td colspan="7">
+                                    Loading customers...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- =================================================
+             CUSTOM PRINTS
+             ================================================= -->
+
+        <section
+            class="admin-page"
+            id="customPrintsPage"
+        >
+
+            <header>
+
+                <div>
+
+                    <p class="page-label">
+                        CUSTOM JOBS
+                    </p>
+
+                    <h1>
+                        Custom Print Requests
+                    </h1>
+
+                    <p>
+                        Review customer files, quotes and printing progress
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="admin-refresh-btn"
+                    type="button"
+                    onclick="loadCustomPrints()"
+                >
+                    ↻ Refresh
+                </button>
+
+            </header>
+
+
+            <!-- CUSTOM PRINT STATS -->
+
+            <section class="custom-print-stats">
+
+                <div class="custom-stat-card">
+
+                    <span>
+                        Total Requests
+                    </span>
+
+                    <strong id="customTotalCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="custom-stat-card">
+
+                    <span>
+                        New
+                    </span>
+
+                    <strong id="customNewCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="custom-stat-card">
+
+                    <span>
+                        Quoted
+                    </span>
+
+                    <strong id="customQuotedCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="custom-stat-card">
+
+                    <span>
+                        Printing
+                    </span>
+
+                    <strong id="customPrintingCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="custom-stat-card">
+
+                    <span>
+                        Completed
+                    </span>
+
+                    <strong id="customCompletedCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- SEARCH + FILTER -->
+
+            <section class="content-card">
+
+                <div class="custom-print-toolbar">
+
+                    <input
+                        type="search"
+                        id="customPrintSearch"
+                        placeholder="Search request, customer, phone..."
+                    >
+
+
+                    <select id="customPrintStatusFilter">
+
+                        <option value="all">
+                            All Statuses
+                        </option>
+
+                        <option value="New">
+                            New
+                        </option>
+
+                        <option value="Reviewing">
+                            Reviewing
+                        </option>
+
+                        <option value="Quoted">
+                            Quoted
+                        </option>
+
+                        <option value="Approved">
+                            Approved
+                        </option>
+
+                        <option value="Printing">
+                            Printing
+                        </option>
+
+                        <option value="Completed">
+                            Completed
+                        </option>
+
+                        <option value="Rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div
+                    class="custom-requests-list"
+                    id="customPrintsList"
+                >
+
+                    <div class="custom-empty-state">
+                        Loading custom print requests...
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- =================================================
+             SETTINGS
+             ================================================= -->
+
+        <section
+            class="admin-page"
+            id="settingsPage"
+        >
+
+            <header>
+
+                <div>
+
+                    <p class="page-label">
+                        CONFIGURATION
+                    </p>
+
+                    <h1>
+                        Settings
+                    </h1>
+
+                    <p>
+                        Basic store settings
+                    </p>
+
+                </div>
+
+            </header>
+
+
+            <section class="content-card settings-card">
+
+                <form id="settingsForm">
+
+                    <label>
+
+                        Business Name
+
+                        <input
+                            name="businessName"
+                            value="Spandan 3D"
+                        >
+
+                    </label>
+
+
+                    <label>
+
+                        Business Email
+
+                        <input
+                            type="email"
+                            name="businessEmail"
+                            placeholder="hello@spandan3d.com"
+                        >
+
+                    </label>
+
+
+                    <label>
+
+                        WhatsApp Number
+
+                        <input
+                            name="whatsapp"
+                            value="+91 9766979232"
+                            placeholder="+91..."
+                        >
+
+                    </label>
+
+
+                    <label>
+
+                        Instagram
+
+                        <input
+                            name="instagram"
+                            value="@3D_spandan"
+                            placeholder="@username"
+                        >
+
+                    </label>
+
+
+                    <label>
+
+                        Free Shipping Above ₹
+
+                        <input
+                            type="number"
+                            name="freeShipping"
+                            value="999"
+                        >
+
+                    </label>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Save Settings
+                    </button>
+
+                </form>
+
+            </section>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         ADMIN MESSAGE
+         ===================================================== -->
+
+    <div
+        id="adminMessage"
+        class="admin-message"
+    ></div>
+
+
+    <script src="admin.js?v=13"></script>
+
+</body>
+
+</html>

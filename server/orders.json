@@ -1,0 +1,174 @@
+[
+  {
+    "id": 1788493852315,
+    "orderNumber": "SP1001",
+    "customer": {
+      "firstName": "Sneha",
+      "lastName": "Khodade",
+      "phone": "9766979232",
+      "email": "snehakhodade2005@gmail.com",
+      "address": "Ganjiboyre tal:parner dist,ahmednagar State Maharashtra",
+      "city": "Parner",
+      "pinCode": "414302",
+      "state": "Maharashtra",
+      "country": "India"
+    },
+    "items": [
+      {
+        "id": 2,
+        "name": "Custom Name Keychain",
+        "price": 149,
+        "quantity": 1
+      }
+    ],
+    "total": 149,
+    "paymentStatus": "Failed",
+    "orderStatus": "Delivered",
+    "createdAt": "2026-09-04T03:50:52.315Z",
+    "updatedAt": "2026-09-04T04:32:56.627Z"
+  },
+  {
+    "id": 1788496363093,
+    "orderNumber": "SP1002",
+    "customer": {
+      "firstName": "Sneha",
+      "lastName": "Khodade",
+      "phone": "9766979232",
+      "email": "snehakhodade2005@gmail.com",
+      "address": "Ganjiboyre tal:parner dist,ahmednagar State Maharashtra",
+      "city": "Parner",
+      "pinCode": "414302",
+      "state": "Maharashtra",
+      "country": "India"
+    },
+    "items": [
+      {
+        "id": 6,
+        "name": "Miniature Warrior Figure",
+        "price": 699,
+        "quantity": 1
+      }
+    ],
+    "total": 699,
+    "paymentStatus": "Pending",
+    "orderStatus": "Ready",
+    "createdAt": "2026-09-04T04:32:43.093Z",
+    "updatedAt": "2026-09-04T06:45:28.959Z"
+  },
+  {
+    "id": 1788515040006,
+    "orderNumber": "SP1003",
+    "customer": {
+      "firstName": "Sneha",
+      "lastName": "Khodade",
+      "phone": "9766979232",
+      "email": "snehakhodade2005@gmail.com",
+      "address": "Ganjiboyre tal:parner dist,ahmednagar State Maharashtra",
+      "city": "Parner",
+      "pinCode": "414302",
+      "state": "Maharashtra",
+      "country": "India"
+    },
+    "items": [
+      {
+        "id": 1788496311092,
+        "name": "Ganesha Idol",
+        "price": 54,
+        "quantity": 1,
+        "image": "http://localhost:5000/uploads/products/1788498927171-523028694-download--66-.jpg"
+      }
+    ],
+    "total": 54,
+    "paymentStatus": "Pending",
+    "orderStatus": "Pending",
+    "createdAt": "2026-09-04T09:44:00.006Z",
+    "updatedAt": "2026-09-04T09:44:00.006Z"
+  },
+  {
+    "id": 1788526112235,
+    "orderNumber": "SP1004",
+    "customer": {
+      "firstName": "Sneha",
+      "lastName": "Khodade",
+      "phone": "+919766979232",
+      "email": "snehakhodade2005@gmail.com",
+      "address": "Ganjiboyre tal:parner dist,ahmednagar State Maharashtra",
+      "city": "Parner",
+      "pinCode": "414302",
+      "state": "Maharashtra",
+      "country": "India"
+    },
+    "items": [
+      {
+        "id": 1788496311092,
+        "name": "Ganesha Idol",
+        "price": 54,
+        "quantity": 2,
+        "image": "http://localhost:5000/uploads/products/1788498927171-523028694-download--66-.jpg"
+      }
+    ],
+    "total": 108,
+    "paymentStatus": "Pending",
+    "orderStatus": "Pending",
+    "createdAt": "2026-09-04T12:48:32.235Z",
+    "updatedAt": "2026-09-04T12:48:32.235Z"
+  },
+  {
+    "id": 1788527957273,
+    "orderNumber": "SP1005",
+    "customer": {
+      "firstName": "Sneha",
+      "lastName": "Khodade",
+      "phone": "+919766979232",
+      "email": "snehakhodade2005@gmail.com",
+      "address": "Ganjiboyre tal:parner dist,ahmednagar State Maharashtra",
+      "city": "Parner",
+      "pinCode": "414302",
+      "state": "Maharashtra",
+      "country": "India"
+    },
+    "items": [
+      {
+        "id": 1788496311092,
+        "name": "Ganesha Idol",
+        "price": 54,
+        "quantity": 3,
+        "image": "http://localhost:5000/uploads/products/1788498927171-523028694-download--66-.jpg"
+      }
+    ],
+    "total": 162,
+    "paymentStatus": "Pending",
+    "orderStatus": "Pending",
+    "createdAt": "2026-09-04T13:19:17.273Z",
+    "updatedAt": "2026-09-04T13:19:17.273Z"
+  },
+  {
+    "id": 1788529451256,
+    "orderNumber": "SP1006",
+    "customer": {
+      "firstName": "Sneha",
+      "lastName": "Khodade",
+      "phone": "+919766979232",
+      "email": "snehakhodade2005@gmail.com",
+      "address": "Ganjiboyre tal:parner dist,ahmednagar State Maharashtra",
+      "city": "Parner",
+      "pinCode": "414302",
+      "state": "Maharashtra",
+      "country": "India"
+    },
+    "items": [
+      {
+        "id": 1788496311092,
+        "name": "Ganesha Idol",
+        "price": 54,
+        "quantity": 1,
+        "image": "http://localhost:5000/uploads/products/1788498927171-523028694-download--66-.jpg"
+      }
+    ],
+    "total": 54,
+    "paymentStatus": "Paid",
+    "orderStatus": "Pending",
+    "createdAt": "2026-09-04T13:44:11.256Z",
+    "updatedAt": "2026-09-04T13:44:30.332Z"
+  }
+]

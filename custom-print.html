@@ -1,0 +1,2233 @@
+```html
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Custom 3D Printing | Spandan 3D</title>
+
+  <meta
+    name="description"
+    content="Request custom 3D printing from Spandan 3D. Upload your STL, 3MF, OBJ or reference images and get a quote."
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    /* =====================================================
+       RESET
+       ===================================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.5;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    :root {
+      --accent: #f45d3d;
+      --accent-dark: #dd4b30;
+      --black: #111;
+      --muted: #6f6f6f;
+      --line: #e8e8e8;
+      --soft: #f8f7f5;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+
+    /* =====================================================
+       TOPBAR
+       ===================================================== */
+
+    .topbar {
+      background: #111;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .topbar-track {
+      min-height: 38px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 50px;
+
+      padding: 0 20px;
+
+      white-space: nowrap;
+
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(255,255,255,.96);
+
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-wrap {
+      min-height: 80px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 28px;
+    }
+
+    .brand {
+      flex-shrink: 0;
+
+      display: inline-flex;
+      align-items: center;
+
+      gap: 10px;
+
+      text-decoration: none;
+
+      font-family: "Manrope", sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+
+      letter-spacing: -1px;
+    }
+
+    .brand-mark {
+      width: 45px;
+      height: 45px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      background: #111;
+      color: #fff;
+
+      font-size: 21px;
+    }
+
+    .brand-accent {
+      color: var(--accent);
+    }
+
+    .main-nav {
+      flex: 1;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 27px;
+    }
+
+    .main-nav a {
+      position: relative;
+
+      color: #4b4b4b;
+
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #111;
+    }
+
+    .main-nav a.active::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: -29px;
+
+      height: 2px;
+
+      background: var(--accent);
+
+      border-radius: 10px;
+    }
+
+    .nav-actions {
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+
+      gap: 6px;
+    }
+
+    .icon-link,
+    .mobile-menu-btn {
+      position: relative;
+
+      width: 40px;
+      height: 40px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+
+      background: transparent;
+
+      text-decoration: none;
+      color: #111;
+
+      cursor: pointer;
+
+      font-size: 19px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    .cart-badge {
+      position: absolute;
+
+      top: -1px;
+      right: -2px;
+
+      min-width: 18px;
+      height: 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 4px;
+
+      border-radius: 20px;
+
+      background: var(--accent);
+      color: #fff;
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+
+    /* =====================================================
+       BUTTONS
+       ===================================================== */
+
+    .btn {
+      min-height: 50px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 25px;
+
+      border: 0;
+      border-radius: 12px;
+
+      cursor: pointer;
+
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
+    .page-hero {
+      padding-top: 75px;
+      padding-bottom: 50px;
+
+      text-align: center;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: 2.5px;
+    }
+
+    .page-hero h1 {
+      margin: 10px auto 16px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: clamp(42px, 6vw, 68px);
+
+      line-height: 1.03;
+
+      letter-spacing: -3px;
+    }
+
+    .page-hero > p:last-child {
+      max-width: 650px;
+
+      margin: auto;
+
+      color: var(--muted);
+
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+
+    /* =====================================================
+       MAIN AREA
+       ===================================================== */
+
+    .custom-section {
+      padding: 15px 0 90px;
+    }
+
+    .custom-layout {
+      display: grid;
+
+      grid-template-columns:
+        minmax(270px, .72fr)
+        minmax(0, 1.28fr);
+
+      align-items: start;
+
+      gap: 28px;
+    }
+
+
+    /* =====================================================
+       PROCESS CARD
+       ===================================================== */
+
+    .process-card {
+      position: sticky;
+      top: 110px;
+
+      overflow: hidden;
+
+      padding: 32px;
+
+      border-radius: 22px;
+
+      background: #111;
+      color: #fff;
+    }
+
+    .process-card .section-kicker {
+      color: #ff765c;
+    }
+
+    .process-card h2 {
+      margin: 9px 0 11px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 30px;
+
+      letter-spacing: -1.2px;
+    }
+
+    .process-intro {
+      margin-bottom: 27px;
+
+      color: #9f9f9f;
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+
+      gap: 9px;
+    }
+
+    .step {
+      display: grid;
+
+      grid-template-columns: 45px 1fr;
+
+      gap: 14px;
+
+      padding: 16px;
+
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 13px;
+
+      background: rgba(255,255,255,.04);
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: var(--accent);
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .step strong {
+      display: block;
+
+      margin: 2px 0 3px;
+
+      font-size: 13px;
+    }
+
+    .step p {
+      color: #999;
+
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+
+    /* =====================================================
+       FORM
+       ===================================================== */
+
+    .form-card {
+      padding: 35px;
+
+      border: 1px solid var(--line);
+      border-radius: 22px;
+
+      background: #fff;
+
+      box-shadow:
+        0 18px 55px
+        rgba(0,0,0,.045);
+    }
+
+    .form-heading {
+      margin-bottom: 28px;
+      padding-bottom: 23px;
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .form-heading h2 {
+      margin-bottom: 7px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 29px;
+
+      letter-spacing: -1px;
+    }
+
+    .form-heading p {
+      color: var(--muted);
+
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .form-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 18px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+
+      gap: 7px;
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+
+      border: 1px solid #ddd;
+      border-radius: 10px;
+
+      outline: none;
+
+      background: #fff;
+
+      color: #111;
+
+      font-size: 13px;
+      font-weight: 400;
+
+      transition: .2s ease;
+    }
+
+    .field input,
+    .field select {
+      min-height: 47px;
+
+      padding: 0 13px;
+    }
+
+    .field textarea {
+      min-height: 125px;
+
+      padding: 13px;
+
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: #111;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(0,0,0,.04);
+    }
+
+    .field-note {
+      color: #8a8a8a;
+
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       UPLOADS
+       ===================================================== */
+
+    .upload-box {
+      position: relative;
+
+      min-height: 150px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding: 22px;
+
+      border: 2px dashed #d9d9d9;
+      border-radius: 15px;
+
+      background: #fafafa;
+
+      text-align: center;
+
+      cursor: pointer;
+
+      transition: .2s ease;
+    }
+
+    .upload-box:hover {
+      border-color: var(--accent);
+
+      background: #fff8f5;
+    }
+
+    .upload-icon {
+      width: 44px;
+      height: 44px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 9px;
+
+      border: 1px solid #eee;
+      border-radius: 11px;
+
+      background: #fff;
+
+      font-size: 19px;
+    }
+
+    .upload-box strong {
+      margin-bottom: 4px;
+
+      font-size: 13px;
+    }
+
+    .upload-box small {
+      color: #777;
+
+      font-size: 10px;
+    }
+
+    .choose-file {
+      margin-top: 10px;
+
+      padding: 8px 13px;
+
+      border: 1px solid #ddd;
+      border-radius: 8px;
+
+      background: #fff;
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .hidden-file {
+      position: absolute;
+
+      width: 1px;
+      height: 1px;
+
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .selected-files {
+      margin-top: 10px;
+    }
+
+    .selected-file {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 10px;
+
+      padding: 10px 12px;
+
+      border-radius: 9px;
+
+      background: #f5f5f5;
+
+      font-size: 11px;
+    }
+
+    .selected-file-name {
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .selected-file-size {
+      flex-shrink: 0;
+
+      color: #777;
+    }
+
+    .reference-preview {
+      display: grid;
+
+      grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+
+      gap: 8px;
+
+      margin-top: 10px;
+    }
+
+    .reference-image {
+      overflow: hidden;
+
+      aspect-ratio: 1;
+
+      border: 1px solid #eee;
+      border-radius: 9px;
+
+      background: #f5f5f5;
+    }
+
+    .reference-image img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+
+    /* =====================================================
+       SUBMIT
+       ===================================================== */
+
+    .submit-area {
+      margin-top: 25px;
+    }
+
+    .submit-area .btn {
+      width: 100%;
+    }
+
+    .request-note {
+      display: block;
+
+      margin-top: 12px;
+
+      color: #777;
+
+      text-align: center;
+
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    footer {
+      padding-top: 62px;
+
+      background: #0e0e0e;
+      color: #fff;
+    }
+
+    .footer-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.7fr 1fr 1fr 1fr;
+
+      gap: 55px;
+
+      padding-bottom: 48px;
+    }
+
+    footer .brand {
+      color: #fff;
+    }
+
+    .footer-description {
+      max-width: 330px;
+
+      margin-top: 15px;
+
+      color: #888;
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    footer h4 {
+      margin-bottom: 17px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 13px;
+    }
+
+    footer a:not(.brand) {
+      display: block;
+
+      width: fit-content;
+
+      margin-bottom: 10px;
+
+      color: #999;
+
+      text-decoration: none;
+
+      font-size: 12px;
+    }
+
+    footer a:not(.brand):hover {
+      color: #fff;
+    }
+
+    .footer-location {
+      margin-top: 13px;
+
+      color: #777;
+
+      font-size: 11px;
+    }
+
+    .footer-bottom {
+      min-height: 63px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+      color: #6f6f6f;
+
+      font-size: 10px;
+    }
+
+
+    /* =====================================================
+       TABLET
+       ===================================================== */
+
+    @media (max-width: 950px) {
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      .nav-actions {
+        margin-left: auto;
+      }
+
+      .main-nav {
+        position: absolute;
+
+        top: calc(100% + 8px);
+
+        left: 15px;
+        right: 15px;
+
+        display: none;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 10px;
+
+        border: 1px solid var(--line);
+        border-radius: 14px;
+
+        background: #fff;
+
+        box-shadow:
+          0 22px 50px
+          rgba(0,0,0,.12);
+      }
+
+      .main-nav.open {
+        display: flex;
+      }
+
+      .main-nav a {
+        padding: 12px;
+
+        border-radius: 8px;
+      }
+
+      .main-nav a.active::after {
+        display: none;
+      }
+
+      .custom-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .process-card {
+        position: static;
+      }
+
+      .steps {
+        display: grid;
+
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: calc(100% - 24px);
+      }
+
+      .topbar-track {
+        justify-content: flex-start;
+
+        gap: 30px;
+
+        overflow-x: auto;
+      }
+
+      .nav-wrap {
+        min-height: 70px;
+      }
+
+      .brand {
+        font-size: 19px;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+
+        font-size: 18px;
+      }
+
+      .icon-link,
+      .mobile-menu-btn {
+        width: 35px;
+        height: 35px;
+      }
+
+      .page-hero {
+        padding-top: 50px;
+        padding-bottom: 35px;
+      }
+
+      .page-hero h1 {
+        font-size: 40px;
+
+        letter-spacing: -2px;
+      }
+
+      .custom-section {
+        padding-bottom: 60px;
+      }
+
+      .process-card,
+      .form-card {
+        padding: 23px;
+
+        border-radius: 18px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .reference-preview {
+        grid-template-columns:
+          repeat(3, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        min-height: auto;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 19px 0;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- TOP BAR -->
+
+  <div class="topbar">
+
+    <div class="topbar-track">
+
+      <span>🚚 Free shipping above ₹999</span>
+
+      <span>✦ Custom 3D printing available</span>
+
+      <span>🇮🇳 Made in India</span>
+
+      <span>🔒 Secure checkout</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+
+    <div class="container nav-wrap">
+
+
+      <a
+        class="brand"
+        href="index.html"
+      >
+
+        <span class="brand-mark">
+          S
+        </span>
+
+        <span>
+          Spandan<span class="brand-accent">3D</span>
+        </span>
+
+      </a>
+
+
+      <button
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        type="button"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+
+      <nav
+        class="main-nav"
+        id="mainNav"
+      >
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="shop.html">
+          Shop
+        </a>
+
+        <a
+          class="active"
+          href="custom-print.html"
+        >
+          Custom Prints
+        </a>
+
+        <a href="new-designs.html">
+          New Designs
+        </a>
+
+        <a href="best-sellers.html">
+          Best Sellers
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </nav>
+
+
+      <div class="nav-actions">
+
+        <a
+          class="icon-link"
+          href="shop.html"
+          aria-label="Search"
+        >
+          ⌕
+        </a>
+
+        <a
+          class="icon-link"
+          href="cart.html"
+          aria-label="Cart"
+        >
+
+          🛒
+
+          <span
+            class="cart-badge"
+            id="cartCount"
+          >
+            0
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+
+    <!-- HERO -->
+
+    <section class="page-hero container">
+
+      <p class="section-kicker">
+        YOUR IDEA, OUR PRINT
+      </p>
+
+      <h1>
+        Custom 3D Printing
+      </h1>
+
+      <p>
+        Have a model, reference image or idea?
+        Send us the details and continue directly on WhatsApp
+        to get your custom printing quote.
+      </p>
+
+    </section>
+
+
+    <!-- CUSTOM PRINT -->
+
+    <section class="custom-section">
+
+      <div class="container custom-layout">
+
+
+        <!-- HOW IT WORKS -->
+
+        <aside class="process-card">
+
+          <p class="section-kicker">
+            SIMPLE PROCESS
+          </p>
+
+          <h2>
+            How it works
+          </h2>
+
+          <p class="process-intro">
+            Tell us what you need and we'll review the design,
+            size, material and printing requirements before
+            confirming your quote.
+          </p>
+
+
+          <div class="steps">
+
+            <div class="step">
+
+              <span class="step-number">
+                01
+              </span>
+
+              <div>
+
+                <strong>
+                  Send your idea
+                </strong>
+
+                <p>
+                  Upload a model, reference images or describe what you need.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="step">
+
+              <span class="step-number">
+                02
+              </span>
+
+              <div>
+
+                <strong>
+                  WhatsApp us
+                </strong>
+
+                <p>
+                  Your entered details will be prepared automatically in WhatsApp.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="step">
+
+              <span class="step-number">
+                03
+              </span>
+
+              <div>
+
+                <strong>
+                  Get your quote
+                </strong>
+
+                <p>
+                  We review the requirements and confirm the price.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="step">
+
+              <span class="step-number">
+                04
+              </span>
+
+              <div>
+
+                <strong>
+                  We print it
+                </strong>
+
+                <p>
+                  Once approved, your custom print is prepared and checked.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </aside>
+
+
+        <!-- FORM -->
+
+        <form
+          class="form-card"
+          id="customForm"
+        >
+
+
+          <div class="form-heading">
+
+            <h2>
+              Request a Quote
+            </h2>
+
+            <p>
+              Fill in your custom print details.
+              When you send the request, WhatsApp will open with
+              your information ready to send to Spandan 3D.
+            </p>
+
+          </div>
+
+
+          <div class="form-grid">
+
+
+            <!-- CUSTOMER DETAILS -->
+
+            <label class="field">
+
+              Full Name *
+
+              <input
+                required
+                name="name"
+                id="name"
+                autocomplete="name"
+                placeholder="Your full name"
+              >
+
+            </label>
+
+
+            <label class="field">
+
+              Phone / WhatsApp *
+
+              <input
+                required
+                name="phone"
+                id="phone"
+                type="tel"
+                autocomplete="tel"
+                placeholder="+91 98765 43210"
+              >
+
+            </label>
+
+
+            <label class="field full">
+
+              Email
+
+              <input
+                name="email"
+                id="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+              >
+
+            </label>
+
+
+            <!-- PROJECT DETAILS -->
+
+            <label class="field full">
+
+              What do you want printed? *
+
+              <textarea
+                required
+                name="details"
+                id="details"
+                placeholder="Describe the item you want printed. Tell us what it is, how you want it to look and any important requirements."
+              ></textarea>
+
+            </label>
+
+
+            <label class="field">
+
+              Quantity *
+
+              <input
+                required
+                name="quantity"
+                id="quantity"
+                type="number"
+                min="1"
+                value="1"
+              >
+
+            </label>
+
+
+            <label class="field">
+
+              Approximate Size
+
+              <input
+                name="size"
+                id="size"
+                placeholder="Example: 15 × 10 × 20 cm"
+              >
+
+              <span class="field-note">
+                Length × Width × Height
+              </span>
+
+            </label>
+
+
+            <label class="field">
+
+              Preferred Colour
+
+              <input
+                name="color"
+                id="color"
+                placeholder="Example: White, Black, Brown"
+              >
+
+            </label>
+
+
+            <label class="field">
+
+              Finish
+
+              <select
+                name="finish"
+                id="finish"
+              >
+
+                <option value="Raw Print">
+                  Raw Print
+                </option>
+
+                <option value="Sanded">
+                  Sanded
+                </option>
+
+                <option value="Primed">
+                  Primed
+                </option>
+
+                <option value="Fully Painted">
+                  Fully Painted
+                </option>
+
+                <option value="Not Sure">
+                  Not Sure
+                </option>
+
+              </select>
+
+            </label>
+
+
+            <label class="field">
+
+              Preferred Material
+
+              <select
+                name="material"
+                id="material"
+              >
+
+                <option value="Let Spandan 3D Decide">
+                  Let Spandan 3D Decide
+                </option>
+
+                <option value="PLA">
+                  PLA
+                </option>
+
+                <option value="PETG">
+                  PETG
+                </option>
+
+                <option value="TPU / Flexible">
+                  TPU / Flexible
+                </option>
+
+              </select>
+
+              <span class="field-note">
+                Don't know which one to choose? Leave it to us.
+              </span>
+
+            </label>
+
+
+            <!-- DELIVERY -->
+
+            <label class="field">
+
+              Delivery Method
+
+              <select
+                name="deliveryMethod"
+                id="deliveryMethod"
+              >
+
+                <option value="Shipping">
+                  Shipping
+                </option>
+
+                <option value="Local Pickup">
+                  Local Pickup
+                </option>
+
+              </select>
+
+            </label>
+
+
+            <label
+              class="field"
+              id="pincodeField"
+            >
+
+              Delivery PIN Code
+
+              <input
+                name="pincode"
+                id="pincode"
+                inputmode="numeric"
+                maxlength="6"
+                pattern="[0-9]{6}"
+                placeholder="Example: 414302"
+              >
+
+            </label>
+
+
+            <!-- MODEL -->
+
+            <div class="full">
+
+              <label
+                class="upload-box"
+                for="modelFile"
+              >
+
+                <span class="upload-icon">
+                  ◈
+                </span>
+
+                <strong>
+                  Select 3D Model
+                </strong>
+
+                <small>
+                  STL, 3MF or OBJ
+                </small>
+
+                <span class="choose-file">
+                  Choose Model
+                </span>
+
+              </label>
+
+
+              <input
+                class="hidden-file"
+                id="modelFile"
+                type="file"
+                accept=".stl,.3mf,.obj"
+              >
+
+
+              <div
+                class="selected-files"
+                id="modelFilePreview"
+              ></div>
+
+            </div>
+
+
+            <!-- REFERENCE IMAGES -->
+
+            <div class="full">
+
+              <label
+                class="upload-box"
+                for="referenceImages"
+              >
+
+                <span class="upload-icon">
+                  ▧
+                </span>
+
+                <strong>
+                  Select Reference Images
+                </strong>
+
+                <small>
+                  Up to 6 JPG, PNG or WebP images
+                </small>
+
+                <span class="choose-file">
+                  Choose Images
+                </span>
+
+              </label>
+
+
+              <input
+                class="hidden-file"
+                id="referenceImages"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                multiple
+              >
+
+
+              <div
+                class="reference-preview"
+                id="referencePreview"
+              ></div>
+
+            </div>
+
+
+            <label class="field full">
+
+              Reference Link
+
+              <input
+                name="reference"
+                id="reference"
+                type="url"
+                placeholder="MakerWorld, Printables, Google Drive or another model link"
+              >
+
+            </label>
+
+
+            <label class="field full">
+
+              Additional Instructions
+
+              <textarea
+                name="instructions"
+                id="instructions"
+                placeholder="Tell us anything else we should know about your custom print."
+              ></textarea>
+
+            </label>
+
+
+          </div>
+
+
+          <div class="submit-area">
+
+            <button
+              class="btn btn-primary"
+              type="submit"
+            >
+              Send Request on WhatsApp
+            </button>
+
+
+            <small class="request-note">
+              WhatsApp will open with your custom print details ready to send.
+              If you selected a model or reference images, please attach those files
+              in the WhatsApp chat before sending.
+            </small>
+
+          </div>
+
+
+        </form>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-grid">
+
+
+      <div>
+
+        <a
+          class="brand"
+          href="index.html"
+        >
+
+          <span class="brand-mark">
+            S
+          </span>
+
+          <span>
+            Spandan<span class="brand-accent">3D</span>
+          </span>
+
+        </a>
+
+
+        <p class="footer-description">
+          3D printed idols and custom prints,
+          made carefully layer by layer.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Shop
+        </h4>
+
+        <a href="shop.html">
+          All Products
+        </a>
+
+        <a href="new-designs.html">
+          New Designs
+        </a>
+
+        <a href="best-sellers.html">
+          Best Sellers
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Information
+        </h4>
+
+        <a href="custom-print.html">
+          Custom Printing
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Connect
+        </h4>
+
+        <a
+          href="https://www.instagram.com/3D_spandan/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram ↗
+        </a>
+
+        <a
+          href="https://wa.me/919766979232"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp ↗
+        </a>
+
+        <div class="footer-location">
+          Maharashtra, India
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+      <span>
+        © 2026 Spandan 3D. All rights reserved.
+      </span>
+
+      <span>
+        Made layer by layer.
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+
+
+  <script>
+
+    /* =====================================================
+       MOBILE MENU
+       ===================================================== */
+
+    const mobileMenuBtn =
+      document.getElementById("mobileMenuBtn");
+
+    const mainNav =
+      document.getElementById("mainNav");
+
+
+    mobileMenuBtn?.addEventListener(
+      "click",
+      () => {
+
+        mainNav.classList.toggle("open");
+
+        document.body.classList.toggle(
+          "menu-open",
+          mainNav.classList.contains("open")
+        );
+
+      }
+    );
+
+
+    mainNav
+      ?.querySelectorAll("a")
+      .forEach(link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            mainNav.classList.remove("open");
+
+            document.body.classList.remove("menu-open");
+
+          }
+        );
+
+      });
+
+
+    /* =====================================================
+       FORM
+       ===================================================== */
+
+    const form =
+      document.getElementById("customForm");
+
+    const deliveryMethod =
+      document.getElementById("deliveryMethod");
+
+    const pincodeField =
+      document.getElementById("pincodeField");
+
+    const pincode =
+      document.getElementById("pincode");
+
+    const modelInput =
+      document.getElementById("modelFile");
+
+    const imageInput =
+      document.getElementById("referenceImages");
+
+    const modelPreview =
+      document.getElementById("modelFilePreview");
+
+    const imagePreview =
+      document.getElementById("referencePreview");
+
+
+    let previewURLs = [];
+
+
+    /* =====================================================
+       DELIVERY FIELD
+       ===================================================== */
+
+    function updateDeliveryField() {
+
+      if (
+        deliveryMethod.value === "Local Pickup"
+      ) {
+
+        pincodeField.style.display =
+          "none";
+
+        pincode.required =
+          false;
+
+        pincode.value =
+          "";
+
+      } else {
+
+        pincodeField.style.display =
+          "flex";
+
+        pincode.required =
+          true;
+
+      }
+
+    }
+
+
+    deliveryMethod.addEventListener(
+      "change",
+      updateDeliveryField
+    );
+
+
+    updateDeliveryField();
+
+
+    /* =====================================================
+       FILE SIZE
+       ===================================================== */
+
+    function formatSize(bytes) {
+
+      if (bytes < 1024) {
+        return `${bytes} B`;
+      }
+
+      if (bytes < 1024 * 1024) {
+        return `${(bytes / 1024).toFixed(1)} KB`;
+      }
+
+      return `${(
+        bytes /
+        (1024 * 1024)
+      ).toFixed(1)} MB`;
+
+    }
+
+
+    /* =====================================================
+       MODEL PREVIEW
+       ===================================================== */
+
+    modelInput.addEventListener(
+      "change",
+      () => {
+
+        const file =
+          modelInput.files[0];
+
+
+        if (!file) {
+
+          modelPreview.innerHTML =
+            "";
+
+          return;
+
+        }
+
+
+        modelPreview.innerHTML = `
+
+          <div class="selected-file">
+
+            <span class="selected-file-name">
+              ◈ ${file.name}
+            </span>
+
+            <span class="selected-file-size">
+              ${formatSize(file.size)}
+            </span>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    /* =====================================================
+       IMAGE PREVIEW
+       ===================================================== */
+
+    imageInput.addEventListener(
+      "change",
+      () => {
+
+        previewURLs.forEach(
+          URL.revokeObjectURL
+        );
+
+        previewURLs = [];
+
+        imagePreview.innerHTML =
+          "";
+
+
+        const files =
+          [...imageInput.files]
+            .slice(0, 6);
+
+
+        files.forEach(file => {
+
+          const url =
+            URL.createObjectURL(file);
+
+          previewURLs.push(url);
+
+
+          imagePreview.insertAdjacentHTML(
+            "beforeend",
+            `
+
+              <div class="reference-image">
+
+                <img
+                  src="${url}"
+                  alt="Reference image"
+                >
+
+              </div>
+
+            `
+          );
+
+        });
+
+      }
+    );
+
+
+    /* =====================================================
+       WHATSAPP SUBMIT
+       ===================================================== */
+
+    form.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+
+        const name =
+          document.getElementById("name").value.trim();
+
+        const phone =
+          document.getElementById("phone").value.trim();
+
+        const email =
+          document.getElementById("email").value.trim();
+
+        const details =
+          document.getElementById("details").value.trim();
+
+        const quantity =
+          document.getElementById("quantity").value;
+
+        const size =
+          document.getElementById("size").value.trim();
+
+        const color =
+          document.getElementById("color").value.trim();
+
+        const finish =
+          document.getElementById("finish").value;
+
+        const material =
+          document.getElementById("material").value;
+
+        const delivery =
+          deliveryMethod.value;
+
+        const reference =
+          document.getElementById("reference").value.trim();
+
+        const instructions =
+          document.getElementById("instructions").value.trim();
+
+
+        const modelFile =
+          modelInput.files[0];
+
+
+        const referenceFiles =
+          [...imageInput.files]
+            .slice(0, 6);
+
+
+        const modelName =
+          modelFile
+            ? modelFile.name
+            : "Not selected";
+
+
+        const imageNames =
+          referenceFiles.length
+            ? referenceFiles
+                .map(file => file.name)
+                .join(", ")
+            : "Not selected";
+
+
+        const pincodeText =
+          delivery === "Shipping"
+            ? pincode.value.trim()
+            : "Local Pickup";
+
+
+        const message = `Hello Spandan 3D 👋
+
+I would like to request a custom 3D print.
+
+*CUSTOMER DETAILS*
+
+Name: ${name}
+Phone / WhatsApp: ${phone}
+Email: ${email || "Not provided"}
+
+*PRINT DETAILS*
+
+What I want printed:
+${details}
+
+Quantity: ${quantity}
+Approximate Size: ${size || "Not specified"}
+Preferred Colour: ${color || "Not specified"}
+Finish: ${finish}
+Material: ${material}
+
+*DELIVERY*
+
+Delivery Method: ${delivery}
+PIN Code: ${pincodeText}
+
+*FILES / REFERENCES*
+
+3D Model: ${modelName}
+Reference Images: ${imageNames}
+Reference Link: ${reference || "Not provided"}
+
+*ADDITIONAL INSTRUCTIONS*
+
+${instructions || "None"}
+
+Please review my request and let me know the price.
+
+Thank you.`;
+
+
+        /*
+          YOUR WHATSAPP NUMBER
+
+          India country code = 91
+
+          Do not use:
+          +
+          spaces
+          brackets
+          dashes
+        */
+
+        const spandanWhatsApp =
+          "919766979232";
+
+
+        const whatsappURL =
+          `https://wa.me/${spandanWhatsApp}?text=${encodeURIComponent(message)}`;
+
+
+        window.open(
+          whatsappURL,
+          "_blank"
+        );
+
+      }
+    );
+
+  </script>
+
+
+</body>
+
+</html>
+```

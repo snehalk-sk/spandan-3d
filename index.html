@@ -1,0 +1,3561 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Spandan 3D | Custom 3D Printing & Idols</title>
+
+    <meta
+        name="description"
+        content="Shop 3D printed idols and request custom 3D printing from Spandan 3D."
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+
+            background: #ffffff;
+            color: #111111;
+
+            line-height: 1.5;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        :root {
+            --accent: #f45d3d;
+            --accent-dark: #dc492d;
+
+            --black: #111111;
+            --dark: #181818;
+
+            --text: #111111;
+            --muted: #6f6f6f;
+
+            --line: #eaeaea;
+
+            --cream: #f8f7f4;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
+
+        .topbar {
+            overflow: hidden;
+
+            background: var(--black);
+            color: #ffffff;
+        }
+
+        .topbar-track {
+            min-height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 50px;
+
+            padding: 0 20px;
+
+            white-space: nowrap;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            letter-spacing: .2px;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .site-header {
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+
+            background: rgba(255, 255, 255, .96);
+
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-wrap {
+            min-height: 80px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 30px;
+        }
+
+        .brand {
+            flex-shrink: 0;
+
+            display: inline-flex;
+            align-items: center;
+
+            gap: 11px;
+
+            color: var(--black);
+
+            text-decoration: none;
+
+            font-family: "Manrope", sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+
+            letter-spacing: -1px;
+        }
+
+        .brand-mark {
+            width: 45px;
+            height: 45px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: var(--black);
+            color: #ffffff;
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .brand-accent {
+            color: var(--accent);
+        }
+
+
+        /* NAV */
+
+        .main-nav {
+            flex: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 27px;
+        }
+
+        .main-nav a {
+            position: relative;
+
+            color: #4b4b4b;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            white-space: nowrap;
+
+            transition: .2s ease;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--black);
+        }
+
+        .main-nav a.active::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+
+            bottom: -29px;
+
+            height: 2px;
+
+            border-radius: 5px;
+
+            background: var(--accent);
+        }
+
+
+        /* NAV ACTIONS */
+
+        .nav-actions {
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+
+            gap: 6px;
+        }
+
+        .icon-link,
+        .menu-button {
+            position: relative;
+
+            width: 40px;
+            height: 40px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 0;
+
+            background: transparent;
+
+            color: var(--black);
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            font-size: 19px;
+        }
+
+        .menu-button {
+            display: none;
+        }
+
+        .cart-badge {
+            position: absolute;
+
+            top: -1px;
+            right: -2px;
+
+            min-width: 18px;
+            height: 18px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0 4px;
+
+            border-radius: 20px;
+
+            background: var(--accent);
+            color: #ffffff;
+
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .btn {
+            min-height: 50px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 0 24px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition:
+                transform .2s ease,
+                background .2s ease,
+                color .2s ease,
+                border-color .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+        }
+
+        .btn-light {
+            background: #ffffff;
+            color: var(--black);
+
+            border: 1px solid #dddddd;
+        }
+
+        .btn-light:hover {
+            border-color: #bbbbbb;
+        }
+
+        .btn-dark {
+            background: var(--black);
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 650px;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, .95fr)
+                minmax(0, 1.05fr);
+
+            align-items: center;
+
+            gap: 70px;
+
+            padding-top: 65px;
+            padding-bottom: 65px;
+        }
+
+        .eyebrow,
+        .section-kicker {
+            color: var(--accent);
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 2.6px;
+        }
+
+        .hero-copy h1 {
+            max-width: 650px;
+
+            margin: 14px 0 22px;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: clamp(48px, 5.6vw, 76px);
+
+            font-weight: 800;
+
+            line-height: .99;
+
+            letter-spacing: -4px;
+        }
+
+        .hero-copy h1 span {
+            color: var(--accent);
+        }
+
+        .hero-text {
+            max-width: 560px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 29px;
+        }
+
+
+        /* HERO FEATURES */
+
+        .hero-features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 18px;
+
+            margin-top: 44px;
+            padding-top: 24px;
+
+            border-top: 1px solid var(--line);
+        }
+
+        .hero-feature strong {
+            display: block;
+
+            margin-bottom: 4px;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .hero-feature small {
+            color: #8b8b8b;
+
+            font-size: 10px;
+        }
+
+
+        /* HERO ART */
+
+        .hero-visual {
+            position: relative;
+
+            min-height: 510px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            border-radius: 32px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 46%,
+                    #fff1eb 0%,
+                    #f6f4f1 50%,
+                    #efeeeb 100%
+                );
+        }
+
+        .hero-visual::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            opacity: .33;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, .04) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, .04) 1px,
+                    transparent 1px
+                );
+
+            background-size: 35px 35px;
+        }
+
+        .hero-circle {
+            position: absolute;
+
+            width: 355px;
+            height: 355px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ff987f,
+                    #f45d3d
+                );
+
+            opacity: .18;
+        }
+
+        .hero-object {
+            position: relative;
+
+            z-index: 2;
+
+            width: 260px;
+            height: 330px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 120px 120px 34px 34px;
+
+            background:
+                linear-gradient(
+                    160deg,
+                    #282828,
+                    #090909
+                );
+
+            box-shadow:
+                0 35px 70px
+                rgba(0, 0, 0, .2);
+
+            transform: rotate(-3deg);
+        }
+
+        .hero-object-symbol {
+            color: #ffffff;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 96px;
+            font-weight: 800;
+
+            line-height: 1;
+        }
+
+        .hero-object small {
+            margin-top: 10px;
+
+            color: rgba(255, 255, 255, .55);
+
+            font-size: 9px;
+            font-weight: 700;
+
+            letter-spacing: 4px;
+        }
+
+
+        /* FLOATING INFO */
+
+        .floating-card {
+            position: absolute;
+
+            z-index: 4;
+
+            min-width: 184px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 12px;
+
+            border: 1px solid rgba(0, 0, 0, .06);
+            border-radius: 14px;
+
+            background: rgba(255, 255, 255, .94);
+
+            box-shadow:
+                0 18px 45px
+                rgba(0, 0, 0, .09);
+        }
+
+        .floating-icon {
+            width: 41px;
+            height: 41px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .floating-icon.orange {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        .floating-icon.dark {
+            background: var(--black);
+            color: #ffffff;
+        }
+
+        .floating-icon.light {
+            background: #f0eae4;
+            color: var(--black);
+        }
+
+        .floating-card strong {
+            display: block;
+
+            margin-bottom: 2px;
+
+            font-size: 11px;
+        }
+
+        .floating-card small {
+            color: #8a8a8a;
+
+            font-size: 9px;
+        }
+
+        .floating-one {
+            top: 58px;
+            left: 24px;
+        }
+
+        .floating-two {
+            right: 19px;
+            bottom: 125px;
+        }
+
+        .floating-three {
+            left: 28px;
+            bottom: 42px;
+        }
+
+
+        /* =====================================================
+           TRUST STRIP
+        ===================================================== */
+
+        .trust-strip {
+            background: #fafafa;
+
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .trust-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+        }
+
+        .trust-item {
+            min-height: 95px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 20px 25px;
+
+            border-right: 1px solid #e6e6e6;
+        }
+
+        .trust-item:last-child {
+            border-right: 0;
+        }
+
+        .trust-icon {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #ffffff;
+
+            border: 1px solid #ececec;
+
+            font-size: 18px;
+        }
+
+        .trust-item strong {
+            display: block;
+
+            margin-bottom: 2px;
+
+            font-size: 11px;
+        }
+
+        .trust-item small {
+            color: #888888;
+
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           SECTION COMMON
+        ===================================================== */
+
+        .section {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            gap: 30px;
+
+            margin-bottom: 35px;
+        }
+
+        .section-head > div {
+            max-width: 650px;
+        }
+
+        .section-head h2 {
+            margin: 9px 0 8px;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: clamp(30px, 3vw, 42px);
+
+            line-height: 1.1;
+
+            letter-spacing: -1.6px;
+        }
+
+        .section-description {
+            color: var(--muted);
+
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .section-link {
+            flex-shrink: 0;
+
+            color: var(--black);
+
+            text-decoration: none;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .section-link:hover {
+            color: var(--accent);
+        }
+
+
+        /* =====================================================
+           CATEGORIES
+        ===================================================== */
+
+        .category-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 20px;
+        }
+
+        .category-card {
+            position: relative;
+
+            min-height: 300px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            border: 1px solid var(--line);
+            border-radius: 24px;
+
+            text-decoration: none;
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 22px 50px
+                rgba(0, 0, 0, .08);
+        }
+
+        .category-card.idol-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    #f5e9dd,
+                    #e4cab2
+                );
+        }
+
+        .category-card.custom-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    #1b1b1b,
+                    #090909
+                );
+
+            color: #ffffff;
+        }
+
+        .category-copy {
+            position: relative;
+
+            z-index: 3;
+
+            padding: 38px;
+        }
+
+        .category-tag {
+            display: inline-flex;
+
+            margin-bottom: 17px;
+
+            padding: 7px 10px;
+
+            border-radius: 50px;
+
+            background: rgba(255, 255, 255, .55);
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+        }
+
+        .custom-card .category-tag {
+            background: rgba(255, 255, 255, .1);
+
+            color: #dddddd;
+        }
+
+        .category-copy h3 {
+            margin-bottom: 10px;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: clamp(26px, 3vw, 37px);
+
+            line-height: 1.08;
+
+            letter-spacing: -1.3px;
+        }
+
+        .category-copy p {
+            max-width: 330px;
+
+            margin-bottom: 20px;
+
+            color: #625d58;
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .custom-card .category-copy p {
+            color: #aaaaaa;
+        }
+
+        .category-arrow {
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .category-art {
+            position: relative;
+
+            min-height: 300px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .idol-art-circle {
+            width: 175px;
+            height: 175px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, .52);
+
+            box-shadow:
+                inset 0 0 0
+                1px rgba(255, 255, 255, .55);
+        }
+
+        .idol-art-circle span {
+            color: #8e583b;
+
+            font-size: 77px;
+        }
+
+
+        /* CUSTOM PRINT ART */
+
+        .printer-art {
+            position: relative;
+
+            width: 190px;
+            height: 190px;
+        }
+
+        .printer-art-top {
+            width: 172px;
+            height: 20px;
+
+            margin: 0 auto;
+
+            border-radius: 7px;
+
+            background: #ffffff;
+        }
+
+        .printer-art-frame {
+            width: 145px;
+            height: 135px;
+
+            margin: 0 auto;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+
+            border-left: 9px solid #ffffff;
+            border-right: 9px solid #ffffff;
+        }
+
+        .printer-art-object {
+            width: 65px;
+            height: 85px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 26px 26px 8px 8px;
+
+            background: var(--accent);
+
+            color: #ffffff;
+
+            font-family: "Manrope", sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .printer-art-base {
+            width: 190px;
+            height: 22px;
+
+            border-radius: 7px;
+
+            background: #ffffff;
+        }
+
+
+        /* =====================================================
+           PRODUCT GRID
+        ===================================================== */
+
+        .product-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            align-items: start;
+
+            gap: 22px;
+        }
+
+        .product-grid > * {
+            min-width: 0;
+            width: 100%;
+        }
+
+        .product-grid > .product-card:only-child {
+            max-width: 360px;
+        }
+
+
+        /* =====================================================
+           PRODUCT CARD
+        ===================================================== */
+
+        .product-card {
+            position: relative;
+
+            overflow: hidden;
+
+            border: 1px solid var(--line);
+            border-radius: 18px;
+
+            background: #ffffff;
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                border-color .25s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+
+            border-color: #dddddd;
+
+            box-shadow:
+                0 18px 45px
+                rgba(0, 0, 0, .08);
+        }
+
+
+        /* IMAGE */
+
+        .product-image-area {
+            position: relative;
+
+            width: 100%;
+            height: 240px;
+
+            overflow: hidden;
+
+            background: #f5f4f1;
+        }
+
+        .product-image-link {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            text-decoration: none;
+        }
+
+        .product-image-link img {
+            width: 100% !important;
+            height: 100% !important;
+
+            object-fit: cover !important;
+
+            transition: transform .35s ease;
+        }
+
+        .product-card:hover .product-image-link img {
+            transform: scale(1.04);
+        }
+
+        .product-shape {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 42px;
+            font-weight: 800;
+        }
+
+
+        /* BADGES */
+
+        .product-badges {
+            position: absolute;
+
+            top: 13px;
+            left: 13px;
+
+            z-index: 5;
+
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 6px;
+        }
+
+        .product-badge {
+            min-height: 25px;
+
+            display: inline-flex;
+            align-items: center;
+
+            padding: 0 9px;
+
+            border-radius: 20px;
+
+            font-size: 8px;
+            font-weight: 800;
+
+            box-shadow:
+                0 4px 12px
+                rgba(0, 0, 0, .08);
+        }
+
+        .badge-new {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        .badge-best {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        .badge-custom {
+            background: #ffffff;
+            color: #111111;
+        }
+
+
+        /* QUICK VIEW */
+
+        .product-quick-view {
+            position: absolute;
+
+            left: 14px;
+            right: 14px;
+            bottom: 14px;
+
+            min-height: 41px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: rgba(255, 255, 255, .94);
+
+            color: #111111;
+
+            text-decoration: none;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            opacity: 0;
+
+            transform: translateY(8px);
+
+            transition: .25s ease;
+
+            backdrop-filter: blur(8px);
+        }
+
+        .product-card:hover .product-quick-view {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        /* CONTENT */
+
+        .product-card-content {
+            padding: 17px;
+        }
+
+        .product-card-category {
+            margin-bottom: 6px;
+
+            color: var(--accent);
+
+            font-size: 8px;
+            font-weight: 800;
+
+            letter-spacing: 1.3px;
+
+            text-transform: uppercase;
+        }
+
+        .product-card-title {
+            margin: 0;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            line-height: 1.35;
+
+            letter-spacing: -.4px;
+        }
+
+        .product-card-title a {
+            color: #111111 !important;
+
+            text-decoration: none !important;
+        }
+
+        .product-card-title a:hover {
+            color: var(--accent) !important;
+        }
+
+        .product-card-description {
+            display: -webkit-box;
+
+            margin-top: 7px;
+
+            overflow: hidden;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            line-height: 1.55;
+
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+
+        /* PRICE */
+
+        .product-card-price {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-top: 12px;
+        }
+
+        .current-price {
+            color: #111111;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .old-price {
+            color: #999999;
+
+            text-decoration: line-through;
+
+            font-size: 11px;
+        }
+
+        .discount-badge {
+            padding: 3px 6px;
+
+            border-radius: 5px;
+
+            background: #fff0ed;
+            color: var(--accent);
+
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+
+        /* STOCK */
+
+        .product-stock {
+            display: flex;
+            align-items: center;
+
+            gap: 6px;
+
+            margin-top: 10px;
+
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .stock-dot {
+            width: 7px;
+            height: 7px;
+
+            display: block;
+
+            border-radius: 50%;
+        }
+
+        .stock-in {
+            color: #3b814b;
+        }
+
+        .stock-in .stock-dot {
+            background: #3b814b;
+        }
+
+        .stock-low {
+            color: #ca7620;
+        }
+
+        .stock-low .stock-dot {
+            background: #ca7620;
+        }
+
+        .stock-order {
+            color: #666666;
+        }
+
+        .stock-order .stock-dot {
+            background: #999999;
+        }
+
+
+        /* ACTIONS */
+
+        .product-card-actions {
+            display: grid;
+
+            grid-template-columns:
+                .85fr 1.15fr;
+
+            gap: 8px;
+
+            margin-top: 16px;
+        }
+
+        .view-product-button {
+            min-height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0 11px;
+
+            border: 1px solid #dddddd;
+            border-radius: 10px;
+
+            background: #ffffff;
+            color: #111111 !important;
+
+            text-decoration: none !important;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            transition: .2s ease;
+        }
+
+        .view-product-button:hover {
+            border-color: #111111;
+
+            background: #f7f7f7;
+
+            transform: translateY(-1px);
+        }
+
+        .add-to-cart-button {
+            min-height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 7px;
+
+            padding: 0 13px;
+
+            border: 0;
+            border-radius: 10px;
+
+            background: #111111;
+            color: #ffffff;
+
+            cursor: pointer;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            transition:
+                background .2s ease,
+                transform .2s ease;
+        }
+
+        .add-to-cart-button:hover {
+            background: var(--accent);
+
+            transform: translateY(-1px);
+        }
+
+        .add-to-cart-button:active {
+            transform: scale(.97);
+        }
+
+        .add-cart-icon {
+            font-size: 14px;
+        }
+
+
+        /* EMPTY */
+
+        .product-grid > .muted {
+            grid-column: 1 / -1;
+
+            padding: 50px 25px;
+
+            border: 1px solid var(--line);
+            border-radius: 18px;
+
+            background: var(--cream);
+
+            color: var(--muted);
+
+            text-align: center;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           CUSTOM PRINT PROCESS
+        ===================================================== */
+
+        .custom-section {
+            padding: 88px 0;
+
+            background: var(--black);
+
+            color: #ffffff;
+        }
+
+        .custom-grid {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, .9fr)
+                minmax(0, 1.1fr);
+
+            align-items: center;
+
+            gap: 80px;
+        }
+
+        .custom-copy {
+            max-width: 535px;
+        }
+
+        .custom-copy .section-kicker {
+            color: #ff7559;
+        }
+
+        .custom-copy h2 {
+            margin: 12px 0 19px;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: clamp(36px, 4vw, 54px);
+
+            line-height: 1.06;
+
+            letter-spacing: -2px;
+        }
+
+        .custom-copy > p:not(.section-kicker) {
+            margin-bottom: 28px;
+
+            color: #b7b7b7;
+
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+
+        /* STEPS */
+
+        .process-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .process-card {
+            display: grid;
+
+            grid-template-columns:
+                58px 1fr;
+
+            align-items: center;
+
+            gap: 19px;
+
+            padding: 22px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, .1);
+
+            border-radius: 16px;
+
+            background:
+                rgba(255, 255, 255, .055);
+        }
+
+        .process-number {
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .process-card strong {
+            display: block;
+
+            margin-bottom: 4px;
+
+            font-size: 15px;
+        }
+
+        .process-card p {
+            color: #9c9c9c;
+
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .process-line {
+            width: 1px;
+            height: 22px;
+
+            margin-left: 46px;
+
+            background:
+                rgba(255, 255, 255, .16);
+        }
+
+
+        /* =====================================================
+           WHY SPANDAN
+        ===================================================== */
+
+        .why-section {
+            padding: 86px 0;
+
+            background: var(--cream);
+        }
+
+        .why-head {
+            max-width: 680px;
+
+            margin-bottom: 38px;
+        }
+
+        .why-head h2 {
+            margin: 10px 0 13px;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: clamp(34px, 4vw, 49px);
+
+            line-height: 1.1;
+
+            letter-spacing: -1.8px;
+        }
+
+        .why-head > p:last-child {
+            color: var(--muted);
+
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .why-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 17px;
+        }
+
+        .why-card {
+            min-height: 235px;
+
+            padding: 25px;
+
+            border: 1px solid #e6e5e1;
+            border-radius: 18px;
+
+            background: #ffffff;
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 18px 40px
+                rgba(0, 0, 0, .06);
+        }
+
+        .why-number {
+            width: 41px;
+            height: 41px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 38px;
+
+            border-radius: 50%;
+
+            background: var(--black);
+            color: #ffffff;
+
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .why-card h3 {
+            margin-bottom: 9px;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 17px;
+        }
+
+        .why-card p {
+            color: var(--muted);
+
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .why-card:first-child {
+            background: var(--accent);
+            color: #ffffff;
+
+            border-color: var(--accent);
+        }
+
+        .why-card:first-child .why-number {
+            background: #ffffff;
+            color: var(--black);
+        }
+
+        .why-card:first-child p {
+            color:
+                rgba(255, 255, 255, .82);
+        }
+
+
+        /* =====================================================
+           SOCIAL
+        ===================================================== */
+
+        .social-section {
+            padding: 80px 0;
+        }
+
+        .social-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 50px;
+
+            padding: 52px 55px;
+
+            border: 1px solid #eee7e3;
+            border-radius: 26px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff3ee,
+                    #f7f7f5
+                );
+        }
+
+        .social-copy {
+            max-width: 600px;
+        }
+
+        .social-copy h2 {
+            margin: 9px 0 11px;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: clamp(30px, 4vw, 45px);
+
+            line-height: 1.08;
+
+            letter-spacing: -1.5px;
+        }
+
+        .social-copy p {
+            color: var(--muted);
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .social-actions {
+            flex-shrink: 0;
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            padding-top: 62px;
+
+            background: #0e0e0e;
+            color: #ffffff;
+        }
+
+        .footer-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.7fr 1fr 1fr 1fr;
+
+            gap: 55px;
+
+            padding-bottom: 48px;
+        }
+
+        footer .brand {
+            color: #ffffff;
+        }
+
+        .footer-about {
+            max-width: 340px;
+
+            margin-top: 16px;
+
+            color: #8f8f8f;
+
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        footer h4 {
+            margin-bottom: 17px;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 13px;
+        }
+
+        footer a:not(.brand) {
+            display: block;
+
+            width: fit-content;
+
+            margin-bottom: 10px;
+
+            color: #9d9d9d;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            transition: .2s ease;
+        }
+
+        footer a:not(.brand):hover {
+            color: #ffffff;
+        }
+
+        .footer-text {
+            margin-top: 13px;
+
+            color: #777777;
+
+            font-size: 11px;
+        }
+
+        .footer-bottom {
+            min-height: 63px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            border-top:
+                1px solid
+                rgba(255, 255, 255, .08);
+
+            color: #6f6f6f;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        .toast {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            z-index: 2000;
+
+            padding: 13px 18px;
+
+            border-radius: 10px;
+
+            background: var(--black);
+            color: #ffffff;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transform: translateY(15px);
+
+            transition: .25s ease;
+
+            font-size: 12px;
+        }
+
+        .toast.show {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 1080px) {
+
+            .main-nav {
+                gap: 16px;
+            }
+
+            .main-nav a {
+                font-size: 12px;
+            }
+
+            .hero {
+                gap: 40px;
+            }
+
+            .why-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+
+        /* =====================================================
+           MOBILE / TABLET NAVIGATION
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .container {
+                width: min(100% - 30px, 1180px);
+            }
+
+            .topbar-track {
+                justify-content: flex-start;
+
+                overflow-x: auto;
+
+                gap: 30px;
+            }
+
+            .menu-button {
+                display: inline-flex;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .main-nav {
+                position: absolute;
+
+                top: calc(100% + 8px);
+
+                left: 15px;
+                right: 15px;
+
+                display: none;
+
+                flex-direction: column;
+                align-items: stretch;
+
+                gap: 0;
+
+                padding: 10px;
+
+                border: 1px solid var(--line);
+                border-radius: 15px;
+
+                background: #ffffff;
+
+                box-shadow:
+                    0 22px 55px
+                    rgba(0, 0, 0, .12);
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px;
+
+                border-radius: 8px;
+
+                font-size: 13px;
+            }
+
+            .main-nav a:hover {
+                background: #f6f6f6;
+            }
+
+            .main-nav a.active::after {
+                display: none;
+            }
+
+
+            /* HERO */
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                min-height: auto;
+            }
+
+            .hero-visual {
+                min-height: 470px;
+            }
+
+
+            /* TRUST */
+
+            .trust-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .trust-item:nth-child(2) {
+                border-right: 0;
+            }
+
+            .trust-item:nth-child(-n+2) {
+                border-bottom: 1px solid var(--line);
+            }
+
+
+            /* CATEGORIES */
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-card {
+                min-height: 260px;
+            }
+
+            .category-art {
+                min-height: 260px;
+            }
+
+
+            /* PRODUCTS */
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .product-grid > .product-card:only-child {
+                max-width: 340px;
+            }
+
+
+            /* CUSTOM */
+
+            .custom-grid {
+                grid-template-columns: 1fr;
+
+                gap: 45px;
+            }
+
+
+            /* SOCIAL */
+
+            .social-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+
+            /* FOOTER */
+
+            .footer-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+
+        /* =====================================================
+           PHONE
+        ===================================================== */
+
+        @media (max-width: 560px) {
+
+            .container {
+                width: calc(100% - 24px);
+            }
+
+
+            /* HEADER */
+
+            .nav-wrap {
+                min-height: 70px;
+
+                gap: 5px;
+            }
+
+            .brand {
+                font-size: 19px;
+
+                gap: 8px;
+            }
+
+            .brand-mark {
+                width: 40px;
+                height: 40px;
+
+                border-radius: 11px;
+
+                font-size: 18px;
+            }
+
+            .icon-link,
+            .menu-button {
+                width: 35px;
+                height: 35px;
+
+                font-size: 17px;
+            }
+
+
+            /* HERO */
+
+            .hero {
+                padding-top: 45px;
+                padding-bottom: 50px;
+            }
+
+            .hero-copy h1 {
+                margin-top: 12px;
+
+                font-size: clamp(43px, 12vw, 60px);
+
+                letter-spacing: -2.7px;
+            }
+
+            .hero-text {
+                font-size: 14px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .hero-features {
+                grid-template-columns: 1fr;
+
+                gap: 15px;
+            }
+
+            .hero-visual {
+                min-height: 390px;
+
+                border-radius: 23px;
+            }
+
+            .hero-circle {
+                width: 265px;
+                height: 265px;
+            }
+
+            .hero-object {
+                width: 190px;
+                height: 245px;
+            }
+
+            .hero-object-symbol {
+                font-size: 67px;
+            }
+
+            .floating-card {
+                min-width: 145px;
+
+                padding: 9px;
+            }
+
+            .floating-icon {
+                width: 35px;
+                height: 35px;
+
+                flex-basis: 35px;
+            }
+
+            .floating-card strong {
+                font-size: 9px;
+            }
+
+            .floating-card small {
+                font-size: 7px;
+            }
+
+            .floating-one {
+                top: 25px;
+                left: 7px;
+            }
+
+            .floating-two {
+                right: 6px;
+                bottom: 83px;
+            }
+
+            .floating-three {
+                left: 7px;
+                bottom: 17px;
+            }
+
+
+            /* TRUST */
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-item {
+                min-height: 78px;
+
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+
+                padding: 17px;
+            }
+
+            .trust-item:last-child {
+                border-bottom: 0;
+            }
+
+
+            /* SECTIONS */
+
+            .section {
+                padding-top: 55px;
+                padding-bottom: 55px;
+            }
+
+            .section-head {
+                align-items: flex-start;
+                flex-direction: column;
+
+                gap: 10px;
+
+                margin-bottom: 25px;
+            }
+
+            .section-head h2 {
+                font-size: 29px;
+            }
+
+
+            /* CATEGORY CARDS */
+
+            .category-card {
+                grid-template-columns: 1fr;
+
+                min-height: auto;
+            }
+
+            .category-copy {
+                padding: 25px;
+
+                order: 2;
+            }
+
+            .category-art {
+                min-height: 205px;
+
+                order: 1;
+            }
+
+            .idol-art-circle {
+                width: 130px;
+                height: 130px;
+            }
+
+            .idol-art-circle span {
+                font-size: 57px;
+            }
+
+            .printer-art {
+                transform: scale(.83);
+            }
+
+
+            /* PRODUCTS */
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+                gap: 10px;
+            }
+
+            .product-grid > .product-card:only-child {
+                max-width: none;
+            }
+
+            .product-image-area {
+                height: 165px;
+            }
+
+            .product-card-content {
+                padding: 11px;
+            }
+
+            .product-card-category {
+                font-size: 7px;
+            }
+
+            .product-card-title {
+                font-size: 13px;
+            }
+
+            .product-card-description {
+                display: none;
+            }
+
+            .current-price {
+                font-size: 14px;
+            }
+
+            .old-price {
+                font-size: 9px;
+            }
+
+            .discount-badge {
+                font-size: 7px;
+            }
+
+            .product-stock {
+                font-size: 8px;
+            }
+
+            .product-quick-view {
+                display: none;
+            }
+
+            .product-card-actions {
+                grid-template-columns: 1fr;
+
+                gap: 6px;
+
+                margin-top: 12px;
+            }
+
+            .view-product-button,
+            .add-to-cart-button {
+                min-height: 39px;
+
+                font-size: 9px;
+            }
+
+
+            /* CUSTOM */
+
+            .custom-section {
+                padding: 60px 0;
+            }
+
+            .custom-copy h2 {
+                font-size: 35px;
+            }
+
+            .process-card {
+                grid-template-columns:
+                    48px 1fr;
+
+                gap: 12px;
+
+                padding: 17px;
+            }
+
+            .process-number {
+                width: 42px;
+                height: 42px;
+            }
+
+            .process-line {
+                margin-left: 37px;
+            }
+
+
+            /* WHY */
+
+            .why-section {
+                padding: 60px 0;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-card {
+                min-height: auto;
+            }
+
+            .why-number {
+                margin-bottom: 24px;
+            }
+
+
+            /* SOCIAL */
+
+            .social-section {
+                padding: 55px 0;
+            }
+
+            .social-box {
+                padding: 30px 22px;
+
+                border-radius: 20px;
+            }
+
+            .social-actions {
+                width: 100%;
+
+                flex-direction: column;
+            }
+
+            .social-actions .btn {
+                width: 100%;
+            }
+
+
+            /* FOOTER */
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                min-height: auto;
+
+                flex-direction: column;
+                align-items: flex-start;
+
+                padding: 19px 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div class="topbar-track">
+
+            <span>
+                ✦ Custom 3D printing available
+            </span>
+
+            <span>
+                🇮🇳 Made in India
+            </span>
+
+            <span>
+                💳 Online payments only
+            </span>
+
+            <span>
+                💬 WhatsApp support
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- HEADER -->
+
+    <header class="site-header">
+
+        <div class="container nav-wrap">
+
+
+            <a
+                class="brand"
+                href="index.html"
+            >
+
+                <span class="brand-mark">
+                    S
+                </span>
+
+                <span>
+                    Spandan<span class="brand-accent">3D</span>
+                </span>
+
+            </a>
+
+
+            <button
+                class="menu-button"
+                id="mobileMenuBtn"
+                type="button"
+                aria-label="Open menu"
+            >
+                ☰
+            </button>
+
+
+            <nav
+                class="main-nav"
+                id="mainNav"
+            >
+
+                <a
+                    class="active"
+                    href="index.html"
+                >
+                    Home
+                </a>
+
+                <a href="shop.html">
+                    Shop
+                </a>
+
+                <a href="custom-print.html">
+                    Custom Prints
+                </a>
+
+                <a href="new-designs.html">
+                    New Designs
+                </a>
+
+                <a href="best-sellers.html">
+                    Best Sellers
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <div class="nav-actions">
+
+                <a
+                    class="icon-link"
+                    href="shop.html"
+                    aria-label="Search products"
+                >
+                    ⌕
+                </a>
+
+
+                <a
+                    class="icon-link"
+                    href="cart.html"
+                    aria-label="Cart"
+                >
+
+                    🛒
+
+                    <span
+                        class="cart-badge"
+                        id="cartCount"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main>
+
+
+        <!-- HERO -->
+
+        <section class="hero container">
+
+
+            <div class="hero-copy">
+
+                <p class="eyebrow">
+                    MADE LAYER BY LAYER
+                </p>
+
+
+                <h1>
+
+                    Your ideas.
+
+                    <br>
+
+                    Made
+
+                    <span>
+                        real.
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-text">
+
+                    Explore carefully made 3D printed idols
+                    or send us your own idea and get it custom printed.
+
+                </p>
+
+
+                <div class="hero-actions">
+
+
+                    <a
+                        class="btn btn-primary"
+                        href="shop.html"
+                    >
+                        Shop Idols →
+                    </a>
+
+
+                    <a
+                        class="btn btn-light"
+                        href="custom-print.html"
+                    >
+                        Custom 3D Print
+                    </a>
+
+
+                </div>
+
+
+                <div class="hero-features">
+
+
+                    <div class="hero-feature">
+
+                        <strong>
+                            Made to Order
+                        </strong>
+
+                        <small>
+                            Printed with care
+                        </small>
+
+                    </div>
+
+
+                    <div class="hero-feature">
+
+                        <strong>
+                            Custom Printing
+                        </strong>
+
+                        <small>
+                            Send your own design
+                        </small>
+
+                    </div>
+
+
+                    <div class="hero-feature">
+
+                        <strong>
+                            Made in India
+                        </strong>
+
+                        <small>
+                            Small-batch printing
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO ART -->
+
+            <div class="hero-visual">
+
+                <div class="hero-circle"></div>
+
+
+                <div class="hero-object">
+
+                    <div class="hero-object-symbol">
+                        ॐ
+                    </div>
+
+                    <small>
+                        SPANDAN 3D
+                    </small>
+
+                </div>
+
+
+                <div class="floating-card floating-one">
+
+                    <div class="floating-icon orange">
+                        ॐ
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            3D Printed Idols
+                        </strong>
+
+                        <small>
+                            Made layer by layer
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="floating-card floating-two">
+
+                    <div class="floating-icon dark">
+                        3D
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Custom Printing
+                        </strong>
+
+                        <small>
+                            Send your design
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="floating-card floating-three">
+
+                    <div class="floating-icon light">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Quality Checked
+                        </strong>
+
+                        <small>
+                            Before dispatch
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- TRUST -->
+
+        <section class="trust-strip">
+
+            <div class="container trust-grid">
+
+
+                <div class="trust-item">
+
+                    <div class="trust-icon">
+                        ✦
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Custom Printing
+                        </strong>
+
+                        <small>
+                            Your model or idea
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <div class="trust-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Quality Checked
+                        </strong>
+
+                        <small>
+                            Before dispatch
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <div class="trust-icon">
+                        🇮🇳
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Made in India
+                        </strong>
+
+                        <small>
+                            Small-batch printing
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <div class="trust-icon">
+                        💬
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            WhatsApp Support
+                        </strong>
+
+                        <small>
+                            Direct assistance
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- CATEGORIES -->
+
+        <section class="section container">
+
+
+            <div class="section-head">
+
+                <div>
+
+                    <p class="section-kicker">
+                        EXPLORE SPANDAN 3D
+                    </p>
+
+                    <h2>
+                        What are you looking for?
+                    </h2>
+
+                    <p class="section-description">
+                        Browse our printed idols or send us something of your own to print.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="category-grid">
+
+
+                <a
+                    class="category-card idol-card"
+                    href="shop.html?category=Idols"
+                >
+
+                    <div class="category-copy">
+
+                        <span class="category-tag">
+                            OUR COLLECTION
+                        </span>
+
+                        <h3>
+                            Idols & Figurines
+                        </h3>
+
+                        <p>
+                            Explore our available 3D printed idols and figurines.
+                        </p>
+
+                        <span class="category-arrow">
+                            Shop Idols →
+                        </span>
+
+                    </div>
+
+
+                    <div class="category-art">
+
+                        <div class="idol-art-circle">
+
+                            <span>
+                                ॐ
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    class="category-card custom-card"
+                    href="custom-print.html"
+                >
+
+                    <div class="category-copy">
+
+                        <span class="category-tag">
+                            YOUR OWN IDEA
+                        </span>
+
+                        <h3>
+                            Custom 3D Printing
+                        </h3>
+
+                        <p>
+                            Have your own model, reference image or idea? Send it to us.
+                        </p>
+
+                        <span class="category-arrow">
+                            Request a Print →
+                        </span>
+
+                    </div>
+
+
+                    <div class="category-art">
+
+                        <div class="printer-art">
+
+                            <div class="printer-art-top"></div>
+
+                            <div class="printer-art-frame">
+
+                                <div class="printer-art-object">
+                                    3D
+                                </div>
+
+                            </div>
+
+                            <div class="printer-art-base"></div>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- NEW DESIGNS -->
+
+        <section class="section container">
+
+
+            <div class="section-head">
+
+                <div>
+
+                    <p class="section-kicker">
+                        FRESH FROM THE PRINTER
+                    </p>
+
+                    <h2>
+                        New Designs
+                    </h2>
+
+                    <p class="section-description">
+                        Recently added products from Spandan 3D.
+                    </p>
+
+                </div>
+
+
+                <a
+                    class="section-link"
+                    href="new-designs.html"
+                >
+                    View all designs →
+                </a>
+
+            </div>
+
+
+            <div
+                class="product-grid"
+                data-product-list="new"
+                data-limit="6"
+            ></div>
+
+
+        </section>
+
+
+        <!-- CUSTOM PRINT -->
+
+        <section class="custom-section">
+
+            <div class="container custom-grid">
+
+
+                <div class="custom-copy">
+
+                    <p class="section-kicker">
+                        CUSTOM 3D PRINTING
+                    </p>
+
+
+                    <h2>
+                        Already have something you want printed?
+                    </h2>
+
+
+                    <p>
+
+                        Upload an STL, 3MF or OBJ model,
+                        send reference images, or describe what you need.
+
+                        We'll review your request and provide a quote.
+
+                    </p>
+
+
+                    <a
+                        class="btn btn-primary"
+                        href="custom-print.html"
+                    >
+                        Request Custom Print →
+                    </a>
+
+                </div>
+
+
+                <div class="process-list">
+
+
+                    <div class="process-card">
+
+                        <span class="process-number">
+                            01
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Send Your Idea
+                            </strong>
+
+                            <p>
+                                Upload a 3D model, reference image or description.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="process-line"></div>
+
+
+                    <div class="process-card">
+
+                        <span class="process-number">
+                            02
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Get Your Quote
+                            </strong>
+
+                            <p>
+                                We review size, material and printing requirements.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="process-line"></div>
+
+
+                    <div class="process-card">
+
+                        <span class="process-number">
+                            03
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                We Print It
+                            </strong>
+
+                            <p>
+                                Once approved, your design is prepared for printing.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- WHY SPANDAN -->
+
+        <section class="why-section">
+
+            <div class="container">
+
+
+                <div class="why-head">
+
+                    <p class="section-kicker">
+                        WHY SPANDAN 3D
+                    </p>
+
+                    <h2>
+                        Made layer by layer.
+                    </h2>
+
+                    <p>
+                        We focus on carefully made 3D printed products
+                        and straightforward custom printing.
+                    </p>
+
+                </div>
+
+
+                <div class="why-grid">
+
+
+                    <article class="why-card">
+
+                        <div class="why-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Made With Care
+                        </h3>
+
+                        <p>
+                            Prints are checked before being prepared for dispatch.
+                        </p>
+
+                    </article>
+
+
+                    <article class="why-card">
+
+                        <div class="why-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Made to Order
+                        </h3>
+
+                        <p>
+                            Products can be printed as orders arrive instead of mass production.
+                        </p>
+
+                    </article>
+
+
+                    <article class="why-card">
+
+                        <div class="why-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Custom Projects
+                        </h3>
+
+                        <p>
+                            You can send your own 3D model or concept for printing.
+                        </p>
+
+                    </article>
+
+
+                    <article class="why-card">
+
+                        <div class="why-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Direct Support
+                        </h3>
+
+                        <p>
+                            Contact us directly on WhatsApp if you need help.
+                        </p>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SOCIAL -->
+
+        <section class="social-section">
+
+            <div class="container">
+
+                <div class="social-box">
+
+
+                    <div class="social-copy">
+
+                        <p class="section-kicker">
+                            FOLLOW SPANDAN 3D
+                        </p>
+
+                        <h2>
+                            See what we're printing.
+                        </h2>
+
+                        <p>
+                            Follow us for new models,
+                            product videos and behind-the-scenes 3D printing.
+                        </p>
+
+                    </div>
+
+
+                    <div class="social-actions">
+
+
+                        <a
+                            class="btn btn-dark"
+                            href="https://www.instagram.com/3D_spandan/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Instagram ↗
+                        </a>
+
+
+                        <a
+                            class="btn btn-light"
+                            href="https://wa.me/919766979232"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            WhatsApp
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="container footer-grid">
+
+
+            <div>
+
+                <a
+                    class="brand"
+                    href="index.html"
+                >
+
+                    <span class="brand-mark">
+                        S
+                    </span>
+
+                    <span>
+                        Spandan<span class="brand-accent">3D</span>
+                    </span>
+
+                </a>
+
+
+                <p class="footer-about">
+                    3D printed idols and custom prints made layer by layer.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Shop
+                </h4>
+
+                <a href="shop.html">
+                    All Products
+                </a>
+
+                <a href="new-designs.html">
+                    New Designs
+                </a>
+
+                <a href="best-sellers.html">
+                    Best Sellers
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Information
+                </h4>
+
+                <a href="custom-print.html">
+                    Custom Printing
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Connect
+                </h4>
+
+                <a
+                    href="https://www.instagram.com/3D_spandan/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Instagram ↗
+                </a>
+
+                <a
+                    href="https://wa.me/919766979232"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    WhatsApp ↗
+                </a>
+
+                <p class="footer-text">
+                    Maharashtra, India
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <span>
+                © 2026 Spandan 3D. All rights reserved.
+            </span>
+
+            <span>
+                Made layer by layer.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- TOAST -->
+
+    <div
+        class="toast"
+        id="toast"
+    >
+        Added to cart
+    </div>
+
+
+    <!-- EXISTING JS -->
+
+    <script src="js/products.js"></script>
+
+    <script src="js/main.js"></script>
+
+
+    <!-- MOBILE MENU -->
+
+    <script>
+
+        const mobileMenuBtn =
+            document.getElementById(
+                "mobileMenuBtn"
+            );
+
+        const mainNav =
+            document.getElementById(
+                "mainNav"
+            );
+
+
+        mobileMenuBtn?.addEventListener(
+            "click",
+            function () {
+
+                mainNav.classList.toggle(
+                    "open"
+                );
+
+                document.body.classList.toggle(
+                    "menu-open",
+                    mainNav.classList.contains(
+                        "open"
+                    )
+                );
+
+            }
+        );
+
+
+        mainNav
+            ?.querySelectorAll("a")
+            .forEach(
+                function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            mainNav.classList.remove(
+                                "open"
+                            );
+
+                            document.body.classList.remove(
+                                "menu-open"
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>

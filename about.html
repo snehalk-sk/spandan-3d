@@ -1,0 +1,1837 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>About | Spandan 3D</title>
+
+  <meta
+    name="description"
+    content="Learn about Spandan 3D and our approach to 3D printed idols and custom printing."
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: #ffffff;
+      color: #111111;
+      line-height: 1.5;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    :root {
+      --accent: #f45d3d;
+      --accent-dark: #db4a30;
+      --black: #111111;
+      --muted: #707070;
+      --line: #eaeaea;
+      --soft: #f7f6f3;
+      --cream: #fbfaf7;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+      overflow: hidden;
+
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .topbar-track {
+      min-height: 38px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 50px;
+
+      padding: 0 20px;
+
+      white-space: nowrap;
+
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+
+    /* HEADER */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(255,255,255,.96);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-wrap {
+      min-height: 80px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 28px;
+    }
+
+    .brand {
+      flex-shrink: 0;
+
+      display: inline-flex;
+      align-items: center;
+
+      gap: 10px;
+
+      color: #111111;
+
+      text-decoration: none;
+
+      font-family: "Manrope", sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+
+      letter-spacing: -1px;
+    }
+
+    .brand-mark {
+      width: 45px;
+      height: 45px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      background: #111111;
+      color: #ffffff;
+
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .brand-accent {
+      color: var(--accent);
+    }
+
+    .main-nav {
+      flex: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 27px;
+    }
+
+    .main-nav a {
+      position: relative;
+
+      color: #4b4b4b;
+
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #111111;
+    }
+
+    .main-nav a.active::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: -29px;
+
+      height: 2px;
+
+      border-radius: 10px;
+
+      background: var(--accent);
+    }
+
+    .nav-actions {
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+
+      gap: 6px;
+    }
+
+    .icon-link,
+    .mobile-menu-btn {
+      position: relative;
+
+      width: 40px;
+      height: 40px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+
+      background: transparent;
+
+      color: #111111;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
+      font-size: 19px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    .cart-badge {
+      position: absolute;
+
+      top: -1px;
+      right: -2px;
+
+      min-width: 18px;
+      height: 18px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 4px;
+
+      border-radius: 20px;
+
+      background: var(--accent);
+      color: #ffffff;
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+
+    /* COMMON */
+
+    .section-kicker {
+      color: var(--accent);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: 2.5px;
+    }
+
+    .btn {
+      min-height: 50px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 24px;
+
+      border-radius: 12px;
+
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-dark {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .btn-dark:hover {
+      background: #292929;
+    }
+
+
+    /* HERO */
+
+    .about-hero {
+      padding: 85px 0 70px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #ffffff,
+          #faf9f6
+        );
+    }
+
+    .about-hero-grid {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(320px, .9fr);
+
+      align-items: center;
+
+      gap: 70px;
+    }
+
+    .about-hero h1 {
+      max-width: 720px;
+
+      margin: 12px 0 20px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: clamp(48px, 6vw, 78px);
+
+      line-height: .98;
+
+      letter-spacing: -4px;
+    }
+
+    .about-hero p {
+      max-width: 620px;
+
+      color: var(--muted);
+
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .about-actions {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-top: 28px;
+    }
+
+
+    /* HERO VISUAL */
+
+    .about-visual {
+      position: relative;
+
+      min-height: 440px;
+
+      overflow: hidden;
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #111111,
+          #2a2a2a
+        );
+
+      color: #ffffff;
+    }
+
+    .about-visual-inner {
+      position: absolute;
+
+      inset: 0;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      padding: 32px;
+    }
+
+    .about-big-mark {
+      align-self: center;
+
+      margin-top: 45px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 120px;
+      font-weight: 800;
+
+      line-height: 1;
+
+      color: rgba(255,255,255,.12);
+    }
+
+    .about-visual-bottom {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+      gap: 10px;
+    }
+
+    .mini-panel {
+      padding: 14px;
+
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 13px;
+
+      background: rgba(255,255,255,.06);
+    }
+
+    .mini-panel strong {
+      display: block;
+
+      margin-bottom: 4px;
+
+      font-size: 11px;
+    }
+
+    .mini-panel span {
+      color: #9d9d9d;
+
+      font-size: 9px;
+    }
+
+
+    /* STORY */
+
+    .story-section {
+      padding: 90px 0;
+    }
+
+    .story-grid {
+      display: grid;
+
+      grid-template-columns:
+        .9fr 1.1fr;
+
+      gap: 70px;
+
+      align-items: start;
+    }
+
+    .story-title {
+      position: sticky;
+      top: 120px;
+    }
+
+    .story-title h2 {
+      margin-top: 10px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: clamp(36px, 4vw, 54px);
+
+      line-height: 1.05;
+
+      letter-spacing: -2px;
+    }
+
+    .story-copy {
+      display: flex;
+      flex-direction: column;
+
+      gap: 20px;
+    }
+
+    .story-copy p {
+      color: var(--muted);
+
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .story-highlight {
+      padding: 25px;
+
+      border-left: 3px solid var(--accent);
+      border-radius: 0 16px 16px 0;
+
+      background: var(--soft);
+    }
+
+    .story-highlight strong {
+      display: block;
+
+      margin-bottom: 6px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 17px;
+    }
+
+    .story-highlight span {
+      color: var(--muted);
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+
+    /* WHAT WE FOCUS ON */
+
+    .focus-section {
+      padding: 85px 0;
+
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .focus-head {
+      max-width: 650px;
+
+      margin-bottom: 35px;
+    }
+
+    .focus-head h2 {
+      margin: 10px 0 12px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: clamp(36px, 4vw, 52px);
+
+      line-height: 1.05;
+
+      letter-spacing: -2px;
+    }
+
+    .focus-head p {
+      color: #9c9c9c;
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .focus-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, minmax(0,1fr));
+
+      gap: 14px;
+    }
+
+    .focus-card {
+      min-height: 220px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      padding: 22px;
+
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 18px;
+
+      background: rgba(255,255,255,.035);
+    }
+
+    .focus-card:first-child {
+      background: var(--accent);
+
+      border-color: transparent;
+    }
+
+    .focus-number {
+      font-size: 10px;
+      font-weight: 800;
+
+      color: #888888;
+    }
+
+    .focus-card:first-child .focus-number {
+      color: rgba(255,255,255,.7);
+    }
+
+    .focus-card h3 {
+      margin-bottom: 7px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 19px;
+
+      letter-spacing: -.6px;
+    }
+
+    .focus-card p {
+      color: #929292;
+
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .focus-card:first-child p {
+      color: rgba(255,255,255,.8);
+    }
+
+
+    /* APPROACH */
+
+    .approach-section {
+      padding: 90px 0;
+    }
+
+    .approach-head {
+      max-width: 660px;
+
+      margin-bottom: 38px;
+    }
+
+    .approach-head h2 {
+      margin: 10px 0 12px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: clamp(36px, 4vw, 50px);
+
+      letter-spacing: -2px;
+    }
+
+    .approach-head p {
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .approach-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 18px;
+    }
+
+    .approach-card {
+      padding: 25px;
+
+      border: 1px solid var(--line);
+      border-radius: 17px;
+
+      background: #ffffff;
+    }
+
+    .approach-icon {
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 19px;
+
+      border-radius: 11px;
+
+      background: var(--soft);
+
+      font-size: 17px;
+    }
+
+    .approach-card h3 {
+      margin-bottom: 8px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 17px;
+    }
+
+    .approach-card p {
+      color: var(--muted);
+
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+
+    /* CTA */
+
+    .about-cta-section {
+      padding: 10px 0 90px;
+    }
+
+    .about-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 40px;
+
+      padding: 44px 48px;
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f45d3d,
+          #e2472d
+        );
+
+      color: #ffffff;
+    }
+
+    .about-cta > div {
+      max-width: 650px;
+    }
+
+    .about-cta h2 {
+      margin-bottom: 8px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: clamp(28px, 4vw, 42px);
+
+      line-height: 1.08;
+
+      letter-spacing: -1.5px;
+    }
+
+    .about-cta p {
+      color: rgba(255,255,255,.82);
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .about-cta .btn {
+      flex-shrink: 0;
+
+      background: #111111;
+      color: #ffffff;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+      padding-top: 62px;
+
+      background: #0e0e0e;
+      color: #ffffff;
+    }
+
+    .footer-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.7fr 1fr 1fr 1fr;
+
+      gap: 55px;
+
+      padding-bottom: 48px;
+    }
+
+    footer .brand {
+      color: #ffffff;
+    }
+
+    .footer-description {
+      max-width: 330px;
+
+      margin-top: 15px;
+
+      color: #888888;
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    footer h4 {
+      margin-bottom: 17px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 13px;
+    }
+
+    footer a:not(.brand) {
+      display: block;
+
+      width: fit-content;
+
+      margin-bottom: 10px;
+
+      color: #999999;
+
+      text-decoration: none;
+
+      font-size: 12px;
+    }
+
+    footer a:not(.brand):hover {
+      color: #ffffff;
+    }
+
+    .footer-location {
+      margin-top: 13px;
+
+      color: #777777;
+
+      font-size: 11px;
+    }
+
+    .footer-bottom {
+      min-height: 63px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+      color: #6f6f6f;
+
+      font-size: 10px;
+    }
+
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+
+      right: 25px;
+      bottom: 25px;
+
+      z-index: 2000;
+
+      padding: 13px 18px;
+
+      border-radius: 10px;
+
+      background: #111111;
+      color: #ffffff;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transform: translateY(15px);
+
+      transition: .25s ease;
+
+      font-size: 12px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* TABLET */
+
+    @media (max-width: 950px) {
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      .nav-actions {
+        margin-left: auto;
+      }
+
+      .main-nav {
+        position: absolute;
+
+        top: calc(100% + 8px);
+
+        left: 15px;
+        right: 15px;
+
+        display: none;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 10px;
+
+        border: 1px solid var(--line);
+        border-radius: 14px;
+
+        background: #ffffff;
+
+        box-shadow:
+          0 22px 50px
+          rgba(0,0,0,.12);
+      }
+
+      .main-nav.open {
+        display: flex;
+      }
+
+      .main-nav a {
+        padding: 12px;
+
+        border-radius: 8px;
+      }
+
+      .main-nav a.active::after {
+        display: none;
+      }
+
+      .about-hero-grid,
+      .story-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-title {
+        position: static;
+      }
+
+      .focus-grid {
+        grid-template-columns:
+          repeat(2, minmax(0,1fr));
+      }
+
+      .approach-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns:
+          repeat(2, minmax(0,1fr));
+      }
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: calc(100% - 24px);
+      }
+
+      .topbar-track {
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        gap: 30px;
+      }
+
+      .nav-wrap {
+        min-height: 70px;
+      }
+
+      .brand {
+        font-size: 19px;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+
+        font-size: 18px;
+      }
+
+      .icon-link,
+      .mobile-menu-btn {
+        width: 35px;
+        height: 35px;
+      }
+
+      .about-hero {
+        padding: 55px 0;
+      }
+
+      .about-hero h1 {
+        font-size: 46px;
+
+        letter-spacing: -2.8px;
+      }
+
+      .about-visual {
+        min-height: 340px;
+      }
+
+      .about-big-mark {
+        font-size: 90px;
+      }
+
+      .about-visual-bottom {
+        grid-template-columns: 1fr;
+      }
+
+      .story-section,
+      .focus-section,
+      .approach-section {
+        padding: 65px 0;
+      }
+
+      .focus-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .focus-card {
+        min-height: 180px;
+      }
+
+      .about-cta {
+        align-items: flex-start;
+        flex-direction: column;
+
+        padding: 30px 23px;
+      }
+
+      .about-cta .btn {
+        width: 100%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        min-height: auto;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 19px 0;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- TOPBAR -->
+
+  <div class="topbar">
+
+    <div class="topbar-track">
+
+      <span>
+        🚚 Free shipping above ₹999
+      </span>
+
+      <span>
+        ✦ Custom 3D printing available
+      </span>
+
+      <span>
+        🇮🇳 Made in India
+      </span>
+
+      <span>
+        🔒 Secure checkout
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+
+    <div class="container nav-wrap">
+
+
+      <a
+        class="brand"
+        href="index.html"
+      >
+
+        <span class="brand-mark">
+          S
+        </span>
+
+        <span>
+          Spandan<span class="brand-accent">3D</span>
+        </span>
+
+      </a>
+
+
+      <button
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        type="button"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+
+      <nav
+        class="main-nav"
+        id="mainNav"
+      >
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="shop.html">
+          Shop
+        </a>
+
+        <a href="custom-print.html">
+          Custom Prints
+        </a>
+
+        <a href="new-designs.html">
+          New Designs
+        </a>
+
+        <a href="best-sellers.html">
+          Best Sellers
+        </a>
+
+        <a
+          class="active"
+          href="about.html"
+        >
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </nav>
+
+
+      <div class="nav-actions">
+
+        <a
+          class="icon-link"
+          href="shop.html"
+          aria-label="Search"
+        >
+          ⌕
+
+        </a>
+
+        <a
+          class="icon-link"
+          href="cart.html"
+          aria-label="Cart"
+        >
+
+          🛒
+
+          <span
+            class="cart-badge"
+            id="cartCount"
+          >
+            0
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+
+    <!-- HERO -->
+
+    <section class="about-hero">
+
+      <div class="container about-hero-grid">
+
+
+        <div>
+
+          <p class="section-kicker">
+            ABOUT SPANDAN 3D
+          </p>
+
+          <h1>
+            Made layer by layer.
+          </h1>
+
+          <p>
+            Spandan 3D is focused on 3D printed idols
+            and custom printing. The idea is simple:
+            make physical products carefully, keep the
+            process clear, and help turn digital designs
+            or customer ideas into real objects.
+          </p>
+
+
+          <div class="about-actions">
+
+            <a
+              class="btn btn-primary"
+              href="shop.html"
+            >
+              Explore Products
+            </a>
+
+            <a
+              class="btn btn-dark"
+              href="custom-print.html"
+            >
+              Request Custom Print
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="about-visual">
+
+          <div class="about-visual-inner">
+
+            <p class="section-kicker">
+              SPANDAN 3D
+            </p>
+
+            <div class="about-big-mark">
+              3D
+            </div>
+
+
+            <div class="about-visual-bottom">
+
+              <div class="mini-panel">
+
+                <strong>
+                  3D Printed Idols
+                </strong>
+
+                <span>
+                  Products added as they are created
+                </span>
+
+              </div>
+
+
+              <div class="mini-panel">
+
+                <strong>
+                  Custom Printing
+                </strong>
+
+                <span>
+                  Files, references and ideas welcome
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- STORY -->
+
+    <section class="story-section">
+
+      <div class="container story-grid">
+
+
+        <div class="story-title">
+
+          <p class="section-kicker">
+            THE IDEA
+          </p>
+
+          <h2>
+            Turning digital ideas into real objects.
+          </h2>
+
+        </div>
+
+
+        <div class="story-copy">
+
+          <p>
+            3D printing makes it possible to take a digital
+            design and create it physically, one layer at a time.
+            Spandan 3D is built around using that process for
+            products that can be displayed, gifted, customized
+            or created for a specific requirement.
+          </p>
+
+          <p>
+            Instead of filling the website with categories
+            before products are actually available, the
+            collection can grow naturally as new models are
+            printed and prepared.
+          </p>
+
+          <p>
+            Customers who already have a model or an idea can
+            also send their requirements through the custom
+            printing page. The request can then be reviewed
+            before a price is confirmed.
+          </p>
+
+
+          <div class="story-highlight">
+
+            <strong>
+              Ready products or your own idea.
+            </strong>
+
+            <span>
+              Shop the products already available, or send a
+              custom request when you need something different.
+            </span>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- FOCUS -->
+
+    <section class="focus-section">
+
+      <div class="container">
+
+
+        <div class="focus-head">
+
+          <p class="section-kicker">
+            WHAT WE FOCUS ON
+          </p>
+
+          <h2>
+            A small collection with room to grow.
+          </h2>
+
+          <p>
+            The website is focused on the products and services
+            currently being built rather than pretending to have
+            a huge catalogue from day one.
+          </p>
+
+        </div>
+
+
+        <div class="focus-grid">
+
+
+          <article class="focus-card">
+
+            <span class="focus-number">
+              01
+            </span>
+
+            <div>
+
+              <h3>
+                3D Printed Idols
+              </h3>
+
+              <p>
+                Display pieces and figures added to the shop as
+                they are printed and prepared.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="focus-card">
+
+            <span class="focus-number">
+              02
+            </span>
+
+            <div>
+
+              <h3>
+                Custom Printing
+              </h3>
+
+              <p>
+                Customers can submit STL, 3MF or OBJ files,
+                reference images or a description of what they need.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="focus-card">
+
+            <span class="focus-number">
+              03
+            </span>
+
+            <div>
+
+              <h3>
+                Made to Order
+              </h3>
+
+              <p>
+                Some products can be printed after an order rather
+                than keeping unnecessary stock ready.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="focus-card">
+
+            <span class="focus-number">
+              04
+            </span>
+
+            <div>
+
+              <h3>
+                Direct Support
+              </h3>
+
+              <p>
+                Customers can contact Spandan 3D directly through
+                WhatsApp when they need help with a custom request.
+              </p>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- APPROACH -->
+
+    <section class="approach-section">
+
+      <div class="container">
+
+
+        <div class="approach-head">
+
+          <p class="section-kicker">
+            OUR APPROACH
+          </p>
+
+          <h2>
+            Simple from request to print.
+          </h2>
+
+          <p>
+            The goal is to keep the process understandable,
+            especially for customers who may not know the technical
+            details of 3D printing.
+          </p>
+
+        </div>
+
+
+        <div class="approach-grid">
+
+
+          <article class="approach-card">
+
+            <div class="approach-icon">
+              ◈
+            </div>
+
+            <h3>
+              Share the requirement
+            </h3>
+
+            <p>
+              Choose an existing product or send a model,
+              reference image or explanation for a custom print.
+            </p>
+
+          </article>
+
+
+          <article class="approach-card">
+
+            <div class="approach-icon">
+              ✓
+            </div>
+
+            <h3>
+              Review before printing
+            </h3>
+
+            <p>
+              Custom projects can be checked for material,
+              dimensions and printability before the job is approved.
+            </p>
+
+          </article>
+
+
+          <article class="approach-card">
+
+            <div class="approach-icon">
+              ↗
+            </div>
+
+            <h3>
+              Print and prepare
+            </h3>
+
+            <p>
+              Once the details are confirmed, the model can be
+              printed and prepared for the customer.
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="about-cta-section">
+
+      <div class="container">
+
+        <div class="about-cta">
+
+          <div>
+
+            <h2>
+              Have something you want printed?
+            </h2>
+
+            <p>
+              Send your design, reference image or idea and
+              request a custom quote.
+            </p>
+
+          </div>
+
+
+          <a
+            class="btn"
+            href="custom-print.html"
+          >
+            Start Custom Request →
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-grid">
+
+
+      <div>
+
+        <a
+          class="brand"
+          href="index.html"
+        >
+
+          <span class="brand-mark">
+            S
+          </span>
+
+          <span>
+            Spandan<span class="brand-accent">3D</span>
+          </span>
+
+        </a>
+
+
+        <p class="footer-description">
+          3D printed idols and custom prints,
+          made carefully layer by layer.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Shop
+        </h4>
+
+        <a href="shop.html">
+          All Products
+        </a>
+
+        <a href="new-designs.html">
+          New Designs
+        </a>
+
+        <a href="best-sellers.html">
+          Best Sellers
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Information
+        </h4>
+
+        <a href="custom-print.html">
+          Custom Printing
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Connect
+        </h4>
+
+        <a
+          href="https://www.instagram.com/3D_spandan/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram ↗
+        </a>
+
+        <a
+          href="https://wa.me/919766979232"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp ↗
+        </a>
+
+        <div class="footer-location">
+          Maharashtra, India
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+      <span>
+        © 2026 Spandan 3D. All rights reserved.
+      </span>
+
+      <span>
+        Made layer by layer.
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- TOAST -->
+
+  <div
+    class="toast"
+    id="toast"
+  >
+    Added to cart
+  </div>
+
+
+  <!-- EXISTING WEBSITE JS -->
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+
+
+  <!-- MOBILE MENU -->
+
+  <script>
+
+    const mobileMenuBtn =
+      document.getElementById("mobileMenuBtn");
+
+    const mainNav =
+      document.getElementById("mainNav");
+
+
+    mobileMenuBtn?.addEventListener(
+      "click",
+      () => {
+
+        mainNav.classList.toggle("open");
+
+        document.body.classList.toggle(
+          "menu-open",
+          mainNav.classList.contains("open")
+        );
+
+      }
+    );
+
+
+    mainNav
+      ?.querySelectorAll("a")
+      .forEach(link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            mainNav.classList.remove("open");
+
+            document.body.classList.remove("menu-open");
+
+          }
+        );
+
+      });
+
+  </script>
+
+
+</body>
+
+</html>

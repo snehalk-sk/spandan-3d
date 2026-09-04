@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1788496311092,
+    "name": "Ganesha Idol",
+    "category": "Idols",
+    "price": 54,
+    "oldPrice": 649,
+    "description": " Decorative 3D printed Ganesha idol",
+    "image": "",
+    "icon": "3D",
+    "bg": "linear-gradient(135deg, #eeeeee, #cccccc)",
+    "tag": "New",
+    "active": true,
+    "createdAt": "2026-09-04T04:31:51.092Z",
+    "updatedAt": "2026-09-04T05:21:35.876Z",
+    "shortDescription": "",
+    "sku": "",
+    "stock": 2,
+    "material": "",
+    "colors": [
+      "1"
+    ],
+    "dimensions": "",
+    "weight": "",
+    "printTime": "",
+    "shippingInfo": "",
+    "careInfo": "",
+    "tags": [],
+    "customizable": false,
+    "isNew": true,
+    "bestSeller": false,
+    "featured": false,
+    "published": true,
+    "mainImage": "http://localhost:5000/uploads/products/1788498927171-523028694-download--66-.jpg",
+    "galleryImages": [
+      "http://localhost:5000/uploads/products/1788499295758-524711337-NovaTrend-----Premium-E-Commerce-Website-UI_UX-Design--------.jpg"
+    ],
+    "productVideo": "http://localhost:5000/uploads/products/1788499295769-968520040-Hand-painting_figurine_with_gold---_202608121742.mp4"
+  }
+]

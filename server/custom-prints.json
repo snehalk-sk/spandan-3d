@@ -1,0 +1,87 @@
+[
+  {
+    "id": 1788500316661,
+    "requestNumber": "CP1001",
+    "name": "Sneha Sambhaji Khodade",
+    "phone": "+919766979232",
+    "email": "snehakhodade2005@gmail.com",
+    "details": "augvuq",
+    "quantity": 1,
+    "size": "we",
+    "material": "PLA",
+    "color": "qw",
+    "requiredBy": "",
+    "reference": "",
+    "modelFile": null,
+    "referenceImages": [
+      {
+        "originalName": "download (66).jpg",
+        "fileName": "1788500316619-574037699-download--66-.jpg",
+        "size": 83555,
+        "mimeType": "image/jpeg",
+        "url": "http://localhost:5000/uploads/custom-prints/1788500316619-574037699-download--66-.jpg"
+      }
+    ],
+    "quote": null,
+    "adminNotes": "",
+    "status": "New",
+    "createdAt": "2026-09-04T05:38:36.661Z",
+    "updatedAt": "2026-09-04T05:38:36.661Z"
+  },
+  {
+    "id": 1788503553240,
+    "requestNumber": "CP1002",
+    "name": "Sneha Sambhaji Khodade",
+    "phone": "+919766979232",
+    "email": "snehakhodade2005@gmail.com",
+    "details": "hi",
+    "quantity": 1,
+    "size": "",
+    "material": "",
+    "color": "",
+    "requiredBy": "",
+    "reference": "",
+    "modelFile": null,
+    "referenceImages": [
+      {
+        "originalName": "download (65).jpg",
+        "fileName": "1788503553221-918898899-download--65-.jpg",
+        "size": 71339,
+        "mimeType": "image/jpeg",
+        "url": "http://localhost:5000/uploads/custom-prints/1788503553221-918898899-download--65-.jpg"
+      }
+    ],
+    "quote": 11111,
+    "adminNotes": "",
+    "status": "Approved",
+    "createdAt": "2026-09-04T06:32:33.240Z",
+    "updatedAt": "2026-09-04T07:55:47.185Z"
+  },
+  {
+    "id": 1788505498693,
+    "requestNumber": "CP1003",
+    "name": "Sneha Sambhaji Khodade",
+    "phone": "+919766979232",
+    "email": "snehakhodade2005@gmail.com",
+    "details": "hghg",
+    "quantity": 1,
+    "size": "",
+    "material": "",
+    "color": "",
+    "requiredBy": "",
+    "reference": "",
+    "modelFile": {
+      "originalName": "Krishna_geometric_02.3mf",
+      "fileName": "1788505498324-251331595-Krishna_geometric_02.3mf",
+      "size": 20084746,
+      "mimeType": "application/octet-stream",
+      "url": "http://localhost:5000/uploads/custom-prints/1788505498324-251331595-Krishna_geometric_02.3mf"
+    },
+    "referenceImages": [],
+    "quote": 1,
+    "adminNotes": "",
+    "status": "Approved",
+    "createdAt": "2026-09-04T07:04:58.693Z",
+    "updatedAt": "2026-09-04T07:55:23.677Z"
+  }
+]

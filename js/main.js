@@ -2,7 +2,7 @@
 // SPANDAN 3D - MAIN WEBSITE JAVASCRIPT
 // =====================================================
 
-const API_URL = "http://localhost:5000";
+const API_URL = "https://spandan-3d.onrender.com";
 
 
 // =====================================================

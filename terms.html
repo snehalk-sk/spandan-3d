@@ -1,0 +1,639 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Terms & Conditions | Spandan 3D</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --ink:#010d1a;
+    --muted:#66717b;
+    --cream:#fffdf8;
+    --soft:#f5f1e8;
+    --line:#e8e2d8;
+}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.75;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(1120px,calc(100% - 40px));
+    margin:auto;
+}
+
+.topbar{
+    background:var(--ink);
+    color:white;
+    padding:9px 20px;
+    text-align:center;
+    font-size:13px;
+}
+
+header{
+    background:#fffdf8;
+    border-bottom:1px solid var(--line);
+}
+
+.nav{
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.brand{
+    font-family:"Manrope",sans-serif;
+    font-size:22px;
+    font-weight:800;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.nav-links a:hover{
+    opacity:.6;
+}
+
+.hero{
+    padding:80px 0 65px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+    background:
+        radial-gradient(circle at top,#f2ece0 0,transparent 48%),
+        var(--cream);
+}
+
+.eyebrow{
+    display:inline-block;
+    margin-bottom:14px;
+    color:var(--muted);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+h1{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(38px,6vw,62px);
+    line-height:1.08;
+    letter-spacing:-2px;
+    margin-bottom:17px;
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto;
+    color:var(--muted);
+}
+
+.policy{
+    max-width:850px;
+    margin:auto;
+    padding:65px 20px 85px;
+}
+
+.updated{
+    padding:14px 18px;
+    background:var(--soft);
+    border:1px solid var(--line);
+    border-radius:12px;
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:40px;
+}
+
+.policy-section{
+    margin-bottom:40px;
+}
+
+.policy-section h2{
+    font-family:"Manrope",sans-serif;
+    font-size:23px;
+    letter-spacing:-.4px;
+    margin-bottom:11px;
+}
+
+.policy-section p{
+    color:#46515b;
+    margin-bottom:12px;
+}
+
+.policy-section ul{
+    margin:10px 0 14px 22px;
+    color:#46515b;
+}
+
+.policy-section li{
+    margin-bottom:8px;
+}
+
+.notice{
+    padding:20px;
+    background:var(--soft);
+    border:1px solid var(--line);
+    border-radius:14px;
+    margin:18px 0;
+    color:#46515b;
+}
+
+.contact{
+    padding:24px;
+    background:var(--soft);
+    border:1px solid var(--line);
+    border-radius:16px;
+    margin-top:16px;
+}
+
+.contact a{
+    font-weight:700;
+    text-decoration:underline;
+}
+
+.policy-nav{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:28px 0;
+}
+
+.policy-nav-inner{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px 24px;
+    font-size:14px;
+    font-weight:600;
+}
+
+footer{
+    background:var(--ink);
+    color:white;
+    padding:52px 0 25px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:50px;
+    margin-bottom:40px;
+}
+
+.footer-brand{
+    font-family:"Manrope",sans-serif;
+    font-size:23px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.footer-copy{
+    max-width:390px;
+    color:#aeb7bf;
+    font-size:14px;
+}
+
+footer h3{
+    font-size:14px;
+    margin-bottom:14px;
+}
+
+footer ul{
+    list-style:none;
+}
+
+footer li{
+    margin-bottom:8px;
+}
+
+footer li a{
+    font-size:14px;
+    color:#aeb7bf;
+}
+
+footer li a:hover{
+    color:white;
+}
+
+.copyright{
+    border-top:1px solid rgba(255,255,255,.12);
+    padding-top:22px;
+    text-align:center;
+    color:#8e9aa4;
+    font-size:13px;
+}
+
+@media(max-width:760px){
+
+    .nav{
+        min-height:68px;
+    }
+
+    .nav-links{
+        gap:12px;
+        font-size:12px;
+    }
+
+    .hide-mobile{
+        display:none;
+    }
+
+    .hero{
+        padding:55px 0 48px;
+    }
+
+    .policy{
+        padding-top:48px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+        gap:28px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+Custom 3D printing available &middot; Made in India &middot; WhatsApp support
+</div><header>
+<div class="container nav">
+
+<a href="index.html" class="brand">SPANDAN 3D</a>
+
+<nav class="nav-links">
+<a href="shop.html">Shop</a>
+<a href="custom-print.html">Custom Print</a>
+<a href="about.html" class="hide-mobile">About</a>
+<a href="contact.html" class="hide-mobile">Contact</a>
+</nav>
+
+</div>
+</header>
+
+<main>
+
+<section class="hero">
+<div class="container">
+<span class="eyebrow">SPANDAN 3D &middot; POLICIES</span>
+<h1>Terms & Conditions</h1>
+<p>Terms governing purchases, custom printing and use of the Spandan 3D website.</p>
+</div>
+</section>
+
+<article class="policy">
+
+<div class="updated">
+Last updated: 5 September 2026
+</div>
+
+<section class="policy-section">
+
+<h2>1. About These Terms</h2>
+
+<p>
+These Terms & Conditions apply to use of the Spandan 3D website and
+orders placed for our products or custom 3D printing services.
+</p>
+
+<p>
+By placing an order, customers agree to provide accurate information
+and comply with the terms applicable to their order.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>2. Products</h2>
+
+<p>
+We aim to describe and display products accurately. Because products
+are physically 3D printed, minor differences in colour, surface
+finish, layer appearance, seam placement or support marks may occur.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>3. Pricing</h2>
+
+<p>
+Product prices and custom-print quotations may depend on material,
+model size, print duration, quantity, support requirements, finishing,
+shipping and other production factors.
+</p>
+
+<p>
+For custom printing, a quotation may be provided after reviewing the
+customer's files and requirements.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>4. Payments</h2>
+
+<p>
+Spandan 3D uses online payment methods for website orders when online
+payment functionality is available.
+</p>
+
+<p>
+An order may remain pending until the applicable payment and order
+confirmation process has been completed.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>5. Custom 3D Printing</h2>
+
+<p>
+Customers may submit STL, 3MF and OBJ files, reference images,
+dimensions, colours, materials and other printing instructions.
+</p>
+
+<p>
+The feasibility and price of a custom print can depend on model
+geometry, size, material, print duration, support requirements,
+finishing and other technical considerations.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>6. Rights to Customer-Provided Content</h2>
+
+<p>
+By submitting a design, 3D model, image, logo, character, artwork or
+other content, the customer confirms that they have the necessary
+rights or permission to use that content for the requested purpose.
+</p>
+
+<p>
+Spandan 3D may decline a printing request where we reasonably believe
+the request may violate applicable law, intellectual-property rights,
+safety requirements or our business policies.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>7. Dimensions and Functional Fit</h2>
+
+<p>
+Customers requesting custom prints are responsible for supplying
+accurate dimensions and checking measurements before approving
+production.
+</p>
+
+<p>
+3D printed parts can have normal manufacturing tolerances. Customers
+should tell us before ordering when a part requires a specific
+functional fit or critical tolerance.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>8. Product Use</h2>
+
+<p>
+Unless a product is specifically represented as suitable for a
+particular technical, safety-critical, food-contact, medical or
+high-temperature application, customers should not assume that it
+is suitable for such use.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>9. Orders</h2>
+
+<p>
+We may contact customers when clarification is required before
+production.
+</p>
+
+<p>
+Spandan 3D may decline or cancel an order that cannot reasonably be
+fulfilled, contains an obvious technical pricing error, or presents
+a legal, safety or technical concern.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>10. Delivery</h2>
+
+<p>
+Shipping and delivery are also subject to our Shipping Policy.
+Delivery estimates may be affected by courier services and
+circumstances outside our reasonable control.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>11. Cancellations, Returns and Refunds</h2>
+
+<p>
+Cancellations, returns, replacements and refunds are handled
+according to the applicable Spandan 3D policy pages and applicable
+consumer law.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>12. Website Availability</h2>
+
+<p>
+We may update, maintain or temporarily interrupt parts of the website.
+We do not guarantee uninterrupted availability of every website
+feature.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>13. Changes to These Terms</h2>
+
+<p>
+We may update these Terms & Conditions when our website, services or
+business practices change. The latest version will be published on
+this page.
+</p>
+
+</section>
+
+
+<section class="policy-section">
+
+<h2>14. Applicable Law</h2>
+
+<p>
+These terms are intended to operate subject to applicable laws and
+consumer rights in India. Nothing in these terms is intended to
+exclude rights that cannot lawfully be excluded.
+</p>
+
+</section><section class="policy-section">
+
+<h2>Contact Spandan 3D</h2>
+
+<p>
+If you have any questions about this policy, an order, or a custom
+3D printing request, please contact us.
+</p>
+
+<div class="contact">
+
+<strong>Spandan 3D</strong><br>
+Maharashtra, India
+
+<br><br>
+
+<strong>WhatsApp:</strong><br>
+
+<a href="https://wa.me/919766979232" target="_blank" rel="noopener">
++91 9766979232
+</a>
+
+<br><br>
+
+<strong>Instagram:</strong><br>
+
+<a href="https://www.instagram.com/3D_spandan/" target="_blank" rel="noopener">
+@3D_spandan
+</a>
+
+</div>
+
+</section>
+
+</article>
+
+<section class="policy-nav">
+
+<div class="container policy-nav-inner">
+
+<a href="privacy-policy.html">Privacy Policy</a>
+
+<a href="shipping-policy.html">Shipping Policy</a>
+
+<a href="refund-policy.html">Cancellation &amp; Refund</a>
+
+<a href="return-policy.html">Returns &amp; Replacement</a>
+
+<a href="terms.html">Terms &amp; Conditions</a>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+
+<div class="footer-brand">
+SPANDAN 3D
+</div>
+
+<p class="footer-copy">
+3D printed products and custom 3D printing made in Maharashtra, India.
+</p>
+
+</div>
+
+<div>
+
+<h3>Shop</h3>
+
+<ul>
+<li><a href="shop.html">All Products</a></li>
+<li><a href="new-designs.html">New Designs</a></li>
+<li><a href="best-sellers.html">Best Sellers</a></li>
+<li><a href="custom-print.html">Custom Print</a></li>
+</ul>
+
+</div>
+
+<div>
+
+<h3>Policies</h3>
+
+<ul>
+<li><a href="privacy-policy.html">Privacy Policy</a></li>
+<li><a href="shipping-policy.html">Shipping Policy</a></li>
+<li><a href="refund-policy.html">Cancellation &amp; Refund</a></li>
+<li><a href="return-policy.html">Returns &amp; Replacement</a></li>
+<li><a href="terms.html">Terms &amp; Conditions</a></li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="copyright">
+&copy; 2026 Spandan 3D. All rights reserved.
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>

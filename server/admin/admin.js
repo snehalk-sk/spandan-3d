@@ -1,8 +1,8 @@
-// =====================================================
+﻿// =====================================================
 // SPANDAN 3D - ADMIN JAVASCRIPT
 // =====================================================
 
-const API_URL = "http://localhost:5000";
+const API_URL = "https://spandan-3d.onrender.com";
 
 let orders = [];
 let products = [];
@@ -35,7 +35,7 @@ let previewObjectURLs = [];
 function money(value) {
 
     return (
-        "₹" +
+        "â‚¹" +
         Number(value || 0)
             .toLocaleString("en-IN")
     );
@@ -485,7 +485,7 @@ function createOrderRow(order) {
         )
             .map(
                 item =>
-                    `${item.name} × ${item.quantity}`
+                    `${item.name} Ã— ${item.quantity}`
             )
             .join("<br>");
 
@@ -1247,7 +1247,7 @@ if (customerOrdersCount) {
                                 year: "numeric"
                             }
                         )
-                    : "—";
+                    : "â€”";
 
 
             const whatsappPhone =
@@ -1288,7 +1288,7 @@ if (customerOrdersCount) {
                                         )}
                                     </a>
                                 `
-                                : "—"
+                                : "â€”"
                         }
 
                     </td>
@@ -1301,7 +1301,7 @@ if (customerOrdersCount) {
                                 ? escapeCustomerHTML(
                                     customer.email
                                 )
-                                : "—"
+                                : "â€”"
                         }
 
                     </td>
@@ -1319,7 +1319,7 @@ if (customerOrdersCount) {
                     <td>
 
                         <strong>
-                            ₹${customer.totalSpent
+                            â‚¹${customer.totalSpent
                                 .toLocaleString(
                                     "en-IN"
                                 )}
@@ -1442,7 +1442,7 @@ function openCustomerDetails(
                         class="custom-modal-close"
                         onclick="closeCustomerDetails()"
                     >
-                        ×
+                        Ã—
                     </button>
 
                 </div>
@@ -1557,7 +1557,7 @@ function customerDetailsHTML(
                                 year: "numeric"
                             }
                         )
-                    : "—";
+                    : "â€”";
 
 
             return `
@@ -1576,7 +1576,7 @@ function customerDetailsHTML(
                     </td>
 
                     <td>
-                        ₹${total.toLocaleString(
+                        â‚¹${total.toLocaleString(
                             "en-IN"
                         )}
                     </td>
@@ -1633,7 +1633,7 @@ function customerDetailsHTML(
                     <strong>
                         ${escapeCustomerHTML(
                             customer.phone ||
-                            "—"
+                            "â€”"
                         )}
                     </strong>
 
@@ -1649,7 +1649,7 @@ function customerDetailsHTML(
                     <strong>
                         ${escapeCustomerHTML(
                             customer.email ||
-                            "—"
+                            "â€”"
                         )}
                     </strong>
 
@@ -1676,7 +1676,7 @@ function customerDetailsHTML(
                     </span>
 
                     <strong>
-                        ₹${customer.totalSpent
+                        â‚¹${customer.totalSpent
                             .toLocaleString(
                                 "en-IN"
                             )}
@@ -1925,11 +1925,11 @@ function renderCustomers() {
                             </td>
 
                             <td>
-                                ${customer.phone || "—"}
+                                ${customer.phone || "â€”"}
                             </td>
 
                             <td>
-                                ${customer.email || "—"}
+                                ${customer.email || "â€”"}
                             </td>
 
                             <td>
@@ -2091,7 +2091,7 @@ function renderProducts() {
 
 
                         <td>
-                            ${product.category || "—"}
+                            ${product.category || "â€”"}
                         </td>
 
 
@@ -2571,7 +2571,7 @@ function renderMediaPreview() {
                                 class="media-remove-button"
                                 data-remove-main-image
                             >
-                                ✕
+                                âœ•
                             </button>
 
                         </div>
@@ -2634,7 +2634,7 @@ function renderMediaPreview() {
 
                                             data-remove-gallery-index="${item.index}"
                                         >
-                                            ✕
+                                            âœ•
                                         </button>
 
                                     </div>
@@ -2691,7 +2691,7 @@ function renderMediaPreview() {
                                 class="media-remove-button"
                                 data-remove-product-video
                             >
-                                ✕
+                                âœ•
                             </button>
 
                         </div>
@@ -3837,13 +3837,13 @@ function renderCustomPrintStats() {
 function customPrintDate(dateString) {
 
     if (!dateString) {
-        return "—";
+        return "â€”";
     }
 
     const date = new Date(dateString);
 
     if (Number.isNaN(date.getTime())) {
-        return "—";
+        return "â€”";
     }
 
     return date.toLocaleString(
@@ -4073,7 +4073,7 @@ function customPrintListItemHTML(request) {
         request.quote !== undefined &&
         request.quote !== ""
 
-            ? `₹${Number(
+            ? `â‚¹${Number(
                 request.quote
             ).toLocaleString("en-IN")}`
 
@@ -4296,7 +4296,7 @@ function ensureCustomPrintModal() {
                     class="custom-modal-close"
                     onclick="closeCustomPrintDetails()"
                 >
-                    ×
+                    Ã—
                 </button>
 
             </div>
@@ -4546,7 +4546,7 @@ function customPrintDetailsHTML(request) {
                 >
 
                     <div class="custom-model-icon">
-                        ◈
+                        â—ˆ
                     </div>
 
 
@@ -4667,7 +4667,7 @@ function customPrintDetailsHTML(request) {
                     </span>
 
                     <strong>
-                        ${phone || "—"}
+                        ${phone || "â€”"}
                     </strong>
 
                 </div>
@@ -4680,7 +4680,7 @@ function customPrintDetailsHTML(request) {
                     </span>
 
                     <strong>
-                        ${email || "—"}
+                        ${email || "â€”"}
                     </strong>
 
                 </div>
@@ -4803,7 +4803,7 @@ function customPrintDetailsHTML(request) {
                             target="_blank"
                             rel="noopener"
                         >
-                            ↗ Open Reference Link
+                            â†— Open Reference Link
                         </a>
                     `
 
@@ -4869,7 +4869,7 @@ function customPrintDetailsHTML(request) {
                     <div class="custom-price-input">
 
                         <span>
-                            ₹
+                            â‚¹
                         </span>
 
                         <input

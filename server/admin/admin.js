@@ -35,7 +35,7 @@ let previewObjectURLs = [];
 function money(value) {
 
     return (
-        "â‚¹" +
+        "₹" +
         Number(value || 0)
             .toLocaleString("en-IN")
     );
@@ -286,7 +286,7 @@ async function loadOrders() {
 
         renderOrders();
 
-        renderCustomers();
+        renderCustomers(); const d=document.getElementById("dashboardCustomersCount"); if(d){d.textContent=buildCustomersFromOrders().length;}
 
     }
 
@@ -1319,7 +1319,7 @@ if (customerOrdersCount) {
                     <td>
 
                         <strong>
-                            â‚¹${customer.totalSpent
+                            ₹${customer.totalSpent
                                 .toLocaleString(
                                     "en-IN"
                                 )}
@@ -1576,7 +1576,7 @@ function customerDetailsHTML(
                     </td>
 
                     <td>
-                        â‚¹${total.toLocaleString(
+                        ₹${total.toLocaleString(
                             "en-IN"
                         )}
                     </td>
@@ -1676,7 +1676,7 @@ function customerDetailsHTML(
                     </span>
 
                     <strong>
-                        â‚¹${customer.totalSpent
+                        ₹${customer.totalSpent
                             .toLocaleString(
                                 "en-IN"
                             )}
@@ -4073,7 +4073,7 @@ function customPrintListItemHTML(request) {
         request.quote !== undefined &&
         request.quote !== ""
 
-            ? `â‚¹${Number(
+            ? `₹${Number(
                 request.quote
             ).toLocaleString("en-IN")}`
 
@@ -4869,7 +4869,7 @@ function customPrintDetailsHTML(request) {
                     <div class="custom-price-input">
 
                         <span>
-                            â‚¹
+                            ₹
                         </span>
 
                         <input

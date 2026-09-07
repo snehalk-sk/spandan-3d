@@ -309,17 +309,24 @@ async function loadOrders() {
 function updateStats() {
 
     const totalRevenue =
-        orders.reduce(
-            (
-                total,
-                order
-            ) =>
-                total +
-                Number(
-                    order.total || 0
-                ),
-            0
-        );
+        orders
+            .filter(
+                order =>
+                    String(
+                        order.paymentStatus || ""
+                    ).toLowerCase() === "paid"
+            )
+            .reduce(
+                (
+                    total,
+                    order
+                ) =>
+                    total +
+                    Number(
+                        order.total || 0
+                    ),
+                0
+            );
 
 
     const pending =

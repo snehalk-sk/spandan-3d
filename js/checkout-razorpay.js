@@ -14,17 +14,41 @@
   }
 
   function getCart() {
-    if (typeof window.getCart === "function") {
-      try {
-        const cart = window.getCart();
-        if (Array.isArray(cart)) return cart;
-      } catch {}
-    }
+    try {
+      if (typeof window.cartItems === "function") {
+        const items = window.cartItems();
+        if (Array.isArray(items) && items.length) {
+          return items;
+        }
+      }
+    } catch {}
 
-    for (const key of ["cart", "spandanCart", "spandan3dCart"]) {
+    const keys = [
+      "spandan-cart",
+      "cart",
+      "spandanCart",
+      "spandan3dCart"
+    ];
+
+    for (const key of keys) {
       try {
-        const data = JSON.parse(localStorage.getItem(key) || "[]");
-        if (Array.isArray(data) && data.length) return data;
+        const raw = localStorage.getItem(key);
+
+        if (!raw) continue;
+
+        const data = JSON.parse(raw);
+
+        if (Array.isArray(data) && data.length) {
+          return data;
+        }
+
+        if (data && typeof data === "object") {
+          const items = Object.values(data);
+
+          if (items.length) {
+            return items;
+          }
+        }
       } catch {}
     }
 

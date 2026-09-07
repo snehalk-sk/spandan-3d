@@ -6,6 +6,7 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 const { createClient } = require("@supabase/supabase-js");
+const registerRazorpayRoutes = require("./razorpay-routes");
 
 
 // =====================================================

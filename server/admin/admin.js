@@ -599,6 +599,7 @@ function createOrderRow(order) {
 // =====================================================
 
 function renderRecentOrders() {
+    setTimeout(setupBulkOrderControls, 50);
 
     const table =
         document.getElementById(
@@ -941,27 +942,35 @@ document.addEventListener(
 // =====================================================
 
 function setupBulkOrderControls() {
+    const tables = [
+        document.getElementById("ordersTable"),
+        document.getElementById("recentOrdersTable")
+    ].filter(Boolean);
+
+    if (!tables.length) return;
+
+    tables.forEach(table => {
+        const headRow =
+            table.closest("table")
+                ?.querySelector("thead tr");
+
+        if (
+            headRow &&
+            !headRow.querySelector(".order-select-all")
+        ) {
+            const th =
+                document.createElement("th");
+
+            th.innerHTML =
+                '<input type="checkbox" class="order-select-all" title="Select all orders">';
+
+            headRow.prepend(th);
+        }
+    });
+
     const table =
-        document.getElementById("ordersTable");
-
-    if (!table) return;
-
-    const headRow =
-        table.closest("table")
-            ?.querySelector("thead tr");
-
-    if (
-        headRow &&
-        !headRow.querySelector(".order-select-all")
-    ) {
-        const th =
-            document.createElement("th");
-
-        th.innerHTML =
-            '<input type="checkbox" class="order-select-all" title="Select all orders">';
-
-        headRow.prepend(th);
-    }
+        document.getElementById("ordersTable") ||
+        document.getElementById("recentOrdersTable");
 
     let toolbar =
         document.getElementById(

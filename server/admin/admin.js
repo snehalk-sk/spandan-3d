@@ -500,6 +500,13 @@ function createOrderRow(order) {
     return `
 
         <tr>
+            <td>
+                <input
+                    type="checkbox"
+                    class="order-select-checkbox"
+                    data-order-select="${order.id}"
+                >
+            </td>
 
             <td>
 
@@ -650,6 +657,7 @@ function renderRecentOrders() {
 // =====================================================
 
 function renderOrders() {
+    setTimeout(setupBulkOrderControls, 50);
 
     const table =
         document.getElementById(
@@ -923,6 +931,220 @@ document.addEventListener(
 
         }
 
+    }
+);
+
+
+
+// =====================================================
+// BULK ORDER DELETE
+// =====================================================
+
+function setupBulkOrderControls() {
+    const table =
+        document.getElementById("ordersTable");
+
+    if (!table) return;
+
+    const headRow =
+        table.closest("table")
+            ?.querySelector("thead tr");
+
+    if (
+        headRow &&
+        !headRow.querySelector(".order-select-all")
+    ) {
+        const th =
+            document.createElement("th");
+
+        th.innerHTML =
+            '<input type="checkbox" class="order-select-all" title="Select all orders">';
+
+        headRow.prepend(th);
+    }
+
+    let toolbar =
+        document.getElementById(
+            "bulkOrderToolbar"
+        );
+
+    if (!toolbar) {
+        toolbar =
+            document.createElement("div");
+
+        toolbar.id =
+            "bulkOrderToolbar";
+
+        toolbar.style.display =
+            "flex";
+        toolbar.style.alignItems =
+            "center";
+        toolbar.style.gap =
+            "12px";
+        toolbar.style.margin =
+            "0 0 16px";
+
+        toolbar.innerHTML = `
+            <button
+                type="button"
+                id="deleteSelectedOrders"
+                style="
+                    border:0;
+                    background:#ff5a43;
+                    color:#fff;
+                    padding:10px 16px;
+                    border-radius:10px;
+                    font-weight:700;
+                    cursor:pointer;
+                "
+            >
+                Delete Selected
+            </button>
+
+            <span id="selectedOrderCount">
+                0 selected
+            </span>
+        `;
+
+        const wrapper =
+            table.closest("table")
+                ?.parentElement;
+
+        if (wrapper) {
+            wrapper.parentElement
+                ?.insertBefore(
+                    toolbar,
+                    wrapper
+                );
+        }
+    }
+
+    updateSelectedOrderCount();
+}
+
+function updateSelectedOrderCount() {
+    const selected =
+        document.querySelectorAll(
+            ".order-select-checkbox:checked"
+        ).length;
+
+    const counter =
+        document.getElementById(
+            "selectedOrderCount"
+        );
+
+    if (counter) {
+        counter.textContent =
+            `${selected} selected`;
+    }
+}
+
+document.addEventListener(
+    "change",
+    event => {
+        if (
+            event.target.matches(
+                ".order-select-all"
+            )
+        ) {
+            const checked =
+                event.target.checked;
+
+            document
+                .querySelectorAll(
+                    ".order-select-checkbox"
+                )
+                .forEach(box => {
+                    box.checked = checked;
+                });
+
+            updateSelectedOrderCount();
+        }
+
+        if (
+            event.target.matches(
+                ".order-select-checkbox"
+            )
+        ) {
+            updateSelectedOrderCount();
+        }
+    }
+);
+
+document.addEventListener(
+    "click",
+    async event => {
+        const button =
+            event.target.closest(
+                "#deleteSelectedOrders"
+            );
+
+        if (!button) return;
+
+        const selected =
+            Array.from(
+                document.querySelectorAll(
+                    ".order-select-checkbox:checked"
+                )
+            );
+
+        if (!selected.length) {
+            alert(
+                "Select at least one order."
+            );
+            return;
+        }
+
+        if (
+            !confirm(
+                `Delete ${selected.length} selected order(s)? This cannot be undone.`
+            )
+        ) {
+            return;
+        }
+
+        button.disabled = true;
+        button.textContent =
+            "Deleting...";
+
+        try {
+            for (const box of selected) {
+                const response =
+                    await fetch(
+                        `${API_URL}/api/orders/${box.dataset.orderSelect}`,
+                        {
+                            method: "DELETE"
+                        }
+                    );
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Could not delete one of the selected orders."
+                    );
+                }
+            }
+
+            showMessage(
+                `${selected.length} order(s) deleted`
+            );
+
+            await loadOrders();
+
+            setTimeout(
+                setupBulkOrderControls,
+                50
+            );
+
+        } catch (error) {
+            alert(
+                error.message ||
+                "Could not delete selected orders"
+            );
+        } finally {
+            button.disabled = false;
+            button.textContent =
+                "Delete Selected";
+        }
     }
 );
 

@@ -14,42 +14,49 @@
   }
 
   function getCart() {
+
     try {
-      if (typeof window.cartItems === "function") {
-        const items = window.cartItems();
+      if (typeof cartItems === "function") {
+        const items = cartItems();
+
         if (Array.isArray(items) && items.length) {
           return items;
         }
       }
-    } catch {}
+    } catch (error) {
+      console.warn("cartItems failed:", error);
+    }
 
-    const keys = [
-      "spandan-cart",
-      "cart",
-      "spandanCart",
-      "spandan3dCart"
-    ];
+    try {
+      const raw = JSON.parse(
+        localStorage.getItem("spandan-cart") || "{}"
+      );
 
-    for (const key of keys) {
-      try {
-        const raw = localStorage.getItem(key);
+      if (
+        raw &&
+        typeof raw === "object" &&
+        typeof products !== "undefined" &&
+        Array.isArray(products)
+      ) {
+        return Object.entries(raw)
+          .map(([id, quantity]) => {
 
-        if (!raw) continue;
+            const product = products.find(
+              item => String(item.id) === String(id)
+            );
 
-        const data = JSON.parse(raw);
+            if (!product) return null;
 
-        if (Array.isArray(data) && data.length) {
-          return data;
-        }
-
-        if (data && typeof data === "object") {
-          const items = Object.values(data);
-
-          if (items.length) {
-            return items;
-          }
-        }
-      } catch {}
+            return {
+              ...product,
+              qty: Number(quantity) || 1,
+              quantity: Number(quantity) || 1
+            };
+          })
+          .filter(Boolean);
+      }
+    } catch (error) {
+      console.warn("Stored cart failed:", error);
     }
 
     return [];

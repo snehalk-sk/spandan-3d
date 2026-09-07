@@ -248,6 +248,7 @@
             "success"
           );
 
+          localStorage.removeItem("spandan-cart");
           localStorage.removeItem("cart");
           localStorage.removeItem("spandanCart");
           localStorage.removeItem("spandan3dCart");

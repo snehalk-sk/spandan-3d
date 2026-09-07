@@ -262,12 +262,31 @@
         },
 
         modal: {
-          ondismiss: function () {
+          ondismiss: async function () {
+            try {
+              if (spandanOrder?.id) {
+                await fetch(
+                  `${API_URL}/api/orders/${spandanOrder.id}/status`,
+                  {
+                    method: "PATCH",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                      orderStatus: "Cancelled"
+                    })
+                  }
+                );
+              }
+            } catch (error) {
+              console.error("Could not cancel order:", error);
+            }
+
             button.disabled = false;
             button.textContent = originalText;
 
             showStatus(
-              "Payment was not completed. You can try again.",
+              "Payment was cancelled. No order was confirmed.",
               "error"
             );
           }
@@ -276,9 +295,42 @@
 
       const razorpay = new Razorpay(options);
 
-      razorpay.on("payment.failed", function () {
+      razorpay.on("payment.failed", async function () {
+        try {
+          if (spandanOrder?.id) {
+            await Promise.all([
+              fetch(
+                `${API_URL}/api/orders/${spandanOrder.id}/payment`,
+                {
+                  method: "PATCH",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({
+                    paymentStatus: "Failed"
+                  })
+                }
+              ),
+              fetch(
+                `${API_URL}/api/orders/${spandanOrder.id}/status`,
+                {
+                  method: "PATCH",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({
+                    orderStatus: "Cancelled"
+                  })
+                }
+              )
+            ]);
+          }
+        } catch (error) {
+          console.error("Could not mark failed payment:", error);
+        }
+
         showStatus(
-          "Payment failed. Please try again.",
+          "Payment failed. Your order was not confirmed.",
           "error"
         );
 

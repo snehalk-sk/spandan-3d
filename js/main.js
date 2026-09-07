@@ -2686,7 +2686,7 @@ document.addEventListener(
 // CHECKOUT FORM
 // =====================================================
 
-$("#checkoutForm")
+false && $("#checkoutForm")
     ?.addEventListener(
         "submit",
         async event => {

@@ -67,6 +67,102 @@ module.exports = function registerRazorpayRoutes(app, supabase) {
         }
     });
 
+
+    app.post("/api/razorpay/sync-payment", async (req, res) => {
+        try {
+            if (!razorpay) {
+                return res.status(500).json({
+                    success: false,
+                    message: "Razorpay is not configured"
+                });
+            }
+
+            const {
+                razorpayPaymentId,
+                spandanOrderId
+            } = req.body;
+
+            if (!razorpayPaymentId || !spandanOrderId) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Payment ID and Spandan order ID are required"
+                });
+            }
+
+            const payment = await razorpay.payments.fetch(
+                razorpayPaymentId
+            );
+
+            if (!payment) {
+                return res.status(404).json({
+                    success: false,
+                    message: "Razorpay payment not found"
+                });
+            }
+
+            if (
+                payment.status !== "captured" &&
+                payment.status !== "authorized"
+            ) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Payment is not successful",
+                    paymentStatus: payment.status
+                });
+            }
+
+            const { data, error } = await supabase
+                .from("orders")
+                .update({
+                    payment_status: "Paid",
+                    order_status: "Confirmed",
+                    updated_at: new Date().toISOString()
+                })
+                .eq("id", spandanOrderId)
+                .select()
+                .maybeSingle();
+
+            if (error) {
+                console.error(
+                    "Sync payment update error:",
+                    error
+                );
+
+                return res.status(500).json({
+                    success: false,
+                    message: "Could not update order"
+                });
+            }
+
+            if (!data) {
+                return res.status(404).json({
+                    success: false,
+                    message: "Spandan order not found"
+                });
+            }
+
+            res.json({
+                success: true,
+                synced: true,
+                razorpayStatus: payment.status,
+                order: data
+            });
+
+        } catch (error) {
+            console.error(
+                "Sync payment error:",
+                error
+            );
+
+            res.status(500).json({
+                success: false,
+                message:
+                    error.message ||
+                    "Could not sync payment"
+            });
+        }
+    });
+
     app.post("/api/razorpay/verify", async (req, res) => {
         try {
             const {

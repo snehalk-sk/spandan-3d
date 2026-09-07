@@ -101,22 +101,38 @@ module.exports = function registerRazorpayRoutes(app, supabase) {
                 });
             }
 
-            if (supabase && spandanOrderId) {
-                const { error } = await supabase
-                    .from("orders")
-                    .update({
-                        payment_status: "Paid",
-                        order_status: "Confirmed",
-                        updated_at: new Date().toISOString()
-                    })
-                    .eq("id", spandanOrderId);
+            if (!supabase || !spandanOrderId) {
+                return res.status(500).json({
+                    success: false,
+                    message: "Order could not be linked to payment"
+                });
+            }
 
-                if (error) {
-                    console.error(
-                        "Order payment update error:",
-                        error
-                    );
-                }
+            const { data, error } = await supabase
+                .from("orders")
+                .update({
+                    payment_status: "Paid",
+                    order_status: "Confirmed",
+                    updated_at: new Date().toISOString()
+                })
+                .eq("id", spandanOrderId)
+                .select()
+                .maybeSingle();
+
+            if (error) {
+                console.error("Order payment update error:", error);
+
+                return res.status(500).json({
+                    success: false,
+                    message: "Payment verified but order update failed"
+                });
+            }
+
+            if (!data) {
+                return res.status(404).json({
+                    success: false,
+                    message: "Payment verified but order was not found"
+                });
             }
 
             res.json({

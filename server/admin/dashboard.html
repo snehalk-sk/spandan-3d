@@ -13,7 +13,7 @@
 
     <link
         rel="stylesheet"
-        href="admin.css?v=15"
+        href="admin.css?v=16"
     >
 </head>
 
@@ -67,6 +67,7 @@
 
 
         <nav>
+<button class="nav-link" data-page="images" type="button"><span>▧</span> Images</button>
 
             <button
                 class="nav-link active"
@@ -155,6 +156,11 @@
          ===================================================== -->
 
     <main class="main">
+<section class="admin-page" id="imagesPage">
+<header><div><p class="page-label">WEBSITE</p><h1>Images</h1><p>Add, replace or remove photos across your website.</p></div><button type="button" id="refreshImages" class="secondary-button">Refresh images</button></header>
+<section class="content-card"><h2>Website images</h2><p>Upload photos for the banner and collection illustrations. Removing a photo restores the original illustration.</p><p id="imageManagerStatus" role="status" aria-live="polite"></p><div id="websiteImageGrid" class="image-manager-grid"></div></section>
+<section class="content-card"><h2>Product images</h2><p>Manage each product’s main photo, gallery and colour photos.</p><div id="imageProducts" class="image-manager-grid"></div></section>
+</section>
 
 
         <!-- =================================================
@@ -1923,6 +1929,7 @@
 
     <script src="admin.js?v=15"></script>
 
+<script src="images.js?v=1"></script>
 </body>
 
 </html>

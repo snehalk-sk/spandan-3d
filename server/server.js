@@ -4515,6 +4515,7 @@ app.delete(
 );
 
 
+require("./site-images")(app, supabase);
 registerRazorpayRoutes(app, supabase);
 
 // =====================================================

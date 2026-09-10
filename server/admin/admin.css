@@ -5153,3 +5153,10 @@ body.custom-modal-open {
 .product-color-row label { width: 100%; }
 .product-color-row .color-photo-preview { width: 80px; height: 80px; object-fit: contain; }
 .product-color-row .color-photo-preview[hidden] { display: none; }
+
+.image-manager-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,280px),1fr)); gap: 20px; margin-top: 20px; }
+.image-manager-card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.image-manager-card img, .image-manager-placeholder { width: 100%; height: 180px; object-fit: contain; background: #f6f6f6; border-radius: 8px; }
+.image-manager-placeholder { display: grid; place-items: center; padding: 15px; text-align: center; }
+.image-manager-card input { width: 100%; min-width: 0; }
+#imageManagerStatus { margin: 15px 0; }

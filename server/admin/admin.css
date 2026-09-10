@@ -5148,3 +5148,8 @@ body.custom-modal-open {
 .product-color-row { display: flex; gap: 8px; margin-bottom: 10px; }
 .product-color-row input { flex: 1; min-width: 0; width: 100%; }
 .product-color-row button { flex-shrink: 0; }
+
+.product-color-row { flex-wrap: wrap; padding: 12px; border: 1px solid #ddd; border-radius: 10px; }
+.product-color-row label { width: 100%; }
+.product-color-row .color-photo-preview { width: 80px; height: 80px; object-fit: contain; }
+.product-color-row .color-photo-preview[hidden] { display: none; }

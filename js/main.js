@@ -1,7 +1,15 @@
+function decodeColorEntry(value) {
+    if (typeof value !== "string" || !value.trim().startsWith("{")) return value;
+    try {
+        const entry = JSON.parse(value);
+        return entry && typeof entry.name === "string" ? entry : value;
+    } catch { return value; }
+}
+
 function normalizeColors(value) {
     const entries = Array.isArray(value) ? value : String(value || "").split(/[,\n\r]+/);
     const seen = new Set();
-    return entries.filter(item => typeof item === "string").map(item => item.trim())
+    return entries.map(decodeColorEntry).map(item => typeof item === "object" && item ? item.name : item).filter(item => typeof item === "string").map(item => item.trim())
         .filter(item => {
             const key = item.toLowerCase();
             if (!item || seen.has(key)) return false;
@@ -197,6 +205,10 @@ function normalizeProduct(product) {
             "",
 
         colors,
+        colorImages: Object.fromEntries((Array.isArray(product.colors) ? product.colors : [])
+            .map(decodeColorEntry)
+            .filter(item => item && typeof item === "object" && typeof item.name === "string" && item.image)
+            .map(item => [item.name.trim(), mediaURL(item.image)])),
 
         dimensions:
             product.dimensions ||
@@ -1168,6 +1180,8 @@ function cartItems() {
                     ...product,
                     cartKey,
                     color,
+                    image: product.colorImages[color] || product.image,
+                    mainImage: product.colorImages[color] || product.mainImage,
 
                     qty:
                         Number(quantity)
@@ -1589,6 +1603,9 @@ function renderProductPage() {
     // =================================================
 
     const mediaItems = [];
+    Object.values(product.colorImages).forEach(url => {
+        if (url) mediaItems.push({type: "image", url});
+    });
 
 
     if (product.mainImage) {
@@ -2508,6 +2525,16 @@ function renderProductPage() {
             }
         );
 
+
+    const colorSelect = holder.querySelector("#productColor");
+    function showColorPhoto() {
+        const url = product.colorImages[colorSelect?.value];
+        const fallback = product.mainImage || product.galleryImages[0];
+        const index = mediaItems.findIndex(item => item.type === "image" && item.url === (url || fallback));
+        if (index >= 0) showMedia(index);
+    }
+    colorSelect?.addEventListener("change", showColorPhoto);
+    showColorPhoto();
 
     // =================================================
     // QUANTITY

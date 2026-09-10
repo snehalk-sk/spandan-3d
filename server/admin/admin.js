@@ -1,3 +1,11 @@
+function decodeColorEntry(value) {
+    if (typeof value !== "string" || !value.trim().startsWith("{")) return value;
+    try {
+        const entry = JSON.parse(value);
+        return entry && typeof entry.name === "string" ? entry : value;
+    } catch { return value; }
+}
+
 ﻿// =====================================================
 // SPANDAN 3D - ADMIN JAVASCRIPT
 // =====================================================
@@ -2458,13 +2466,14 @@ function normalizeColors(value) {
 }
 
 function addColorField(value = "", focus = false) {
+    value = decodeColorEntry(value);
     const list = document.getElementById("productColorFields");
     if (!list) return;
     const row = document.createElement("div");
     row.className = "product-color-row";
     const input = document.createElement("input");
     input.name = "colors";
-    input.value = value;
+    input.value = typeof value === "object" ? value.name || "" : value;
     input.placeholder = "Enter one colour, e.g. Orange & Gold";
     input.setAttribute("aria-label", "Available colour");
     const remove = document.createElement("button");
@@ -2475,16 +2484,72 @@ function addColorField(value = "", focus = false) {
         row.remove();
         if (!list.children.length) addColorField();
     });
-    row.append(input, remove);
+    const photo = document.createElement("input");
+    photo.type = "file";
+    photo.accept = "image/*";
+    photo.className = "color-photo-upload";
+    const label = document.createElement("label");
+    label.textContent = "Product photo for this colour";
+    label.append(photo);
+    const preview = document.createElement("img");
+    preview.className = "color-photo-preview";
+    preview.alt = "Colour product photo";
+    const existingImage = typeof value === "object" ? value.image || "" : "";
+    row.dataset.image = existingImage;
+    preview.hidden = !existingImage;
+    if (existingImage) preview.src = existingImage;
+    photo.addEventListener("change", () => {
+        const file = photo.files[0];
+        preview.hidden = !file && !row.dataset.image;
+        if (file) preview.src = makePreviewURL(file);
+        else if (row.dataset.image) preview.src = row.dataset.image;
+    });
+    const clearPhoto = document.createElement("button");
+    clearPhoto.type = "button";
+    clearPhoto.className = "secondary-button";
+    clearPhoto.textContent = "Clear photo";
+    clearPhoto.addEventListener("click", () => {
+        photo.value = "";
+        row.dataset.image = "";
+        preview.removeAttribute("src");
+        preview.hidden = true;
+    });
+    row.append(input, remove, label, preview, clearPhoto);
     list.append(row);
     if (focus) input.focus();
+}
+
+async function collectColorPhotos() {
+    const colors = [];
+    const seen = new Set();
+    for (const row of document.querySelectorAll("#productColorFields .product-color-row")) {
+        const name = row.querySelector('[name="colors"]').value.trim();
+        if (!name) continue;
+        if (seen.has(name.toLowerCase())) throw new Error("Each colour must have a unique name: " + name);
+        seen.add(name.toLowerCase());
+        const file = row.querySelector('.color-photo-upload').files[0];
+        let image = row.dataset.image || "";
+        if (file) {
+            const data = new FormData();
+            data.append("mainImage", file);
+            const response = await fetch(`${API_URL}/api/products/upload`, {method: "POST", body: data});
+            const result = await response.json();
+            if (!response.ok || !result.mainImage) throw new Error(result.message || "Could not upload colour photo");
+            image = result.mainImage;
+            row.dataset.image = image;
+            row.querySelector('.color-photo-upload').value = "";
+        }
+        // Strings work with both existing text-array and JSON colour columns.
+        colors.push(image ? JSON.stringify({name, image}) : name);
+    }
+    return colors;
 }
 
 function renderColorFields(value = []) {
     const list = document.getElementById("productColorFields");
     if (!list) return;
     list.replaceChildren();
-    const colors = normalizeColors(value);
+    const colors = Array.isArray(value) ? value : normalizeColors(value);
     (colors.length ? colors : [""]).forEach(color => addColorField(color));
 }
 
@@ -3457,7 +3522,7 @@ productForm
                     );
 
 
-                const colors = normalizeColors(formData.getAll("colors"));
+                const colors = await collectColorPhotos();
 
 
                 const tags =

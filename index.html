@@ -2467,6 +2467,20 @@
 
         }
 
+    
+        /* Bring the catalogue closer to the top of the homepage. */
+        .hero { min-height: 0; padding-top: 28px; padding-bottom: 28px; gap: 35px; }
+        .hero-visual { min-height: 330px; }
+        .hero-circle { width: 280px; height: 280px; }
+        .hero-object { width: 180px; height: 230px; }
+        .hero-features { display: none; }
+        .home-products { padding-top: 24px; padding-bottom: 40px; scroll-margin-top: 100px; }
+        @media (max-width: 950px) {
+            .hero-visual { display: none; }
+            .hero { gap: 0; }
+            .hero-copy h1 { font-size: clamp(32px, 7vw, 48px); }
+            .hero-actions { margin-top: 20px; }
+        }
     </style>
 
 </head>
@@ -2654,7 +2668,7 @@
 
                     <a
                         class="btn btn-primary"
-                        href="shop.html"
+                        href="#home-products"
                     >
                         Shop Idols →
                     </a>
@@ -2801,6 +2815,47 @@
                 </div>
 
             </div>
+
+
+        </section>
+
+        <section class="section container home-products" id="home-products">
+
+
+            <div class="section-head">
+
+                <div>
+
+                    <p class="section-kicker">
+                        SHOP SPANDAN 3D
+                    </p>
+
+                    <h2>
+                        Shop Our Products
+                    </h2>
+
+                    <p class="section-description">
+                        Explore our 3D printed idols and designs.
+                    </p>
+
+                </div>
+
+
+                <a
+                    class="section-link"
+                    href="shop.html"
+                >
+                    View all products →
+                </a>
+
+            </div>
+
+
+            <div
+                class="product-grid"
+                data-product-list="all"
+                data-limit="6"
+            ></div>
 
 
         </section>
@@ -3028,46 +3083,7 @@
 
         <!-- NEW DESIGNS -->
 
-        <section class="section container">
-
-
-            <div class="section-head">
-
-                <div>
-
-                    <p class="section-kicker">
-                        FRESH FROM THE PRINTER
-                    </p>
-
-                    <h2>
-                        New Designs
-                    </h2>
-
-                    <p class="section-description">
-                        Recently added products from Spandan 3D.
-                    </p>
-
-                </div>
-
-
-                <a
-                    class="section-link"
-                    href="new-designs.html"
-                >
-                    View all designs →
-                </a>
-
-            </div>
-
-
-            <div
-                class="product-grid"
-                data-product-list="new"
-                data-limit="6"
-            ></div>
-
-
-        </section>
+        
 
 
         <!-- CUSTOM PRINT -->

@@ -5143,3 +5143,8 @@ body.custom-modal-open {
     }
 
 }
+.product-colors-editor { min-width: 0; }
+.product-colors-editor p { font-size: 13px; color: #666; margin: 6px 0 12px; }
+.product-color-row { display: flex; gap: 8px; margin-bottom: 10px; }
+.product-color-row input { flex: 1; min-width: 0; width: 100%; }
+.product-color-row button { flex-shrink: 0; }

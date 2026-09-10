@@ -1,3 +1,15 @@
+function normalizeColors(value) {
+    const entries = Array.isArray(value) ? value : String(value || "").split(/[,\n\r]+/);
+    const seen = new Set();
+    return entries.filter(item => typeof item === "string").map(item => item.trim())
+        .filter(item => {
+            const key = item.toLowerCase();
+            if (!item || seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
+}
+
 // =====================================================
 // SPANDAN 3D - MAIN WEBSITE JAVASCRIPT
 // =====================================================
@@ -119,23 +131,7 @@ function normalizeProduct(product) {
         );
 
 
-    let colors = [];
-
-    if (Array.isArray(product.colors)) {
-
-        colors =
-            product.colors.filter(Boolean);
-
-    } else if (product.colors) {
-
-        colors =
-            String(product.colors)
-                .split(",")
-                .map(item => item.trim())
-                .filter(Boolean);
-
-    }
-
+    const colors = normalizeColors(product.colors);
 
     const sellingPrice =
         Number(
@@ -401,7 +397,8 @@ function updateCartBadge() {
 
 function addToCart(
     id,
-    quantity = 1
+    quantity = 1,
+    color = ""
 ) {
 
     const product =
@@ -430,12 +427,16 @@ function addToCart(
         );
 
 
-    cart[id] =
-        Number(
-            cart[id] ||
-            0
-        ) + qty;
-
+    if (product.colors.length && !color) {
+        window.location.href = `product.html?id=${encodeURIComponent(product.id)}`;
+        return false;
+    }
+    if (color && !product.colors.includes(color)) {
+        toast("Please choose an available colour");
+        return false;
+    }
+    const key = color ? JSON.stringify([String(id), color]) : String(id);
+    cart[key] = Number(cart[key] || 0) + qty;
 
     saveCart();
 
@@ -1140,7 +1141,14 @@ function cartItems() {
     return Object
         .entries(cart)
         .map(
-            ([id, quantity]) => {
+            ([cartKey, quantity]) => {
+                let id = cartKey;
+                let color = "";
+                try {
+                    const variant = JSON.parse(cartKey);
+                    if (Array.isArray(variant) && variant.length === 2) [id, color] = variant;
+                } catch { /* Existing carts use plain product IDs. */ }
+
 
                 const product =
                     products.find(
@@ -1158,6 +1166,8 @@ function cartItems() {
                 return {
 
                     ...product,
+                    cartKey,
+                    color,
 
                     qty:
                         Number(quantity)
@@ -1215,7 +1225,7 @@ function renderCartPage() {
                                             ? `
                                                 <img
                                                     src="${escapeHTML(item.image)}"
-                                                    alt="${escapeHTML(item.name)}"
+                                                    alt="${escapeHTML(item.name)}${item.color ? " — " + escapeHTML(item.color) : ""}"
                                                 >
                                             `
 
@@ -1228,7 +1238,7 @@ function renderCartPage() {
                                 <div class="cart-line-main">
 
                                     <h3>
-                                        ${escapeHTML(item.name)}
+                                        ${escapeHTML(item.name)}${item.color ? " — " + escapeHTML(item.color) : ""}
                                     </h3>
 
 
@@ -1241,7 +1251,7 @@ function renderCartPage() {
                                     <div class="qty">
 
                                         <button
-                                            data-dec="${escapeHTML(item.id)}"
+                                            data-dec="${escapeHTML(item.cartKey)}"
                                             type="button"
                                         >
                                             −
@@ -1252,7 +1262,7 @@ function renderCartPage() {
                                         </span>
 
                                         <button
-                                            data-inc="${escapeHTML(item.id)}"
+                                            data-inc="${escapeHTML(item.cartKey)}"
                                             type="button"
                                         >
                                             +
@@ -1275,7 +1285,7 @@ function renderCartPage() {
 
                                 <button
                                     class="remove"
-                                    data-remove="${escapeHTML(item.id)}"
+                                    data-remove="${escapeHTML(item.cartKey)}"
                                     type="button"
                                 >
                                     ✕
@@ -1461,7 +1471,7 @@ function renderCheckout() {
 
                             <span>
 
-                                ${escapeHTML(item.name)}
+                                ${escapeHTML(item.name)}${item.color ? " — " + escapeHTML(item.color) : ""}
                                 ×
                                 ${item.qty}
 
@@ -2610,7 +2620,8 @@ function renderProductPage() {
                         .dataset
                         .productAdd,
 
-                    currentQuantity()
+                    currentQuantity(),
+                    holder.querySelector("#productColor")?.value || ""
                 );
 
             }
@@ -2638,7 +2649,8 @@ function renderProductPage() {
                 const added =
                     addToCart(
                         productId,
-                        currentQuantity()
+                        currentQuantity(),
+                        holder.querySelector("#productColor")?.value || ""
                     );
 
 

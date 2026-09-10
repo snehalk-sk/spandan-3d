@@ -126,6 +126,7 @@
         items: cart.map(item => ({
           id: item.id || item.productId || null,
           name: name(item),
+          color: item.color || "",
           price: price(item),
           quantity: qty(item),
           subtotal: price(item) * qty(item)

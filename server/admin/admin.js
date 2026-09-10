@@ -492,7 +492,7 @@ function createOrderRow(order) {
         )
             .map(
                 item =>
-                    `${item.name} Ã— ${item.quantity}`
+                    `${escapeCustomerHTML(item.name)}${item.color ? " — " + escapeCustomerHTML(item.color) : ""} × ${item.quantity}`
             )
             .join("<br>");
 
@@ -2445,6 +2445,53 @@ const productForm =
     );
 
 
+function normalizeColors(value) {
+    const entries = Array.isArray(value) ? value : String(value || "").split(/[,\n\r]+/);
+    const seen = new Set();
+    return entries.filter(item => typeof item === "string").map(item => item.trim())
+        .filter(item => {
+            const key = item.toLowerCase();
+            if (!item || seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
+}
+
+function addColorField(value = "", focus = false) {
+    const list = document.getElementById("productColorFields");
+    if (!list) return;
+    const row = document.createElement("div");
+    row.className = "product-color-row";
+    const input = document.createElement("input");
+    input.name = "colors";
+    input.value = value;
+    input.placeholder = "Enter one colour, e.g. Orange & Gold";
+    input.setAttribute("aria-label", "Available colour");
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "secondary-button";
+    remove.textContent = "Remove";
+    remove.addEventListener("click", () => {
+        row.remove();
+        if (!list.children.length) addColorField();
+    });
+    row.append(input, remove);
+    list.append(row);
+    if (focus) input.focus();
+}
+
+function renderColorFields(value = []) {
+    const list = document.getElementById("productColorFields");
+    if (!list) return;
+    list.replaceChildren();
+    const colors = normalizeColors(value);
+    (colors.length ? colors : [""]).forEach(color => addColorField(color));
+}
+
+document.getElementById("addProductColor")?.addEventListener("click", () => addColorField("", true));
+productForm?.addEventListener("reset", () => renderColorFields());
+renderColorFields();
+
 const productFormCard =
     document.getElementById(
         "productFormCard"
@@ -3410,19 +3457,7 @@ productForm
                     );
 
 
-                const colors =
-                    String(
-                        formData.get(
-                            "colors"
-                        ) ||
-                        ""
-                    )
-                        .split(",")
-                        .map(
-                            value =>
-                                value.trim()
-                        )
-                        .filter(Boolean);
+                const colors = normalizeColors(formData.getAll("colors"));
 
 
                 const tags =
@@ -3747,14 +3782,7 @@ document.addEventListener(
             "";
 
 
-        productForm.elements.colors.value =
-            Array.isArray(
-                product.colors
-            )
-                ? product.colors.join(
-                    ", "
-                )
-                : "";
+        renderColorFields(product.colors);
 
 
         productForm.elements.dimensions.value =

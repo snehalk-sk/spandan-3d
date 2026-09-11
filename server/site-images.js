@@ -19,19 +19,35 @@ module.exports = function registerSiteImages(app, supabase) {
         return supabase.storage.from(bucket);
     }
     const configPath = slot => `settings/${slot}.json`;
-    app.get('/api/site-images', async (req, res) => {
-        try {
+    let cached = null;
+    let pending = null;
+    let generation = 0;
+    function invalidate() { generation++; cached = null; pending = null; }
+    async function readImages() {
+        if (cached && Date.now() - cached.time < 30000) return cached.value;
+        if (pending) return pending;
+        const version = generation;
+        const task = (async () => {
             const store = await storage();
-            const result = {};
-            for (const slot of slots) {
+            const entries = await Promise.all(slots.map(async slot => {
                 const {data, error} = await store.download(configPath(slot));
                 if (error) {
-                    if (/not found|does not exist/i.test(error.message) || Number(error.statusCode) === 404) continue;
+                    if (/not found|does not exist/i.test(error.message) || Number(error.statusCode) === 404) return null;
                     throw error;
                 }
-                result[slot] = JSON.parse(await data.text());
-            }
-            res.set('Cache-Control', 'no-store').json(result);
+                return [slot, JSON.parse(await data.text())];
+            }));
+            const value = Object.fromEntries(entries.filter(Boolean));
+            if (version === generation) cached = {time: Date.now(), value};
+            return value;
+        })();
+        pending = task;
+        try { return await task; } finally { if (pending === task) pending = null; }
+    }
+    app.get('/api/site-images', async (req, res) => {
+        try {
+            // Browsers revalidate; the server cache is invalidated by edits below.
+            res.set('Cache-Control', 'no-cache').json(await readImages());
         } catch (error) { res.status(503).json({message: error.message || 'Could not load website images'}); }
     });
     app.post('/api/site-images/:slot', (req, res, next) => {
@@ -53,6 +69,7 @@ module.exports = function registerSiteImages(app, supabase) {
             const record = {url: store.getPublicUrl(path).data.publicUrl, alt: String(req.body.alt || '').trim().slice(0, 200)};
             const saved = await store.upload(configPath(req.params.slot), JSON.stringify(record), {upsert: true, contentType: 'application/json'});
             if (saved.error) { await store.remove([path]); throw saved.error; }
+            invalidate();
             res.json(record);
         } catch (error) { res.status(500).json({message: error.message || 'Could not save image'}); }
     });
@@ -62,7 +79,9 @@ module.exports = function registerSiteImages(app, supabase) {
             const store = await storage();
             const result = await store.remove([configPath(req.params.slot)]);
             if (result.error) throw result.error;
+            invalidate();
             res.json({success: true});
         } catch (error) { res.status(500).json({message: error.message || 'Could not remove image'}); }
     });
 };
+

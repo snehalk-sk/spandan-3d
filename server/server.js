@@ -1071,24 +1071,15 @@ app.get(
             }
 
 
-            const {
-                data,
-                error
-            } =
-                await supabase
-                    .from(
-                        "products"
-                    )
-                    .select(
-                        "*"
-                    )
-                    .order(
-                        "created_at",
-                        {
-                            ascending:
-                                false
-                        }
-                    );
+            let query = supabase.from("products").select("*")
+                .order("created_at", { ascending: false });
+            if (req.query.public === "1") {
+                query = query.or("published.eq.true,published.is.null");
+                if (req.query.id) query = query.eq("id", req.query.id);
+                const limit = Number(req.query.limit);
+                if (Number.isInteger(limit) && limit > 0) query = query.limit(Math.min(limit, 100));
+            }
+            const { data, error } = await query;
 
 
             if (

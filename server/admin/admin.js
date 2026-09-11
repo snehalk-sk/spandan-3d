@@ -213,6 +213,7 @@ function openPage(pageName) {
 
 
     closeSidebar();
+    loadPageData(pageName);
 
 }
 
@@ -266,28 +267,8 @@ document
 // =====================================================
 
 async function loadOrders() {
-
     try {
-
-        const response =
-            await fetch(
-                `${API_URL}/api/orders`
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Could not load orders"
-            );
-
-        }
-
-
-        orders =
-            await response.json();
-
-
+        orders = await adminGet('/api/orders');
         updateStats();
 
         renderRecentOrders();
@@ -2188,28 +2169,8 @@ function renderCustomers() {
 // =====================================================
 
 async function loadProducts() {
-
     try {
-
-        const response =
-            await fetch(
-                `${API_URL}/api/products`
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Could not load products"
-            );
-
-        }
-
-
-        products =
-            await response.json();
-
-
+        products = await adminGet('/api/products');
         renderProducts();
 
     }
@@ -4027,17 +3988,7 @@ async function loadCustomPrints() {
 
     try {
 
-        const response = await fetch(
-            `${API_URL}/api/custom-prints`
-        );
-
-        if (!response.ok) {
-            throw new Error(
-                "Could not load custom print requests"
-            );
-        }
-
-        const data = await response.json();
+        const data = await adminGet('/api/custom-prints');
 
         customPrints = Array.isArray(data)
             ? data
@@ -4071,7 +4022,7 @@ async function loadCustomPrints() {
                     </strong>
 
                     <span>
-                        Make sure the backend is running on localhost:5000.
+                        The server may be starting. Reopen this section to retry.
                     </span>
                 </div>
             `;
@@ -5891,12 +5842,29 @@ settingsForm
 // START ADMIN
 // =====================================================
 
+// Load only the data needed by the current page. In-flight GET requests are shared.
+const adminRequests = new Map();
+async function adminGet(path) {
+    if (adminRequests.has(path)) return adminRequests.get(path);
+    const task = (async () => {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 70000);
+        try {
+            const response = await fetch(API_URL + path, {signal: controller.signal, cache: 'no-store'});
+            if (!response.ok) throw new Error('Could not load dashboard data');
+            const data = await response.json();
+            if (!Array.isArray(data)) throw new Error('Invalid dashboard response');
+            return data;
+        } finally { clearTimeout(timer); }
+    })();
+    adminRequests.set(path, task);
+    try { return await task; } finally { adminRequests.delete(path); }
+}
+function loadPageData(page) {
+    if (['dashboard', 'orders', 'customers'].includes(page)) loadOrders();
+    if (page === 'products') loadProducts();
+    if (page === 'customPrints') loadCustomPrints();
+}
 resetProductMedia();
-
-loadOrders();
-
-loadProducts();
-
-loadCustomPrints();
-
+loadPageData(document.querySelector('.active-page')?.id.replace(/Page$/, '') || 'dashboard');
 loadSettings();

@@ -293,71 +293,41 @@ function normalizeProduct(product) {
 // LOAD PRODUCTS
 // =====================================================
 
-async function loadProductsFromBackend() {
-
-    try {
-
-        const response =
-            await fetch(
-                `${API_URL}/api/products`
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Could not load products"
-            );
-
-        }
-
-
-        const backendProducts =
-            await response.json();
-
-
-        if (
-            Array.isArray(
-                backendProducts
-            )
-        ) {
-
-            products =
-                backendProducts
-                    .filter(
-                        product =>
-                            product.active !== false &&
-                            product.published !== false
-                    )
-                    .map(
-                        normalizeProduct
-                    );
-
-        }
-
+function productRequestPath() {
+    const path = location.pathname;
+    if (path.endsWith('/product.html')) {
+        return '/api/products?public=1&id=' + encodeURIComponent(new URLSearchParams(location.search).get('id') || '');
     }
-
-    catch (error) {
-
-        console.warn(
-            "Backend products unavailable. Using fallback products.",
-            error
-        );
-
-
-        products =
-            (
-                window.SPANDAN_PRODUCTS ||
-                []
-            )
-                .map(
-                    normalizeProduct
-                );
-
-    }
-
+    if (path.endsWith('/') || path.endsWith('/index.html')) return '/api/products?public=1&limit=6';
+    return '/api/products?public=1';
 }
-
+const productCacheKey = 'spandan-products-v2:' + productRequestPath();
+const transactionalPage = /(?:cart|checkout)\.html$/.test(location.pathname);
+function restoreProducts() {
+    if (transactionalPage) return false;
+    try {
+        const saved = JSON.parse(sessionStorage.getItem(productCacheKey));
+        if (!saved || Date.now() - saved.time > 300000 || !Array.isArray(saved.items)) return false;
+        products = saved.items.filter(p => p.active !== false && p.published !== false).map(normalizeProduct);
+        return true;
+    } catch { return false; }
+}
+async function loadProductsFromBackend() {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 70000);
+    try {
+        const response = await fetch(API_URL + productRequestPath(), {signal: controller.signal});
+        if (!response.ok) throw new Error('Could not load products');
+        const data = await response.json();
+        if (!Array.isArray(data)) throw new Error('Invalid product response');
+        products = data.filter(p => p.active !== false && p.published !== false).map(normalizeProduct);
+        try { sessionStorage.setItem(productCacheKey, JSON.stringify({time: Date.now(), items: data})); } catch {}
+        return true;
+    } catch (error) {
+        console.warn('Products unavailable', error);
+        return false;
+    } finally { clearTimeout(timer); }
+}
 
 // =====================================================
 // SAVE CART
@@ -973,7 +943,10 @@ function renderDataLists() {
 // SHOP PAGE
 // =====================================================
 
+let shopEvents;
 function renderShop() {
+    shopEvents?.abort();
+    shopEvents = new AbortController();
 
     const grid =
         $("#shopProducts");
@@ -1121,7 +1094,8 @@ function renderShop() {
 
                         drawShop();
 
-                    }
+                    },
+                    {signal: shopEvents.signal}
                 );
 
             }
@@ -1138,7 +1112,8 @@ function renderShop() {
 
                 drawShop();
 
-            }
+            },
+            {signal: shopEvents.signal}
         );
 
 }
@@ -2941,23 +2916,43 @@ false && $("#checkoutForm")
 // START WEBSITE
 // =====================================================
 
-async function startWebsite() {
-
-    await loadProductsFromBackend();
-
+function renderProductViews() {
     renderDataLists();
-
     renderShop();
-
     renderCartPage();
-
     renderCheckout();
-
     renderProductPage();
-
     updateCartBadge();
-
 }
-
-
+async function startWebsite() {
+    updateCartBadge();
+    if (!document.querySelector('[data-product-list], #shopProducts, #productDetail, #cartItems, #checkoutItems') &&
+        !/(?:shop|product|cart|checkout|new-designs|best-sellers)\.html$/.test(location.pathname)) return;
+    const cached = restoreProducts();
+    if (cached) renderProductViews();
+    const status = document.createElement('p');
+    status.setAttribute('role', 'status');
+    status.style.cssText = 'text-align:center;padding:16px;color:#555';
+    status.textContent = cached ? 'Checking product updates…' : 'Loading products…';
+    (document.querySelector('main') || document.body).prepend(status);
+    let interacted = false;
+    const markInteraction = () => { interacted = true; };
+    document.addEventListener('input', markInteraction, {once: true});
+    document.addEventListener('click', markInteraction, {once: true});
+    const slow = setTimeout(() => { status.textContent = 'The store server is taking longer to respond. Please wait…'; }, 8000);
+    const loaded = await loadProductsFromBackend();
+    clearTimeout(slow);
+    document.removeEventListener('input', markInteraction);
+    document.removeEventListener('click', markInteraction);
+    if (loaded) {
+        if (!cached || !interacted) renderProductViews();
+        status.remove();
+    } else {
+        status.textContent = cached ? 'Showing recently loaded products. ' : 'Could not load products. ';
+        const retry = document.createElement('button');
+        retry.type = 'button'; retry.textContent = 'Retry';
+        retry.addEventListener('click', () => { status.remove(); startWebsite(); });
+        status.append(retry);
+    }
+}
 startWebsite();

@@ -17,7 +17,7 @@
             const form = el('form', null, 'image-manager-card');
             form.append(el('h3', title));
             if (images[slot]?.url) {
-                const img = el('img'); img.src = images[slot].url; img.alt = images[slot].alt || title; form.append(img);
+                const img = el('img'); img.loading = 'lazy'; img.decoding = 'async'; img.src = images[slot].url; img.alt = images[slot].alt || title; form.append(img);
             } else form.append(el('div', 'Using the original website illustration', 'image-manager-placeholder'));
             const label = el('label', 'Choose photo (JPG, PNG or WebP, up to 10 MB)');
             const file = el('input'); file.type = 'file'; file.accept = 'image/jpeg,image/png,image/webp'; file.required = true; label.append(file);
@@ -41,16 +41,22 @@
             grid.append(form);
         });
     }
+    let loading = false;
     async function load() {
+        if (loading) return;
+        loading = true;
+        try {
         status.textContent = 'Loading website images…';
+        const productsRequest = adminGet('/api/products');
+        productsRequest.catch(() => {});
         try { images = await request('/api/site-images'); render(); status.textContent = ''; }
         catch (error) { status.textContent = error.message + '. Try Refresh images after the server deployment finishes.'; }
         const productsGrid = document.getElementById('imageProducts');
         try {
-            const products = await request('/api/products'); productsGrid.replaceChildren();
+            products = await productsRequest; productsGrid.replaceChildren();
             products.forEach(product => {
                 const card = el('div', null, 'image-manager-card'); card.append(el('h3', product.name));
-                if (product.mainImage) { const img = el('img'); img.src = product.mainImage; img.alt = product.name; card.append(img); }
+                if (product.mainImage) { const img = el('img'); img.loading = 'lazy'; img.decoding = 'async'; img.src = product.mainImage; img.alt = product.name; card.append(img); }
                 const edit = el('button', 'Manage product photos', 'secondary-button'); edit.type = 'button';
                 edit.dataset.editProduct = product.id;
                 edit.addEventListener('click', () => openPage('products'));
@@ -59,6 +65,9 @@
             if (!products.length) productsGrid.append(el('p', 'Add a product first to manage its photos.'));
         } catch (error) { productsGrid.textContent = 'Could not load product photos. Use Refresh images to retry.'; }
     }
+        finally { loading = false; }
+    }
     document.getElementById('refreshImages').addEventListener('click', load);
     document.querySelector('[data-page="images"]').addEventListener('click', load);
 })();
+

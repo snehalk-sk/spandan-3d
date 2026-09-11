@@ -1039,10 +1039,18 @@ function setupBulkOrderControls() {
     updateSelectedOrderCount();
 }
 
+async function deleteOrderRequest(id) {
+    const response = await fetch(`${API_URL}/api/orders/${encodeURIComponent(id)}`, {method: "DELETE"});
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.success === false) {
+        throw new Error(result.message || `Could not delete order (HTTP ${response.status})`);
+    }
+}
+
 function updateSelectedOrderCount() {
     const selected =
         document.querySelectorAll(
-            ".order-select-checkbox:checked"
+            "#ordersTable .order-select-checkbox:checked"
         ).length;
 
     const counter =
@@ -1067,7 +1075,7 @@ document.addEventListener(
             const checked =
                 event.target.checked;
 
-            document
+            event.target.closest("table")
                 .querySelectorAll(
                     ".order-select-checkbox"
                 )
@@ -1098,12 +1106,10 @@ document.addEventListener(
 
         if (!button) return;
 
-        const selected =
-            Array.from(
-                document.querySelectorAll(
-                    ".order-select-checkbox:checked"
-                )
-            );
+        const selected = [...new Set(Array.from(
+            document.querySelectorAll("#ordersTable .order-select-checkbox:checked"),
+            box => box.dataset.orderSelect
+        ).filter(Boolean))];
 
         if (!selected.length) {
             alert(
@@ -1124,43 +1130,24 @@ document.addEventListener(
         button.textContent =
             "Deleting...";
 
+        let deleted = 0;
+        const failures = [];
         try {
-            for (const box of selected) {
-                const response =
-                    await fetch(
-                        `${API_URL}/api/orders/${box.dataset.orderSelect}`,
-                        {
-                            method: "DELETE"
-                        }
-                    );
-
-                if (!response.ok) {
-                    throw new Error(
-                        "Could not delete one of the selected orders."
-                    );
+            for (const id of selected) {
+                try {
+                    await deleteOrderRequest(id);
+                    deleted++;
+                } catch (error) {
+                    failures.push(`${id}: ${error.message}`);
                 }
             }
-
-            showMessage(
-                `${selected.length} order(s) deleted`
-            );
-
-            await loadOrders();
-
-            setTimeout(
-                setupBulkOrderControls,
-                50
-            );
-
-        } catch (error) {
-            alert(
-                error.message ||
-                "Could not delete selected orders"
-            );
+            showMessage(`${deleted} order(s) deleted`);
+            if (failures.length) alert(`${deleted} deleted; ${failures.length} could not be deleted.\n${failures.slice(0, 3).join("\n")}`);
         } finally {
+            await loadOrders();
+            setupBulkOrderControls();
             button.disabled = false;
-            button.textContent =
-                "Delete Selected";
+            button.textContent = "Delete Selected";
         }
     }
 );
@@ -1196,24 +1183,7 @@ document.addEventListener(
 
         try {
 
-            const response =
-                await fetch(
-                    `${API_URL}/api/orders/${button.dataset.deleteOrder}`,
-                    {
-                        method:
-                            "DELETE"
-                    }
-                );
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Could not delete order"
-                );
-
-            }
-
+            await deleteOrderRequest(button.dataset.deleteOrder);
 
             showMessage(
                 "Order deleted"

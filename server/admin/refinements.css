@@ -15,3 +15,28 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 @media(max-width:900px){.sidebar{transform:translateX(-100%);transition:transform .2s;z-index:1100}.sidebar.open{transform:translateX(0)}.mobile-header{display:flex;position:sticky;top:0;z-index:900;align-items:center;justify-content:space-between;min-height:64px;padding:12px 20px;background:#111;color:#fff}.close-sidebar{display:block;min-width:44px;min-height:44px}.menu-button{min-width:44px;min-height:44px}.main{margin-left:0;padding:22px}.sidebar-overlay.show{display:block;position:fixed;inset:0;background:#0008;z-index:1000}}
 @media(max-width:600px){.main{padding:16px}.admin-page>header{align-items:flex-start;flex-wrap:wrap;gap:14px}.admin-page>header h1{font-size:28px}.admin-user{display:none}.stats,.dashboard-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat-card{padding:14px}.stat-card strong{font-size:24px}.content-card,.product-form-card{padding:16px;border-radius:12px}.form-grid,.media-preview-area,.dashboard-quick-grid{grid-template-columns:1fr!important}.form-grid>*{grid-column:auto!important}.form-actions>*{flex:1}.toolbar>*{width:100%}.image-manager-grid{grid-template-columns:1fr}.media-preview-area img{max-height:220px}.section-header{align-items:flex-start}.table-wrapper table{min-width:600px}.product-switches{grid-template-columns:1fr}.product-color-row{display:flex;flex-direction:column;align-items:stretch}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Spandan palette — deep green, gold and white. */
+:root{--orange:#075E45;--orange-dark:#044735;--black:#075E45;--dark:#044735;--background:#F5F8F6;--white:#FFFFFF;--border:#DCE6E0;--muted:#52675E;--gold:#D4AF37}
+body{background:#F5F8F6;color:#163C30}
+.sidebar,.mobile-header{background:#075E45;color:#FFFFFF}
+.sidebar{border-right:1px solid #D4AF37}
+.sidebar .logo,.mobile-header .logo{color:#FFFFFF}.logo span{color:#D4AF37}
+.nav-link{color:#FFFFFF}.nav-link:hover{background:#044735;color:#FFFFFF}
+.nav-link.active{background:#D4AF37;color:#163C30}
+.sidebar-bottom{border-color:#ffffff30}.website-link{color:#FFFFFF}.website-link:hover{color:#FFFFFF;text-decoration:underline;text-decoration-color:#D4AF37}
+.primary-button{background:#075E45;color:#FFFFFF;border-color:#075E45}
+.primary-button:hover{background:#044735;color:#FFFFFF}
+.secondary-button{background:#FFFFFF;color:#075E45;border-color:#AFCABA}
+.secondary-button:hover{background:#EDF5EF;border-color:#075E45}
+.text-button,.page-label,header h1,.section-header h2{color:#075E45}
+.admin-user{background:#075E45;color:#FFFFFF}
+.stat-icon{background:#EDF5EF;color:#075E45}.stat-card{border-top:3px solid #D4AF37}
+.stat-card h2,.stat-card strong{color:#075E45}
+.content-card,.product-form-card,.image-manager-card{background:#FFFFFF}
+th{background:#EDF5EF;color:#075E45}tbody tr:hover{background:#F5F8F6}
+.form-actions{border-top-color:#D4AF37}.media-choose-button{background:#075E45;color:#FFFFFF}
+input:focus,select:focus,textarea:focus{border-color:#075E45}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#075E45}
+.sidebar button:focus-visible,.sidebar a:focus-visible,.mobile-header button:focus-visible{outline-color:#D4AF37}
+.admin-message{background:#075E45;color:#FFFFFF}

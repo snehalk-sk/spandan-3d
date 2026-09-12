@@ -89,12 +89,15 @@ function mediaURL(value) {
 // CART
 // =====================================================
 
-let cart =
-    JSON.parse(
-        localStorage.getItem("spandan-cart") ||
-        "{}"
-    );
-
+function readSavedCart() {
+    try {
+        const value = JSON.parse(localStorage.getItem('spandan-cart') || '{}');
+        if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+        return Object.fromEntries(Object.entries(value).filter(([key,qty]) =>
+            !['__proto__','constructor','prototype'].includes(key) && Number.isSafeInteger(qty) && qty > 0 && qty <= 99));
+    } catch { return {}; }
+}
+let cart = readSavedCart();
 
 // =====================================================
 // MONEY
@@ -335,10 +338,8 @@ async function loadProductsFromBackend() {
 
 function saveCart() {
 
-    localStorage.setItem(
-        "spandan-cart",
-        JSON.stringify(cart)
-    );
+    try { localStorage.setItem('spandan-cart', JSON.stringify(cart)); }
+    catch { toast('Your browser could not save the cart. Keep this tab open.'); }
 
     updateCartBadge();
 
@@ -418,14 +419,18 @@ function addToCart(
         return false;
     }
     const key = color ? JSON.stringify([String(id), color]) : String(id);
-    cart[key] = Number(cart[key] || 0) + qty;
+    const limit = product.stock > 0 ? Math.min(99, Math.floor(product.stock)) : 99;
+    const inCart = cartItems().filter(item => String(item.id) === String(id)).reduce((sum,item) => sum + item.qty, 0);
+    const added = Math.min(Math.max(1, Math.floor(qty)), limit - inCart);
+    if (added <= 0) { toast('You have reached the available quantity for this product.'); return false; }
+    cart[key] = Number(cart[key] || 0) + added;
 
     saveCart();
 
 
     toast(
-        qty > 1
-            ? `${qty} items added to cart`
+        added > 1
+            ? `${added} items added to cart`
             : "Added to cart"
     );
 
@@ -1155,8 +1160,8 @@ function cartItems() {
                     ...product,
                     cartKey,
                     color,
-                    image: product.colorImages[color] || product.image,
-                    mainImage: product.colorImages[color] || product.mainImage,
+                    image: product.colorImages?.[color] || product.image,
+                    mainImage: product.colorImages?.[color] || product.mainImage,
 
                     qty:
                         Number(quantity)
@@ -1240,7 +1245,7 @@ function renderCartPage() {
                                     <div class="qty">
 
                                         <button
-                                            data-dec="${escapeHTML(item.cartKey)}"
+                                            aria-label="Decrease quantity" data-dec="${escapeHTML(item.cartKey)}"
                                             type="button"
                                         >
                                             −
@@ -1251,7 +1256,7 @@ function renderCartPage() {
                                         </span>
 
                                         <button
-                                            data-inc="${escapeHTML(item.cartKey)}"
+                                            aria-label="Increase quantity" data-inc="${escapeHTML(item.cartKey)}"
                                             type="button"
                                         >
                                             +
@@ -1274,7 +1279,7 @@ function renderCartPage() {
 
                                 <button
                                     class="remove"
-                                    data-remove="${escapeHTML(item.cartKey)}"
+                                    aria-label="Remove ${escapeHTML(item.name)}" data-remove="${escapeHTML(item.cartKey)}"
                                     type="button"
                                 >
                                     ✕
@@ -1338,9 +1343,7 @@ function renderCartPage() {
     draw();
 
 
-    wrapper.addEventListener(
-        "click",
-        event => {
+    wrapper.onclick = event => {
 
             const increaseButton =
                 event.target.closest(
@@ -1366,11 +1369,9 @@ function renderCartPage() {
                     increaseButton.dataset.inc;
 
 
-                cart[id] =
-                    Number(
-                        cart[id] ||
-                        0
-                    ) + 1;
+                const item = cartItems().find(item => item.cartKey === id);
+                if (!item || !addToCart(item.id, 1, item.color)) return;
+
 
 
                 saveCart();
@@ -1424,8 +1425,7 @@ function renderCartPage() {
 
             }
 
-        }
-    );
+        };
 
 }
 
@@ -2932,7 +2932,7 @@ async function startWebsite() {
     if (cached) renderProductViews();
     const status = document.createElement('p');
     status.setAttribute('role', 'status');
-    status.style.cssText = 'text-align:center;padding:16px;color:#555';
+    status.className = 'load-status';
     status.textContent = cached ? 'Checking product updates…' : 'Loading products…';
     (document.querySelector('main') || document.body).prepend(status);
     let interacted = false;
@@ -2956,3 +2956,4 @@ async function startWebsite() {
     }
 }
 startWebsite();
+

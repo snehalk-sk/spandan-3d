@@ -18,3 +18,4 @@
         }
     } catch (error) { console.warn('Website images unavailable', error); }
 })();
+

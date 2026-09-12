@@ -38,3 +38,4 @@ test('missing storage fails explicitly and cleans staged files',async()=>{
  try {const main=await file(dir,'main');const res=response();await handler(null)({files:{mainImage:[main]}},res);assert.equal(res.code,503);await assert.rejects(fs.access(main.path));}
  finally{await fs.rm(dir,{recursive:true,force:true});}
 });
+

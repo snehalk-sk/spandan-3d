@@ -1049,6 +1049,7 @@
 
   </style>
 
+<link rel="stylesheet" href="css/refinements.css?v=20260912">
 </head>
 
 
@@ -1686,7 +1687,7 @@
           </div>
 
 
-          <div class="submit-area">
+          <div class="submit-area"><p class="form-note">WhatsApp opens with your request. Attach your selected model and photos in WhatsApp before sending; files are not transferred automatically.</p>
 
             <button
               class="btn btn-primary"
@@ -2204,8 +2205,8 @@ PIN Code: ${pincodeText}
 
 *FILES / REFERENCES*
 
-3D Model: ${modelName}
-Reference Images: ${imageNames}
+3D Model to attach manually: ${modelName}
+Reference images to attach manually: ${imageNames}
 Reference Link: ${reference || "Not provided"}
 
 *ADDITIONAL INSTRUCTIONS*
@@ -2237,10 +2238,7 @@ Thank you.`;
           `https://wa.me/${spandanWhatsApp}?text=${encodeURIComponent(message)}`;
 
 
-        window.open(
-          whatsappURL,
-          "_blank"
-        );
+        window.open(whatsappURL, "_blank", "noopener,noreferrer");
 
       }
     );
@@ -2248,7 +2246,9 @@ Thank you.`;
   </script>
 
 
+<script src="js/usability.js?v=20260912"></script>
 </body>
 
 </html>
 ```
+

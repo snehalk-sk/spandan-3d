@@ -971,6 +971,11 @@ app.get(
             }
 
 
+            if (req.query.summary === "1") {
+                const {count, error} = await supabase.from("products").select("id", {count: "exact", head: true});
+                if (error) throw error;
+                return res.json([{count: count || 0}]);
+            }
             let query = supabase.from("products").select("*")
                 .order("created_at", { ascending: false });
             if (req.query.public === "1") {

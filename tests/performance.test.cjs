@@ -43,10 +43,11 @@ test('product cache is bounded and bypassed at checkout; request scopes match pa
   c.sessionStorage.getItem=()=>'{broken';assert.equal(vm.runInContext('restoreProducts()',c),false);
  }
 });
-test('dashboard startup only loads orders; duplicate data requests share a fetch',async()=>{
+test('dashboard loads overview data without full products; duplicate data requests share a fetch',async()=>{
  const s=read('server/admin/admin.js');const a=s.indexOf('const adminRequests =');let calls=0;let loaded=[];
- const c={API_URL:'https://example.com',AbortController,setTimeout,clearTimeout,fetch:async()=>{calls++;await new Promise(r=>setTimeout(r,5));return {ok:true,json:async()=>[]}},document:{querySelector:()=>({id:'dashboardPage'})},loadOrders:()=>loaded.push('orders'),loadProducts:()=>loaded.push('products'),loadCustomPrints:()=>loaded.push('custom'),resetProductMedia(){},loadSettings(){}};
- vm.createContext(c);vm.runInContext(s.slice(a),c);assert.deepEqual(loaded,['orders']);
- vm.runInContext("loadPageData('products')",c);assert.deepEqual(loaded,['orders','products']);
- await vm.runInContext("Promise.all([adminGet('/api/products'),adminGet('/api/products')])",c);assert.equal(calls,1);
+ const node=()=>({id:'dashboardPage',dataset:{},setAttribute(){},prepend(){},append(){},remove(){}});
+ const c={API_URL:'https://example.com',AbortController,setTimeout,clearTimeout,console,fetch:async()=>{calls++;await new Promise(r=>setTimeout(r,5));return {ok:true,json:async()=>[]}},document:{querySelector:node,getElementById:()=>null,createElement:node},loadOrders:()=>loaded.push('orders'),loadProducts:()=>loaded.push('products'),loadCustomPrints:()=>loaded.push('custom'),resetProductMedia(){},loadSettings(){}};
+ vm.createContext(c);vm.runInContext(s.slice(a),c);assert.deepEqual(loaded,['orders','custom']);
+ vm.runInContext("loadPageData('products')",c);assert.deepEqual(loaded,['orders','custom','products']);
+ await vm.runInContext("Promise.all([adminGet('/api/products'),adminGet('/api/products')])",c);assert.equal(calls,2);
 });

@@ -1,3 +1,6 @@
+function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
 function decodeColorEntry(value) {
     if (typeof value !== "string" || !value.trim().startsWith("{")) return value;
     try {
@@ -161,6 +164,8 @@ overlay
 // =====================================================
 
 function openPage(pageName) {
+    if (pageName !== 'products' && window.spandanProductDirty && !confirm('You have unsaved product changes. Leave this section?')) return;
+    if (pageName !== 'products') window.spandanProductDirty = false;
 
     document
         .querySelectorAll(
@@ -276,6 +281,10 @@ async function loadOrders() {
         renderOrders();
 
         renderCustomers(); const d=document.getElementById("dashboardCustomersCount"); if(d){d.textContent=buildCustomersFromOrders().length;}
+        const customers = buildCustomersFromOrders();
+        for (const [id, value] of Object.entries({dashboardSummaryCustomers: customers.length, dashboardRepeatCustomers: customers.filter(customer => customer.orders > 1).length})) {
+            const element = document.getElementById(id); if (element) element.textContent = value;
+        }
 
     }
 
@@ -1444,7 +1453,7 @@ if (customerOrdersCount) {
                                 year: "numeric"
                             }
                         )
-                    : "â€”";
+                    : "—";
 
 
             const whatsappPhone =
@@ -1485,7 +1494,7 @@ if (customerOrdersCount) {
                                         )}
                                     </a>
                                 `
-                                : "â€”"
+                                : "—"
                         }
 
                     </td>
@@ -1498,7 +1507,7 @@ if (customerOrdersCount) {
                                 ? escapeCustomerHTML(
                                     customer.email
                                 )
-                                : "â€”"
+                                : "—"
                         }
 
                     </td>
@@ -1639,7 +1648,7 @@ function openCustomerDetails(
                         class="custom-modal-close"
                         onclick="closeCustomerDetails()"
                     >
-                        Ã—
+                        ×
                     </button>
 
                 </div>
@@ -1754,7 +1763,7 @@ function customerDetailsHTML(
                                 year: "numeric"
                             }
                         )
-                    : "â€”";
+                    : "—";
 
 
             return `
@@ -1830,7 +1839,7 @@ function customerDetailsHTML(
                     <strong>
                         ${escapeCustomerHTML(
                             customer.phone ||
-                            "â€”"
+                            "—"
                         )}
                     </strong>
 
@@ -1846,7 +1855,7 @@ function customerDetailsHTML(
                     <strong>
                         ${escapeCustomerHTML(
                             customer.email ||
-                            "â€”"
+                            "—"
                         )}
                     </strong>
 
@@ -2122,11 +2131,11 @@ function renderCustomers() {
                             </td>
 
                             <td>
-                                ${customer.phone || "â€”"}
+                                ${escapeHTML(customer.phone || "—")}
                             </td>
 
                             <td>
-                                ${customer.email || "â€”"}
+                                ${escapeHTML(customer.email || "—")}
                             </td>
 
                             <td>
@@ -2242,7 +2251,7 @@ function renderProducts() {
                                         <img
                                             src="${product.mainImage}"
                                             class="admin-product-thumbnail"
-                                            alt="${product.name}"
+                                            alt="${escapeHTML(product.name)}"
                                         >
 
                                     `
@@ -2261,14 +2270,14 @@ function renderProducts() {
                         <td>
 
                             <strong>
-                                ${product.name}
+                                ${escapeHTML(product.name)}
                             </strong>
 
                         </td>
 
 
                         <td>
-                            ${product.category || "â€”"}
+                            ${escapeHTML(product.category || "—")}
                         </td>
 
 
@@ -2642,6 +2651,8 @@ function showProductForm() {
 
 
 function hideProductForm() {
+    if (window.spandanProductDirty && !confirm('Discard your unsaved product changes?')) return;
+    window.spandanProductDirty = false;
 
     productFormCard
         ?.classList
@@ -2852,7 +2863,7 @@ function renderMediaPreview() {
                                 class="media-remove-button"
                                 data-remove-main-image
                             >
-                                âœ•
+                                ×
                             </button>
 
                         </div>
@@ -2915,7 +2926,7 @@ function renderMediaPreview() {
 
                                             data-remove-gallery-index="${item.index}"
                                         >
-                                            âœ•
+                                            ×
                                         </button>
 
                                     </div>
@@ -2972,7 +2983,7 @@ function renderMediaPreview() {
                                 class="media-remove-button"
                                 data-remove-product-video
                             >
-                                âœ•
+                                ×
                             </button>
 
                         </div>
@@ -3418,6 +3429,7 @@ productForm
                 );
 
 
+            if (button?.disabled) return;
             const oldButtonText =
                 button?.textContent ||
                 "Save Product";
@@ -3642,6 +3654,7 @@ productForm
                 }
 
 
+                window.spandanProductDirty = false;
                 showMessage(
                     existingId
                         ? "Product updated"
@@ -4002,6 +4015,7 @@ async function loadCustomPrints() {
 
         renderCustomPrintStats();
         renderCustomPrints();
+        renderDashboardCustomPrints();
 
     } catch (error) {
 
@@ -4081,6 +4095,21 @@ function renderCustomPrintStats() {
     );
 }
 
+function renderDashboardCustomPrints() {
+    for (const [id, value] of Object.entries({dashboardCustomPrintCount: customPrints.length, dashboardActiveCustomJobs: customPrints.filter(item => !['Completed', 'Cancelled'].includes(item.status)).length})) {
+        const element = document.getElementById(id); if (element) element.textContent = value;
+    }
+    const list = document.getElementById('dashboardRecentCustomPrints');
+    if (!list) return;
+    list.replaceChildren();
+    if (!customPrints.length) { list.textContent = 'No custom print requests yet.'; return; }
+    customPrints.slice(0, 4).forEach(item => {
+        const row = document.createElement('div'); row.className = 'dashboard-summary-row';
+        const name = document.createElement('span'); name.textContent = item.name || item.customerName || item.customer?.name || 'Custom print request';
+        const status = document.createElement('strong'); status.textContent = item.status || 'New'; row.append(name, status); list.append(row);
+    });
+}
+
 
 // =====================================================
 // CUSTOM PRINT HELPERS
@@ -4089,13 +4118,13 @@ function renderCustomPrintStats() {
 function customPrintDate(dateString) {
 
     if (!dateString) {
-        return "â€”";
+        return "—";
     }
 
     const date = new Date(dateString);
 
     if (Number.isNaN(date.getTime())) {
-        return "â€”";
+        return "—";
     }
 
     return date.toLocaleString(
@@ -4548,7 +4577,7 @@ function ensureCustomPrintModal() {
                     class="custom-modal-close"
                     onclick="closeCustomPrintDetails()"
                 >
-                    Ã—
+                    ×
                 </button>
 
             </div>
@@ -4919,7 +4948,7 @@ function customPrintDetailsHTML(request) {
                     </span>
 
                     <strong>
-                        ${phone || "â€”"}
+                        ${phone || "—"}
                     </strong>
 
                 </div>
@@ -4932,7 +4961,7 @@ function customPrintDetailsHTML(request) {
                     </span>
 
                     <strong>
-                        ${email || "â€”"}
+                        ${email || "—"}
                     </strong>
 
                 </div>
@@ -5858,12 +5887,41 @@ async function adminGet(path) {
         } finally { clearTimeout(timer); }
     })();
     adminRequests.set(path, task);
-    try { return await task; } finally { adminRequests.delete(path); }
+    const statusId = 'load-' + path.replace(/[^a-z]/g, '');
+    let status = document.getElementById(statusId);
+    if (!status) {
+        status = document.createElement('div'); status.id = statusId;
+        status.className = 'admin-load-status'; status.setAttribute('role', 'status');
+        document.querySelector('.main')?.prepend(status);
+    }
+    status.textContent = 'Loading ' + path.split('/').pop().replace('-', ' ') + '…';
+    status.dataset.error = 'false';
+    try { const data = await task; status.remove(); return data; }
+    catch (error) {
+        status.dataset.error = 'true'; status.textContent = 'Could not load ' + path.split('/').pop().replace('-', ' ') + '. ';
+        const retry = document.createElement('button'); retry.type = 'button'; retry.textContent = 'Retry';
+        retry.onclick = () => {
+            if (path === '/api/products?summary=1') loadDashboardProductCount();
+            else if (path === '/api/products') loadProducts();
+            else if (path === '/api/orders') loadOrders();
+            else loadCustomPrints();
+        };
+        status.append(retry); throw error;
+    } finally { adminRequests.delete(path); }
 }
 function loadPageData(page) {
     if (['dashboard', 'orders', 'customers'].includes(page)) loadOrders();
     if (page === 'products') loadProducts();
-    if (page === 'customPrints') loadCustomPrints();
+    if (['dashboard', 'customPrints'].includes(page)) loadCustomPrints();
+    if (page === 'dashboard') loadDashboardProductCount();
+}
+async function loadDashboardProductCount() {
+    try {
+        const data = await adminGet('/api/products?summary=1');
+        for (const id of ['dashboardProductsCount','dashboardSummaryProducts']) {
+            const element = document.getElementById(id); if (element) element.textContent = data[0]?.count ?? 0;
+        }
+    } catch (error) { console.warn('Could not load product count', error); }
 }
 resetProductMedia();
 loadPageData(document.querySelector('.active-page')?.id.replace(/Page$/, '') || 'dashboard');

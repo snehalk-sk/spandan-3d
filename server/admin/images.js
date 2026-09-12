@@ -71,3 +71,4 @@
     document.querySelector('[data-page="images"]').addEventListener('click', load);
 })();
 
+

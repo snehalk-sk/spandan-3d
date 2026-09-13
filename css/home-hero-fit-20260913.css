@@ -16,3 +16,22 @@
     object-fit: cover;
     object-position: center;
 }
+
+/* Homepage header branding: use the uploaded Spandan logo only. */
+.site-header .brand {
+    width: 112px;
+    height: 56px;
+    gap: 0;
+    font-size: 0;
+    line-height: 0;
+    background: url("../file_00000000771081f886f7aafe8f94155b.png") center / contain no-repeat;
+}
+.site-header .brand > span {
+    display: none !important;
+}
+@media (max-width: 640px) {
+    .site-header .brand {
+        width: 92px;
+        height: 46px;
+    }
+}

@@ -17,14 +17,14 @@
     object-position: center;
 }
 
-/* Homepage header branding: transparent Spandan logo, sized to sit cleanly in the green header. */
+/* Homepage header branding: transparent Spandan logo, larger and balanced in the green header. */
 .site-header .nav-wrap {
-    min-height: 108px;
+    min-height: 124px;
 }
 .site-header .brand {
-    width: 150px;
-    height: 96px;
-    flex: 0 0 150px;
+    width: 190px;
+    height: 112px;
+    flex: 0 0 190px;
     gap: 0;
     font-size: 0;
     line-height: 0;
@@ -35,11 +35,11 @@
 }
 @media (max-width: 640px) {
     .site-header .nav-wrap {
-        min-height: 84px;
+        min-height: 94px;
     }
     .site-header .brand {
-        width: 112px;
-        height: 72px;
-        flex-basis: 112px;
+        width: 138px;
+        height: 82px;
+        flex-basis: 138px;
     }
 }

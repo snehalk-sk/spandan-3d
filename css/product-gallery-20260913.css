@@ -1,0 +1,23 @@
+/* Stable gallery dimensions for every photo, including colour changes. */
+.product-gallery { align-items: start; }
+.product-main-media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  min-height: 0;
+  height: auto;
+  align-self: start;
+}
+.product-main-media > img,
+.product-main-media > video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+}
+.product-main-media > video { object-fit: contain; }
+.product-main-media > .product-badge { z-index: 1; }
+.product-thumbnail { flex-shrink: 0; }

@@ -80,3 +80,9 @@ footer .brand-accent{color:#D4AF37}footer a:hover{color:#FFFFFF;text-decoration:
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#075E45}
 .site-header a:focus-visible,.site-header button:focus-visible,footer a:focus-visible{outline-color:#D4AF37}
 @media(max-width:980px){.site-header .main-nav.open{background:#075E45;border-color:#D4AF37}.site-header .main-nav a.active{background:#044735;color:#FFFFFF}}
+
+/* Header branding: keep only the logo mark; remove the separate English name. */
+.site-header .brand > span:not(.brand-mark){display:none!important}
+.site-header .brand{gap:0}
+.site-header .brand-mark{width:52px;height:52px;border-radius:14px;font-size:23px}
+@media(max-width:640px){.site-header .brand-mark{width:42px;height:42px;border-radius:12px;font-size:19px}}

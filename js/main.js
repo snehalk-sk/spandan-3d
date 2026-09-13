@@ -98,6 +98,29 @@ function readSavedCart() {
     } catch { return {}; }
 }
 let cart = readSavedCart();
+let cartCatalogReady = false;
+
+function reconcileCart() {
+    // Only a fresh, complete catalogue can prove a saved product was removed.
+    if (!cartCatalogReady) return;
+    const validKeys = new Set(cartItems().map(item => item.cartKey));
+    const next = Object.fromEntries(Object.entries(cart).filter(([key]) => validKeys.has(key)));
+    if (JSON.stringify(next) !== JSON.stringify(cart)) {
+        cart = next;
+        saveCart();
+    }
+}
+
+function setCartCheckoutEnabled(enabled) {
+    const link = document.querySelector('.order-summary a[href="checkout.html"], #cartCheckoutLink');
+    if (!link) return;
+    link.id = 'cartCheckoutLink';
+    link.setAttribute('aria-disabled', String(!enabled));
+    if (enabled) link.setAttribute('href', 'checkout.html');
+    else link.removeAttribute('href');
+    link.style.opacity = enabled ? '1' : '.5';
+}
+
 
 // =====================================================
 // MONEY
@@ -324,6 +347,8 @@ async function loadProductsFromBackend() {
         const data = await response.json();
         if (!Array.isArray(data)) throw new Error('Invalid product response');
         products = data.filter(p => p.active !== false && p.published !== false).map(normalizeProduct);
+        cartCatalogReady = productRequestPath() === '/api/products?public=1';
+        reconcileCart();
         try { sessionStorage.setItem(productCacheKey, JSON.stringify({time: Date.now(), items: data})); } catch {}
         return true;
     } catch (error) {
@@ -362,7 +387,7 @@ function updateCartBadge() {
 
 
     element.textContent =
-        Object.values(cart)
+        transactionalPage && !cartCatalogReady && Object.keys(cart).length ? '…' : Object.values(cart)
             .reduce(
                 (total, quantity) =>
                     total +
@@ -1195,6 +1220,7 @@ function renderCartPage() {
         const items =
             cartItems();
 
+        setCartCheckoutEnabled(items.length > 0);
 
         wrapper.innerHTML =
             items.length
@@ -2928,6 +2954,11 @@ async function startWebsite() {
     updateCartBadge();
     if (!document.querySelector('[data-product-list], #shopProducts, #productDetail, #cartItems, #checkoutItems') &&
         !/(?:shop|product|cart|checkout|new-designs|best-sellers)\.html$/.test(location.pathname)) return;
+    if (transactionalPage) {
+        setCartCheckoutEnabled(false);
+        const holder = document.querySelector('#cartPageItems, #checkoutItems');
+        if (holder) holder.innerHTML = '<p role="status">Checking your cart…</p>';
+    }
     const cached = restoreProducts();
     if (cached) renderProductViews();
     const status = document.createElement('p');
@@ -2948,6 +2979,8 @@ async function startWebsite() {
         if (!cached || !interacted) renderProductViews();
         status.remove();
     } else {
+        const cartHolder = transactionalPage && document.querySelector('#cartPageItems, #checkoutItems');
+        if (cartHolder) cartHolder.innerHTML = '<p>Your saved cart could not be checked. Please retry. Your items have not been removed.</p>';
         status.textContent = cached ? 'Showing recently loaded products. ' : 'Could not load products. ';
         const retry = document.createElement('button');
         retry.type = 'button'; retry.textContent = 'Retry';

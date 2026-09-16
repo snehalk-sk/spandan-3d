@@ -932,6 +932,10 @@ function renderDataLists() {
                 }
 
 
+                if (type === "new-best") {
+                    list = products.filter(product => product.isNew || product.bestSeller);
+                }
+
                 const limit =
                     Number(
                         element.dataset.limit ||

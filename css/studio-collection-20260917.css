@@ -168,3 +168,38 @@
 .studio-site .focus-section{color:#203e32}
 .studio-site .studio-story-art>span{color:#fff}
 .studio-site .btn-light,.studio-site .view-product-button{color:#075e45}
+
+/* Light cards must not inherit text colours from former dark sections. */
+.studio-site .focus-card,
+.studio-site .focus-card:first-child{
+ background:#fffef9 !important;
+ color:#203e32 !important;
+ border:1px solid #dfe4d4;
+ justify-content:flex-start;
+ gap:18px;
+}
+.studio-site .focus-card :is(h3,h4,strong),
+.studio-site .focus-card:first-child :is(h3,h4,strong){color:#203e32 !important;opacity:1}
+.studio-site .focus-card p,
+.studio-site .focus-card:first-child p{color:#465d4b !important;opacity:1;font-size:14px;line-height:1.75;margin:0}
+.studio-site .focus-card .focus-number,
+.studio-site .focus-card:first-child .focus-number{color:#536d42 !important;opacity:1;font-size:36px;line-height:1.1;margin-bottom:6px}
+.studio-site .focus-card h3{font-size:20px;line-height:1.35;margin:0 0 10px}
+.studio-site :is(.approach-card,.support-card,.contact-info-card,.form-card,.order-summary) :is(h3,h4){color:#203e32}
+.studio-site :is(.field-note,.form-note,.contact-note,.selected-file-size){color:#465d4b;line-height:1.6}
+.studio-site :is(.selected-file-name,.contact-item,.product-card-title,.cart-line-main,.product-spec-row,.studio-footer a){overflow-wrap:anywhere}
+.studio-site :is(.custom-layout,.checkout-layout,.contact-grid,.product-detail,.cart-page)>*{min-width:0}
+.studio-site .search-wrap{max-width:100%}
+.studio-site .btn{white-space:normal;text-align:center}
+.studio-site .site-header .cart-badge{position:absolute;top:-1px;right:-2px;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;background:#075e45;color:#fff;font-size:10px;border-radius:20px}
+.studio-site :is(.focus-card,.approach-card,.support-card){height:100%}
+@media(min-width:701px) and (max-width:1050px){.studio-site .focus-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){
+ .studio-site .focus-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+ .studio-site .focus-card{min-height:0;padding:24px;gap:14px}
+ .studio-site .form-grid>.full,.studio-site .form-grid>.span-2{grid-column:1/-1}
+ .studio-site .field :is(input,select,textarea){font-size:16px}
+ .studio-site :is(.shop-custom-box,.about-cta,.custom-cta){flex-direction:column;align-items:flex-start;gap:20px}
+ .studio-site :is(.shop-custom-box,.about-cta,.custom-cta) .btn{max-width:100%;width:100%}
+ .studio-site :is(.icon-link,.mobile-menu-btn,.menu-button){min-width:44px;min-height:44px}
+}

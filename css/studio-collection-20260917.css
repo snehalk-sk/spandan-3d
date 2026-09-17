@@ -125,3 +125,18 @@
 .studio-site .studio-footer :is(p,.studio-origin,.studio-footer-bottom){color:#e0ead7}
 .studio-site .studio-footer a:not(.studio-footer-brand){color:#edf3e4}
 .studio-site .studio-footer h2{color:#ffffff}
+
+/* Dark promotional panels: explicit white overrides page heading rules. */
+.studio-site :is(.shop-custom-box,.about-cta,.custom-cta,.custom-product-cta,.custom-copy,.category-card.custom-card,.studio-footer) :is(h1,h2,h3,h4,p,small,strong,.section-kicker,.category-tag,.studio-origin,.studio-footer-bottom){
+  color:#ffffff !important;
+  opacity:1;
+}
+.studio-site :is(.shop-custom-box,.about-cta,.custom-cta,.custom-product-cta,.custom-copy,.category-card.custom-card,.studio-footer) :is(h1,h2,h3,h4,p) span{
+  color:inherit !important;
+}
+.studio-site :is(.shop-custom-box,.about-cta,.custom-cta,.custom-product-cta) .btn,
+.studio-site .studio-footer a,
+.studio-site .devotion-description,
+.studio-site .devotion-eyebrow,
+.studio-site .devotion-features,
+.studio-site .devotion-bottom{color:#ffffff !important}

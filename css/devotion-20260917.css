@@ -1,0 +1,36 @@
+/* Spandan Studio: cream, emerald and a photographic devotional hero. */
+:root{--accent:#075e45;--line:#e4e5db}
+body{background:#fffdf8;color:#173f32}
+.topbar{background:#004932;color:#fffdf2}.topbar-track{min-height:40px;font-size:13px;font-weight:400;gap:34px}
+.site-header{background:#faf6ed;border-bottom:1px solid #e9e3d8;backdrop-filter:none}
+.site-header .nav-wrap{min-height:102px;width:min(1500px,92%);gap:24px}
+.site-header .brand{background:none;width:155px;height:94px;flex:0 0 155px;font-size:0}
+.site-header .brand img{width:100%;height:100%;object-fit:contain}
+.site-header .main-nav{gap:clamp(16px,2.2vw,34px)}
+.site-header .main-nav a,.site-header .icon-link,.site-header .menu-button,.site-header .mobile-menu-btn{color:#182b23}
+.site-header .main-nav a{font-size:15px;font-weight:500}
+.site-header .main-nav a.active,.site-header .main-nav a:hover{color:#075e45;text-decoration:none}
+.site-header .main-nav a.active::after{bottom:-10px;background:#075e45}
+.site-header .icon-link svg{width:26px;height:26px}.cart-badge{background:#075e45;color:#fff}
+.devotion-hero{position:relative;isolation:isolate;overflow:hidden;background:#003b2a;color:#fffdf0;min-height:650px;height: min(790px,calc(100svh - 142px))}
+.devotion-scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2}
+.devotion-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,35,24,.44),rgba(0,35,24,.16) 48%,transparent 66%)}
+.devotion-inner{width:90%;max-width:1500px;margin:auto;height:100%;display:flex;align-items:center;padding:45px 0 75px}
+.devotion-copy{width:53%;max-width:770px}
+.devotion-eyebrow{font-size:12px;letter-spacing:3px;margin:0 0 22px;line-height:1.8;color:#e9edde}
+.devotion-copy h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(44px,5.4vw,88px);font-weight:400;line-height:1.02;letter-spacing:-2.5px;margin:0 0 23px;color:#fffdf0}
+.devotion-copy h1 span{color:#d5dfb4}
+.devotion-description{font-size:clamp(16px,1.4vw,21px);line-height:1.55;max-width:610px;color:#f0f1e7;margin:0}
+.devotion-actions{display:flex;flex-wrap:wrap;gap:18px;margin-top:30px}
+.devotion-button{min-height:60px;padding:15px 30px;border:1px solid #e3e6c8;border-radius:100px;display:inline-flex;gap:28px;align-items:center;justify-content:center;text-decoration:none;font-size:16px;color:#fffdf0;background:rgba(0,36,24,.25);transition:background .2s,transform .2s}
+.devotion-button.primary{background:#00513a;font-weight:700;font-size:19px}.devotion-button:hover{background:#0b694b;transform:translateY(-2px)}.devotion-button:focus-visible{outline:3px solid #e3e6c8;outline-offset:5px}
+.devotion-features{display:grid;grid-template-columns:repeat(4,1fr);margin-top:42px;max-width:590px;gap:0}
+.devotion-features>div{display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 14px;text-align:center;position:relative;font-size:13px;line-height:1.6}
+.devotion-features>div+div{border-left:1px solid #bac9b578}.devotion-features svg{width:29px;height:29px}
+.devotion-bottom{position:absolute;bottom:25px;left:4%;right:4%;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:9px;letter-spacing:3px;color:#e3e9d7}.devotion-bottom a{color:inherit;text-decoration:none}
+.section-head h2,.category-copy h3{color:#163e31}footer{background:#043e2c}
+@media(max-width:1100px){.site-header .main-nav{gap:14px}.site-header .main-nav a{font-size:13px}.devotion-copy{width:55%}.devotion-button{padding:13px 22px}.devotion-features>div{padding:0 8px;font-size:12px}}
+@media(max-width:980px){.site-header .main-nav.open{background:#faf6ed;border-color:#e4e5db}.site-header .main-nav a.active{background:#e7edde;color:#075e45}.site-header .nav-wrap{min-height:90px}.site-header .brand{height:80px;flex-basis:130px;width:130px}.devotion-hero{height:auto;min-height:650px}.devotion-inner{min-height:650px}.devotion-copy{width:58%}.devotion-copy h1{font-size:52px}.devotion-description{font-size:16px}.devotion-scene{object-position:58% center}}
+@media(max-width:700px){.site-header .nav-wrap{min-height:80px}.site-header .brand{height:72px;flex-basis:110px;width:110px}.topbar-track{min-height:32px;font-size:10px;gap:24px}.devotion-hero{min-height:0;height:auto;padding-bottom:360px}.devotion-inner{min-height:0;padding:40px 0 25px;width:88%;display:block}.devotion-copy{width:100%;max-width:none}.devotion-copy h1{font-size:clamp(40px,9.8vw,64px);letter-spacing:-1.5px}.devotion-eyebrow{font-size:9px;letter-spacing:1.6px;margin-bottom:16px}.devotion-description{font-size:15px;max-width:480px}.devotion-actions{gap:10px;margin-top:24px}.devotion-button,.devotion-button.primary{font-size:14px;padding:12px 18px;min-height:49px}.devotion-features{margin-top:28px;max-width:480px}.devotion-features>div{font-size:10px;padding:0 6px}.devotion-features svg{width:24px;height:24px}.devotion-scene{top:auto;bottom:0;height:380px;object-position:right center;object-fit:cover}.devotion-hero::before{background:linear-gradient(to bottom,#003b2a 0%,#003b2a calc(100% - 365px),transparent calc(100% - 300px))}.devotion-bottom{bottom:14px;font-size:8px;letter-spacing:1.6px}.devotion-bottom>span:last-child{display:none}.devotion-bottom>span:first-child{display:none}.devotion-bottom{justify-content:center}}
+@media(prefers-reduced-motion:reduce){.devotion-button{transition:none}}
+.site-header .brand img{filter:brightness(0) saturate(100%) invert(23%) sepia(27%) saturate(1250%) hue-rotate(109deg) brightness(91%) contrast(101%)}

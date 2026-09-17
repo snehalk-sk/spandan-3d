@@ -140,3 +140,31 @@
 .studio-site .devotion-eyebrow,
 .studio-site .devotion-features,
 .studio-site .devotion-bottom{color:#ffffff !important}
+
+/* Complete storefront contrast pass, including nested labels and link states. */
+.studio-site :is(.topbar,.devotion-hero,.studio-footer,.shop-custom-box,.about-cta,.custom-cta,.custom-product-cta,.custom-copy,.category-card.custom-card)
+:is(h1,h2,h3,h4,h5,h6,p,small,strong,em,li,label,.section-kicker,.category-tag,.category-arrow,.section-link,.shop-link){
+ color:#fff !important;
+}
+.studio-site :is(.topbar,.studio-footer,.shop-custom-box,.about-cta,.custom-cta,.custom-product-cta,.custom-copy,.category-card.custom-card)
+:is(h1,h2,h3,h4,h5,h6,p,small,strong,em,li,label) :is(span,a,small,strong,em){
+ color:inherit !important;
+}
+.studio-site :is(.topbar,.studio-footer) a,
+.studio-site :is(.shop-custom-box,.about-cta,.custom-cta,.custom-product-cta,.custom-copy) a:not(.btn-light),
+.studio-site :is(.btn-primary,.btn-dark,.add-to-cart-button,.contact-submit,.place-order,.choose-file,.step-number,.toast,.skip-link,.filter-btn.active){
+ color:#fff !important;
+}
+.studio-site :is(.btn-primary,.btn-dark,.add-to-cart-button,.contact-submit,.place-order,.choose-file,.filter-btn.active) :is(span,small,strong){
+ color:inherit !important;
+}
+/* These sections changed from dark to cream; retain dark readable text there. */
+.studio-site :is(.focus-section,.focus-card,.approach-card,.support-card,.process-card,.contact-info-card) :is(h3,h4,strong,label){
+ color:#203e32;
+}
+.studio-site :is(.focus-head,.focus-card,.approach-card,.support-card,.process-card,.contact-info-card) :is(p,small){
+ color:#3b5243;
+}
+.studio-site .focus-section{color:#203e32}
+.studio-site .studio-story-art>span{color:#fff}
+.studio-site .btn-light,.studio-site .view-product-button{color:#075e45}
